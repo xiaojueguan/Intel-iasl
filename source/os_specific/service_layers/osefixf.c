@@ -117,6 +117,9 @@
 #include "accommon.h"
 #include "acapps.h"
 
+#define _COMPONENT          ACPI_OS_SERVICES
+        ACPI_MODULE_NAME    ("osefixf")
+
 
 /* Local definitions */
 
@@ -213,7 +216,7 @@ static ACPI_PHYSICAL_ADDRESS
 AcpiEfiGetRsdpViaGuid (
     EFI_GUID                *Guid)
 {
-    unsigned long           Address = 0;
+    ACPI_PHYSICAL_ADDRESS   Address = 0;
     int                     i;
 
 
@@ -221,13 +224,13 @@ AcpiEfiGetRsdpViaGuid (
     {
         if (AcpiEfiCompareGuid (&ST->ConfigurationTable[i].VendorGuid, Guid))
         {
-            Address = (ACPI_PHYSICAL_ADDRESS)
-                    ST->ConfigurationTable[i].VendorTable;
+            Address = ACPI_PTR_TO_PHYSADDR (
+                    ST->ConfigurationTable[i].VendorTable);
             break;
         }
     }
 
-    return ((ACPI_PHYSICAL_ADDRESS) (Address));
+    return (Address);
 }
 
 

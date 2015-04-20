@@ -157,15 +157,16 @@
  */
 typedef struct dt_field
 {
-    char                    *Name;      /* Field name (from name : value) */
-    char                    *Value;     /* Field value (from name : value) */
-    struct dt_field         *Next;      /* Next field */
-    struct dt_field         *NextLabel; /* If field is a label, next label */
-    UINT32                  Line;       /* Line number for this field */
-    UINT32                  ByteOffset; /* Offset in source file for field */
-    UINT32                  NameColumn; /* Start column for field name */
-    UINT32                  Column;     /* Start column for field value */
-    UINT32                  TableOffset;/* Binary offset within ACPI table */
+    char                    *Name;       /* Field name (from name : value) */
+    char                    *Value;      /* Field value (from name : value) */
+    UINT32                  StringLength;/* Length of Value */
+    struct dt_field         *Next;       /* Next field */
+    struct dt_field         *NextLabel;  /* If field is a label, next label */
+    UINT32                  Line;        /* Line number for this field */
+    UINT32                  ByteOffset;  /* Offset in source file for field */
+    UINT32                  NameColumn;  /* Start column for field name */
+    UINT32                  Column;      /* Start column for field value */
+    UINT32                  TableOffset; /* Binary offset within ACPI table */
     UINT8                   Flags;
 
 } DT_FIELD;
@@ -580,6 +581,10 @@ DtCompileSrat (
     void                    **PFieldList);
 
 ACPI_STATUS
+DtCompileStao (
+    void                    **PFieldList);
+
+ACPI_STATUS
 DtCompileUefi (
     void                    **PFieldList);
 
@@ -629,6 +634,7 @@ extern const unsigned char  TemplateMcfg[];
 extern const unsigned char  TemplateMchi[];
 extern const unsigned char  TemplateMpst[];
 extern const unsigned char  TemplateMsct[];
+extern const unsigned char  TemplateMsdm[];
 extern const unsigned char  TemplateMtmr[];
 extern const unsigned char  TemplatePcct[];
 extern const unsigned char  TemplatePmtt[];
@@ -640,6 +646,7 @@ extern const unsigned char  TemplateSlit[];
 extern const unsigned char  TemplateSpcr[];
 extern const unsigned char  TemplateSpmi[];
 extern const unsigned char  TemplateSrat[];
+extern const unsigned char  TemplateStao[];
 extern const unsigned char  TemplateTcpa[];
 extern const unsigned char  TemplateTpm2[];
 extern const unsigned char  TemplateUefi[];
@@ -648,6 +655,7 @@ extern const unsigned char  TemplateWaet[];
 extern const unsigned char  TemplateWdat[];
 extern const unsigned char  TemplateWddt[];
 extern const unsigned char  TemplateWdrt[];
+extern const unsigned char  TemplateXenv[];
 extern const unsigned char  TemplateXsdt[];
 
 #endif

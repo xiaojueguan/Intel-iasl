@@ -414,7 +414,6 @@ AdAmlDisassemble (
         {
             fprintf (stderr, "Could not open output file %s\n", DisasmFilename);
             Status = AE_ERROR;
-            ACPI_FREE (DisasmFilename);
             goto Cleanup;
         }
 
@@ -427,7 +426,7 @@ AdAmlDisassemble (
 
     if (!AcpiGbl_ForceAmlDisassembly && !AcpiUtIsAmlTable (Table))
     {
-        AdDisassemblerHeader (Filename);
+        AdDisassemblerHeader (Filename, ACPI_IS_DATA_TABLE);
         AcpiOsPrintf (" * ACPI Data Table [%4.4s]\n *\n",
             Table->Signature);
         AcpiOsPrintf (" * Format: [HexOffset DecimalOffset ByteLength]  "
@@ -622,6 +621,7 @@ Cleanup:
  * FUNCTION:    AdDisassemblerHeader
  *
  * PARAMETERS:  Filename            - Input file for the table
+ *              TableType           - Either AML or DataTable
  *
  * RETURN:      None
  *
@@ -632,7 +632,8 @@ Cleanup:
 
 void
 AdDisassemblerHeader (
-    char                    *Filename)
+    char                    *Filename,
+    UINT8                   TableType)
 {
     time_t                  Timer;
 
@@ -644,17 +645,20 @@ AdDisassemblerHeader (
     AcpiOsPrintf ("/*\n");
     AcpiOsPrintf (ACPI_COMMON_HEADER (AML_DISASSEMBLER_NAME, " * "));
 
-    if (AcpiGbl_CstyleDisassembly)
+    if (TableType == ACPI_IS_AML_TABLE)
     {
-        AcpiOsPrintf (
-            " * Disassembling to symbolic ASL+ operators\n"
-            " *\n");
-    }
-    else
-    {
-        AcpiOsPrintf (
-            " * Disassembling to non-symbolic legacy ASL operators\n"
-            " *\n");
+        if (AcpiGbl_CstyleDisassembly)
+        {
+            AcpiOsPrintf (
+                " * Disassembling to symbolic ASL+ operators\n"
+                " *\n");
+        }
+        else
+        {
+            AcpiOsPrintf (
+                " * Disassembling to non-symbolic legacy ASL operators\n"
+                " *\n");
+        }
     }
 
     AcpiOsPrintf (" * Disassembly of %s, %s", Filename, ctime (&Timer));
@@ -688,7 +692,7 @@ AdCreateTableHeader (
     /*
      * Print file header and dump original table header
      */
-    AdDisassemblerHeader (Filename);
+    AdDisassemblerHeader (Filename, ACPI_IS_AML_TABLE);
 
     AcpiOsPrintf (" * Original Table Header:\n");
     AcpiOsPrintf (" *     Signature        \"%4.4s\"\n",    Table->Signature);

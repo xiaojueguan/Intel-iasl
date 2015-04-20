@@ -2312,15 +2312,11 @@ DtCompileSlic (
     DT_SUBTABLE             *Subtable;
     DT_SUBTABLE             *ParentTable;
     DT_FIELD                **PFieldList = (DT_FIELD **) List;
-    DT_FIELD                *SubtableStart;
-    ACPI_SLIC_HEADER        *SlicHeader;
-    ACPI_DMTABLE_INFO       *InfoTable;
 
 
     while (*PFieldList)
     {
-        SubtableStart = *PFieldList;
-        Status = DtCompileTable (PFieldList, AcpiDmTableInfoSlicHdr,
+        Status = DtCompileTable (PFieldList, AcpiDmTableInfoSlic,
                     &Subtable, TRUE);
         if (ACPI_FAILURE (Status))
         {
@@ -2330,35 +2326,6 @@ DtCompileSlic (
         ParentTable = DtPeekSubtable ();
         DtInsertSubtable (ParentTable, Subtable);
         DtPushSubtable (Subtable);
-
-        SlicHeader = ACPI_CAST_PTR (ACPI_SLIC_HEADER, Subtable->Buffer);
-
-        switch (SlicHeader->Type)
-        {
-        case ACPI_SLIC_TYPE_PUBLIC_KEY:
-
-            InfoTable = AcpiDmTableInfoSlic0;
-            break;
-
-        case ACPI_SLIC_TYPE_WINDOWS_MARKER:
-
-            InfoTable = AcpiDmTableInfoSlic1;
-            break;
-
-        default:
-
-            DtFatal (ASL_MSG_UNKNOWN_SUBTABLE, SubtableStart, "SLIC");
-            return (AE_ERROR);
-        }
-
-        Status = DtCompileTable (PFieldList, InfoTable, &Subtable, TRUE);
-        if (ACPI_FAILURE (Status))
-        {
-            return (Status);
-        }
-
-        ParentTable = DtPeekSubtable ();
-        DtInsertSubtable (ParentTable, Subtable);
         DtPopSubtable ();
     }
 
@@ -2510,6 +2477,59 @@ DtCompileSrat (
         ParentTable = DtPeekSubtable ();
         DtInsertSubtable (ParentTable, Subtable);
         DtPopSubtable ();
+    }
+
+    return (AE_OK);
+}
+
+
+/******************************************************************************
+ *
+ * FUNCTION:    DtCompileStao
+ *
+ * PARAMETERS:  PFieldList          - Current field list pointer
+ *
+ * RETURN:      Status
+ *
+ * DESCRIPTION: Compile STAO.
+ *
+ *****************************************************************************/
+
+ACPI_STATUS
+DtCompileStao (
+    void                    **List)
+{
+    DT_FIELD                **PFieldList = (DT_FIELD **) List;
+    DT_SUBTABLE             *Subtable;
+    DT_SUBTABLE             *ParentTable;
+    ACPI_STATUS             Status;
+
+
+    /* Compile the main table */
+
+    Status = DtCompileTable (PFieldList, AcpiDmTableInfoStao,
+                &Subtable, TRUE);
+    if (ACPI_FAILURE (Status))
+    {
+        return (Status);
+    }
+
+    ParentTable = DtPeekSubtable ();
+    DtInsertSubtable (ParentTable, Subtable);
+
+    /* Compile each ASCII namestring as a subtable */
+
+    while (*PFieldList)
+    {
+        Status = DtCompileTable (PFieldList, AcpiDmTableInfoStaoStr,
+                    &Subtable, TRUE);
+        if (ACPI_FAILURE (Status))
+        {
+            return (Status);
+        }
+
+        ParentTable = DtPeekSubtable ();
+        DtInsertSubtable (ParentTable, Subtable);
     }
 
     return (AE_OK);
@@ -2684,6 +2704,7 @@ DtCompileXsdt (
     DT_SUBTABLE             *ParentTable;
     DT_FIELD                *FieldList = *(DT_FIELD **) List;
     UINT64                  Address;
+
 
     ParentTable = DtPeekSubtable ();
 

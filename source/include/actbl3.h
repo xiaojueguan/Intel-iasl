@@ -142,7 +142,9 @@
 #define ACPI_SIG_PCCT           "PCCT"      /* Platform Communications Channel Table */
 #define ACPI_SIG_PMTT           "PMTT"      /* Platform Memory Topology Table */
 #define ACPI_SIG_RASF           "RASF"      /* RAS Feature table */
+#define ACPI_SIG_STAO           "STAO"      /* Status Override table */
 #define ACPI_SIG_TPM2           "TPM2"      /* Trusted Platform Module 2.0 H/W interface table */
+#define ACPI_SIG_XENV           "XENV"      /* Xen Environment table */
 
 #define ACPI_SIG_S3PT           "S3PT"      /* S3 Performance (sub)Table */
 #define ACPI_SIG_PCCS           "PCC"       /* PCC Shared Memory Region */
@@ -877,6 +879,24 @@ enum AcpiRasfStatus
 
 /*******************************************************************************
  *
+ * STAO - Status Override Table (_STA override) - ACPI 6.0
+ *        Version 1
+ *
+ * Conforms to "ACPI Specification for Status Override Table"
+ * 6 January 2015
+ *
+ ******************************************************************************/
+
+typedef struct acpi_table_stao
+{
+    ACPI_TABLE_HEADER       Header;             /* Common ACPI table header */
+    UINT8                   IgnoreUart;
+
+} ACPI_TABLE_STAO;
+
+
+/*******************************************************************************
+ *
  * TPM2 - Trusted Platform Module (TPM) 2.0 Hardware Interface Table
  *        Version 3
  *
@@ -908,6 +928,26 @@ typedef struct acpi_tpm2_control
     UINT64                  ResponseAddress;
 
 } ACPI_TPM2_CONTROL;
+
+
+/*******************************************************************************
+ *
+ * XENV - Xen Environment Table (ACPI 6.0)
+ *        Version 1
+ *
+ * Conforms to "ACPI Specification for Xen Environment Table" 4 January 2015
+ *
+ ******************************************************************************/
+
+typedef struct acpi_table_xenv
+{
+    ACPI_TABLE_HEADER       Header;             /* Common ACPI table header */
+    UINT64                  GrantTableAddress;
+    UINT64                  GrantTableSize;
+    UINT32                  EventInterrupt;
+    UINT8                   EventFlags;
+
+} ACPI_TABLE_XENV;
 
 
 /* Reset to default packing */

@@ -182,6 +182,7 @@
 #define ACPI_SPCR_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_SPCR,f)
 #define ACPI_SPMI_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_SPMI,f)
 #define ACPI_SRAT_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_SRAT,f)
+#define ACPI_STAO_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_STAO,f)
 #define ACPI_TCPA_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_TCPA,f)
 #define ACPI_TPM2_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_TPM2,f)
 #define ACPI_UEFI_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_UEFI,f)
@@ -189,6 +190,7 @@
 #define ACPI_WDAT_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_WDAT,f)
 #define ACPI_WDDT_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_WDDT,f)
 #define ACPI_WDRT_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_WDRT,f)
+#define ACPI_XENV_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_XENV,f)
 
 /* Subtables */
 
@@ -272,9 +274,7 @@
 #define ACPI_S3PTH_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_S3PT_HEADER,f)
 #define ACPI_S3PT0_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_S3PT_RESUME,f)
 #define ACPI_S3PT1_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_S3PT_SUSPEND,f)
-#define ACPI_SLICH_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_SLIC_HEADER,f)
-#define ACPI_SLIC0_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_SLIC_KEY,f)
-#define ACPI_SLIC1_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_SLIC_MARKER,f)
+#define ACPI_SLIC_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_SLIC,f)
 #define ACPI_SRATH_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_SUBTABLE_HEADER,f)
 #define ACPI_SRAT0_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_SRAT_CPU_AFFINITY,f)
 #define ACPI_SRAT1_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_SRAT_MEM_AFFINITY,f)
@@ -2115,42 +2115,16 @@ ACPI_DMTABLE_INFO           AcpiDmTableInfoSbst[] =
 
 /*******************************************************************************
  *
- * SLIC - Software Licensing Description Table. There is no common table, just
- * the standard ACPI header and then subtables.
+ * SLIC - Software Licensing Description Table. This table contains the standard
+ * ACPI header followed by proprietary data structures
  *
  ******************************************************************************/
 
-/* Common Subtable header (one per Subtable) */
+/* Single subtable, a proprietary format, so treat it as a buffer */
 
-ACPI_DMTABLE_INFO           AcpiDmTableInfoSlicHdr[] =
+ACPI_DMTABLE_INFO           AcpiDmTableInfoSlic[] =
 {
-    {ACPI_DMT_SLIC,     ACPI_SLICH_OFFSET (Type),                   "Subtable Type", 0},
-    {ACPI_DMT_UINT32,   ACPI_SLICH_OFFSET (Length),                 "Length", DT_LENGTH},
-    ACPI_DMT_TERMINATOR
-};
-
-ACPI_DMTABLE_INFO           AcpiDmTableInfoSlic0[] =
-{
-    {ACPI_DMT_UINT8,    ACPI_SLIC0_OFFSET (KeyType),                "Key Type", 0},
-    {ACPI_DMT_UINT8,    ACPI_SLIC0_OFFSET (Version),                "Version", 0},
-    {ACPI_DMT_UINT16,   ACPI_SLIC0_OFFSET (Reserved),               "Reserved", 0},
-    {ACPI_DMT_UINT32,   ACPI_SLIC0_OFFSET (Algorithm),              "Algorithm", 0},
-    {ACPI_DMT_NAME4,    ACPI_SLIC0_OFFSET (Magic),                  "Magic", 0},
-    {ACPI_DMT_UINT32,   ACPI_SLIC0_OFFSET (BitLength),              "BitLength", 0},
-    {ACPI_DMT_UINT32,   ACPI_SLIC0_OFFSET (Exponent),               "Exponent", 0},
-    {ACPI_DMT_BUF128,   ACPI_SLIC0_OFFSET (Modulus[0]),             "Modulus", 0},
-    ACPI_DMT_TERMINATOR
-};
-
-ACPI_DMTABLE_INFO           AcpiDmTableInfoSlic1[] =
-{
-    {ACPI_DMT_UINT32,   ACPI_SLIC1_OFFSET (Version),                "Version", 0},
-    {ACPI_DMT_NAME6,    ACPI_SLIC1_OFFSET (OemId[0]),               "Oem ID", 0},
-    {ACPI_DMT_NAME8,    ACPI_SLIC1_OFFSET (OemTableId[0]),          "Oem Table ID", 0},
-    {ACPI_DMT_NAME8,    ACPI_SLIC1_OFFSET (WindowsFlag[0]),         "Windows Flag", 0},
-    {ACPI_DMT_UINT32,   ACPI_SLIC1_OFFSET (SlicVersion),            "SLIC Version", 0},
-    {ACPI_DMT_BUF16,    ACPI_SLIC1_OFFSET (Reserved[0]),            "Reserved", 0},
-    {ACPI_DMT_BUF128,   ACPI_SLIC1_OFFSET (Signature[0]),           "Signature", 0},
+    {ACPI_DMT_RAW_BUFFER, 0,                                        "Software Licensing Structure", 0},
     ACPI_DMT_TERMINATOR
 };
 
@@ -2163,7 +2137,7 @@ ACPI_DMTABLE_INFO           AcpiDmTableInfoSlic1[] =
 
 ACPI_DMTABLE_INFO           AcpiDmTableInfoSlit[] =
 {
-    {ACPI_DMT_UINT64,   ACPI_SLIT_OFFSET (LocalityCount),          "Localities", 0},
+    {ACPI_DMT_UINT64,   ACPI_SLIT_OFFSET (LocalityCount),           "Localities", 0},
     ACPI_DMT_TERMINATOR
 };
 
@@ -2304,6 +2278,25 @@ ACPI_DMTABLE_INFO           AcpiDmTableInfoSrat3[] =
     {ACPI_DMT_UINT32,   ACPI_SRAT3_OFFSET (Flags),                  "Flags (decoded below)", DT_FLAG},
     {ACPI_DMT_FLAG0,    ACPI_SRAT3_FLAG_OFFSET (Flags,0),           "Enabled", 0},
     {ACPI_DMT_UINT32,   ACPI_SRAT3_OFFSET (ClockDomain),            "Clock Domain", 0},
+    ACPI_DMT_TERMINATOR
+};
+
+
+/*******************************************************************************
+ *
+ * STAO - Status Override Table (_STA override) - ACPI 6.0
+ *
+ ******************************************************************************/
+
+ACPI_DMTABLE_INFO           AcpiDmTableInfoStao[] =
+{
+    {ACPI_DMT_UINT8,    ACPI_STAO_OFFSET (IgnoreUart),              "Ignore UART", 0},
+    ACPI_DMT_TERMINATOR
+};
+
+ACPI_DMTABLE_INFO           AcpiDmTableInfoStaoStr[] =
+{
+    {ACPI_DMT_STRING,   0,                                          "Namepath", 0},
     ACPI_DMT_TERMINATOR
 };
 
@@ -2487,6 +2480,23 @@ ACPI_DMTABLE_INFO           AcpiDmTableInfoWdrt[] =
     {ACPI_DMT_UINT8,    ACPI_WDRT_OFFSET (Units),                   "Counter Units", 0},
     ACPI_DMT_TERMINATOR
 };
+
+/*******************************************************************************
+ *
+ * XENV -  Xen Environment table (ACPI 6.0)
+ *
+ ******************************************************************************/
+
+ACPI_DMTABLE_INFO           AcpiDmTableInfoXenv[] =
+{
+    {ACPI_DMT_UINT64,   ACPI_XENV_OFFSET (GrantTableAddress),       "Grant Table Address", 0},
+    {ACPI_DMT_UINT64,   ACPI_XENV_OFFSET (GrantTableSize),          "Grant Table Size", 0},
+    {ACPI_DMT_UINT32,   ACPI_XENV_OFFSET (EventInterrupt),          "Event Interrupt", 0},
+    {ACPI_DMT_UINT8,    ACPI_XENV_OFFSET (EventFlags),              "Event Flags", 0},
+    ACPI_DMT_TERMINATOR
+};
+
+
 
 /*! [Begin] no source code translation */
 
