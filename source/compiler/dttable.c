@@ -1018,6 +1018,18 @@ DtCompileFadt (
 
             DtInsertSubtable (ParentTable, Subtable);
         }
+
+        if (Revision >= 6)
+        {
+            Status = DtCompileTable (PFieldList, AcpiDmTableInfoFadt6,
+                        &Subtable, TRUE);
+            if (ACPI_FAILURE (Status))
+            {
+                return (Status);
+            }
+
+            DtInsertSubtable (ParentTable, Subtable);
+        }
     }
 
     return (AE_OK);
@@ -1557,11 +1569,6 @@ DtCompileLpit (
         case ACPI_LPIT_TYPE_NATIVE_CSTATE:
 
             InfoTable = AcpiDmTableInfoLpit0;
-            break;
-
-        case ACPI_LPIT_TYPE_SIMPLE_IO:
-
-            InfoTable = AcpiDmTableInfoLpit1;
             break;
 
         default:
@@ -2681,6 +2688,63 @@ DtCompileWdat (
     Status = DtCompileTwoSubtables (List,
                  AcpiDmTableInfoWdat, AcpiDmTableInfoWdat0);
     return (Status);
+}
+
+
+/******************************************************************************
+ *
+ * FUNCTION:    DtCompileWpbt
+ *
+ * PARAMETERS:  List                - Current field list pointer
+ *
+ * RETURN:      Status
+ *
+ * DESCRIPTION: Compile WPBT.
+ *
+ *****************************************************************************/
+
+ACPI_STATUS
+DtCompileWpbt (
+    void                    **List)
+{
+    DT_FIELD                **PFieldList = (DT_FIELD **) List;
+    DT_SUBTABLE             *Subtable;
+    DT_SUBTABLE             *ParentTable;
+    ACPI_TABLE_WPBT         *Table;
+    ACPI_STATUS             Status;
+    UINT16                  Length;
+
+
+    /* Compile the main table */
+
+    Status = DtCompileTable (PFieldList, AcpiDmTableInfoWpbt,
+                &Subtable, TRUE);
+    if (ACPI_FAILURE (Status))
+    {
+        return (Status);
+    }
+
+    ParentTable = DtPeekSubtable ();
+    DtInsertSubtable (ParentTable, Subtable);
+
+    /* Compile the argument list subtable */
+
+    Status = DtCompileTable (PFieldList, AcpiDmTableInfoWpbt0,
+                &Subtable, TRUE);
+    if (ACPI_FAILURE (Status))
+    {
+        return (Status);
+    }
+
+    /* Extract the length of the Arguments buffer, insert into main table */
+
+    Length = (UINT16) Subtable->TotalLength;
+    Table = ACPI_CAST_PTR (ACPI_TABLE_WPBT, ParentTable->Buffer);
+    Table->ArgumentsLength = Length;
+
+    ParentTable = DtPeekSubtable ();
+    DtInsertSubtable (ParentTable, Subtable);
+    return (AE_OK);
 }
 
 

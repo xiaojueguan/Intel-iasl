@@ -190,6 +190,7 @@
 #define ACPI_WDAT_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_WDAT,f)
 #define ACPI_WDDT_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_WDDT,f)
 #define ACPI_WDRT_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_WDRT,f)
+#define ACPI_WPBT_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_WPBT,f)
 #define ACPI_XENV_OFFSET(f)             (UINT16) ACPI_OFFSET (ACPI_TABLE_XENV,f)
 
 /* Subtables */
@@ -239,7 +240,6 @@
 #define ACPI_IVRS8C_OFFSET(f)           (UINT16) ACPI_OFFSET (ACPI_IVRS_DEVICE8C,f)
 #define ACPI_LPITH_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_LPIT_HEADER,f)
 #define ACPI_LPIT0_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_LPIT_NATIVE,f)
-#define ACPI_LPIT1_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_LPIT_IO,f)
 #define ACPI_MADT0_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_MADT_LOCAL_APIC,f)
 #define ACPI_MADT1_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_MADT_IO_APIC,f)
 #define ACPI_MADT2_OFFSET(f)            (UINT16) ACPI_OFFSET (ACPI_MADT_INTERRUPT_OVERRIDE,f)
@@ -561,6 +561,14 @@ ACPI_DMTABLE_INFO           AcpiDmTableInfoFadt5[] =
 {
     {ACPI_DMT_GAS,      ACPI_FADT_OFFSET (SleepControl),            "Sleep Control Register", 0},
     {ACPI_DMT_GAS,      ACPI_FADT_OFFSET (SleepStatus),             "Sleep Status Register", 0},
+    ACPI_DMT_TERMINATOR
+};
+
+/* ACPI 6.0 Extensions (FADT version 6) */
+
+ACPI_DMTABLE_INFO           AcpiDmTableInfoFadt6[] =
+{
+    {ACPI_DMT_UINT64,   ACPI_FADT_OFFSET (HypervisorId),            "Hypervisor ID", 0},
     ACPI_DMT_TERMINATOR
 };
 
@@ -1503,22 +1511,6 @@ ACPI_DMTABLE_INFO           AcpiDmTableInfoLpit0[] =
     {ACPI_DMT_UINT32,   ACPI_LPIT0_OFFSET (Latency),                "Latency", 0},
     {ACPI_DMT_GAS,      ACPI_LPIT0_OFFSET (ResidencyCounter),       "Residency Counter", 0},
     {ACPI_DMT_UINT64,   ACPI_LPIT0_OFFSET (CounterFrequency),       "Counter Frequency", 0},
-    ACPI_DMT_TERMINATOR
-};
-
-/* 1: Simple I/O */
-
-ACPI_DMTABLE_INFO           AcpiDmTableInfoLpit1[] =
-{
-    {ACPI_DMT_GAS,      ACPI_LPIT1_OFFSET (EntryTrigger),           "Entry Trigger", 0},
-    {ACPI_DMT_UINT32,   ACPI_LPIT1_OFFSET (TriggerAction),          "Trigger Action", 0},
-    {ACPI_DMT_UINT64,   ACPI_LPIT1_OFFSET (TriggerValue),           "Trigger Value", 0},
-    {ACPI_DMT_UINT64,   ACPI_LPIT1_OFFSET (TriggerMask),            "Trigger Mask", 0},
-    {ACPI_DMT_GAS,      ACPI_LPIT1_OFFSET (MinimumIdleState),       "Minimum Idle State", 0},
-    {ACPI_DMT_UINT32,   ACPI_LPIT1_OFFSET (Residency),              "Residency", 0},
-    {ACPI_DMT_UINT32,   ACPI_LPIT1_OFFSET (Latency),                "Latency", 0},
-    {ACPI_DMT_GAS,      ACPI_LPIT1_OFFSET (ResidencyCounter),       "Residency Counter", 0},
-    {ACPI_DMT_UINT64,   ACPI_LPIT1_OFFSET (CounterFrequency),       "Counter Frequency", 0},
     ACPI_DMT_TERMINATOR
 };
 
@@ -2481,6 +2473,33 @@ ACPI_DMTABLE_INFO           AcpiDmTableInfoWdrt[] =
     ACPI_DMT_TERMINATOR
 };
 
+
+/*******************************************************************************
+ *
+ * WPBT - Windows Platform Environment Table (ACPI 6.0)
+ *        Version 1
+ *
+ * Conforms to "Windows Platform Binary Table (WPBT)" 29 November 2011
+ *
+ ******************************************************************************/
+
+ACPI_DMTABLE_INFO           AcpiDmTableInfoWpbt[] =
+{
+    {ACPI_DMT_UINT32,      ACPI_WPBT_OFFSET (HandoffSize),          "Handoff Size", 0},
+    {ACPI_DMT_UINT64,      ACPI_WPBT_OFFSET (HandoffAddress),       "Handoff Address", 0},
+    {ACPI_DMT_UINT8,       ACPI_WPBT_OFFSET (Layout),               "Layout", 0},
+    {ACPI_DMT_UINT8,       ACPI_WPBT_OFFSET (Type),                 "Type", 0},
+    {ACPI_DMT_UINT16,      ACPI_WPBT_OFFSET (ArgumentsLength),      "Arguments Length", 0},
+    ACPI_DMT_TERMINATOR
+};
+
+ACPI_DMTABLE_INFO           AcpiDmTableInfoWpbt0[] =
+{
+    {ACPI_DMT_UNICODE,     sizeof (ACPI_TABLE_WPBT),                "Command-line Arguments", 0},
+    ACPI_DMT_TERMINATOR
+};
+
+
 /*******************************************************************************
  *
  * XENV -  Xen Environment table (ACPI 6.0)
@@ -2495,7 +2514,6 @@ ACPI_DMTABLE_INFO           AcpiDmTableInfoXenv[] =
     {ACPI_DMT_UINT8,    ACPI_XENV_OFFSET (EventFlags),              "Event Flags", 0},
     ACPI_DMT_TERMINATOR
 };
-
 
 
 /*! [Begin] no source code translation */

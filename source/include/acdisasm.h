@@ -344,6 +344,7 @@ extern ACPI_DMTABLE_INFO        AcpiDmTableInfoFadt1[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoFadt2[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoFadt3[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoFadt5[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoFadt6[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoFpdt[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoFpdtHdr[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoFpdt0[];
@@ -446,6 +447,8 @@ extern ACPI_DMTABLE_INFO        AcpiDmTableInfoWdat[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoWdat0[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoWddt[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoWdrt[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoWpbt[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoWpbt0[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoXenv[];
 
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoGeneric[][2];
@@ -503,6 +506,12 @@ AcpiDmDumpBuffer (
     UINT32                  AbsoluteOffset,
     char                    *Header,
     BOOLEAN                 MultiLine);
+
+void
+AcpiDmDumpUnicode (
+    void                    *Table,
+    UINT32                  BufferOffset,
+    UINT32                  ByteLength);
 
 void
 AcpiDmDumpAsf (
@@ -618,6 +627,10 @@ AcpiDmDumpVrtc (
 
 void
 AcpiDmDumpWdat (
+    ACPI_TABLE_HEADER       *Table);
+
+void
+AcpiDmDumpWpbt (
     ACPI_TABLE_HEADER       *Table);
 
 void
