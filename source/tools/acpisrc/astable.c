@@ -239,6 +239,8 @@ ACPI_STRING_TABLE           LinuxDataTypes[] = {
     {"INT16",                   "s16",              REPLACE_WHOLE_WORD},
     {"INT8",                    "s8",               REPLACE_WHOLE_WORD},
 
+    {"__FUNCTION__",            "__func__",         REPLACE_WHOLE_WORD},
+
     {NULL,                      NULL,               0}
 };
 
@@ -591,6 +593,7 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ACPI_TABLE_HEST",                     SRC_TYPE_STRUCT},
     {"ACPI_TABLE_HPET",                     SRC_TYPE_STRUCT},
     {"ACPI_TABLE_IBFT",                     SRC_TYPE_STRUCT},
+    {"ACPI_TABLE_IORT",                     SRC_TYPE_STRUCT},
     {"ACPI_TABLE_IVRS",                     SRC_TYPE_STRUCT},
     {"ACPI_TABLE_MADT",                     SRC_TYPE_STRUCT},
     {"ACPI_TABLE_MCFG",                     SRC_TYPE_STRUCT},
@@ -642,6 +645,10 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ACPI_DMAR_RHSA",                      SRC_TYPE_STRUCT},
     {"ACPI_DMAR_HARDWARE_UNIT",             SRC_TYPE_STRUCT},
     {"ACPI_DMAR_RESERVED_MEMORY",           SRC_TYPE_STRUCT},
+    {"ACPI_DRTM_DPS_ID",                    SRC_TYPE_STRUCT},
+    {"ACPI_DRTM_RESOURCE",                  SRC_TYPE_STRUCT},
+    {"ACPI_DRTM_RESOURCE_LIST",             SRC_TYPE_STRUCT},
+    {"ACPI_DRTM_VTABLE_LIST",               SRC_TYPE_STRUCT},
     {"ACPI_EINJ_ENTRY",                     SRC_TYPE_STRUCT},
     {"ACPI_EINJ_TRIGGER",                   SRC_TYPE_STRUCT},
     {"ACPI_ERST_ENTRY",                     SRC_TYPE_STRUCT},
@@ -671,6 +678,13 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ACPI_IBFT_INITIATOR",                 SRC_TYPE_STRUCT},
     {"ACPI_IBFT_NIC",                       SRC_TYPE_STRUCT},
     {"ACPI_IBFT_TARGET",                    SRC_TYPE_STRUCT},
+    {"ACPI_IORT_ID_MAPPING",                SRC_TYPE_STRUCT},
+    {"ACPI_IORT_ITS_GROUP",                 SRC_TYPE_STRUCT},
+    {"ACPI_IORT_MEMORY_ACCESS",             SRC_TYPE_STRUCT},
+    {"ACPI_IORT_NAMED_COMPONENT",           SRC_TYPE_STRUCT},
+    {"ACPI_IORT_NODE",                      SRC_TYPE_STRUCT},
+    {"ACPI_IORT_ROOT_COMPLEX",              SRC_TYPE_STRUCT},
+    {"ACPI_IORT_SMMU",                      SRC_TYPE_STRUCT},
     {"ACPI_IVRS_HEADER",                    SRC_TYPE_STRUCT},
     {"ACPI_IVRS_HARDWARE",                  SRC_TYPE_STRUCT},
     {"ACPI_IVRS_DE_HEADER",                 SRC_TYPE_STRUCT},
