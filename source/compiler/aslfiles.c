@@ -115,6 +115,7 @@
 
 #include "aslcompiler.h"
 #include "acapps.h"
+#include "dtcompiler.h"
 
 #define _COMPONENT          ACPI_COMPILER
         ACPI_MODULE_NAME    ("aslfiles")
@@ -395,11 +396,16 @@ FlOpenIncludeWithPrefix (
     }
 
     /*
-     * Check entire include file for any # preprocessor directives.
+     * Check the entire include file for any # preprocessor directives.
      * This is because there may be some confusion between the #include
-     * preprocessor directive and the ASL Include statement.
+     * preprocessor directive and the ASL Include statement. A file included
+     * by the ASL include cannot contain preprocessor directives because
+     * the preprocessor has already run by the time the ASL include is
+     * recognized (by the compiler, not the preprocessor.)
+     *
+     * Note: DtGetNextLine strips/ignores comments.
      */
-    while (fgets (Gbl_CurrentLineBuffer, Gbl_LineBufferSize, IncludeFile))
+    while (DtGetNextLine (IncludeFile) != ASL_EOF)
     {
         if (Gbl_CurrentLineBuffer[0] == '#')
         {
@@ -649,8 +655,6 @@ FlOpenMiscOutputFiles (
 
         /* Open the debug file as STDERR, text mode */
 
-        /* TBD: hide this behind a FlReopenFile function */
-
         Gbl_Files[ASL_FILE_DEBUG_OUTPUT].Filename = Filename;
         Gbl_Files[ASL_FILE_DEBUG_OUTPUT].Handle =
             freopen (Filename, "w+t", stderr);
@@ -658,13 +662,15 @@ FlOpenMiscOutputFiles (
         if (!Gbl_Files[ASL_FILE_DEBUG_OUTPUT].Handle)
         {
             /*
-             * A problem with freopen is that on error,
-             * we no longer have stderr.
+             * A problem with freopen is that on error, we no longer
+             * have stderr and cannot emit normal error messages.
+             * Emit error to stdout, close files, and exit.
              */
-            Gbl_DebugFlag = FALSE;
-            memcpy (stderr, stdout, sizeof (FILE));
-            FlFileError (ASL_FILE_DEBUG_OUTPUT, ASL_MSG_DEBUG_FILENAME);
-            AslAbort ();
+            fprintf (stdout,
+                "\nCould not open debug output file: %s\n\n", Filename);
+
+            CmCleanupAndExit ();
+            exit (1);
         }
 
         AslCompilerSignon (ASL_FILE_DEBUG_OUTPUT);

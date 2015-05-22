@@ -132,7 +132,7 @@
 #define ACPI_RAW_TABLE_DATA_HEADER      "Raw Table Data"
 
 
-typedef const struct acpi_dmtable_info
+typedef struct acpi_dmtable_info
 {
     UINT8                       Opcode;
     UINT16                      Offset;
@@ -224,6 +224,7 @@ typedef enum
     ACPI_DMT_IVRS,
     ACPI_DMT_LPIT,
     ACPI_DMT_MADT,
+    ACPI_DMT_NFIT,
     ACPI_DMT_PCCT,
     ACPI_DMT_PMTT,
     ACPI_DMT_SLIC,
@@ -251,7 +252,6 @@ typedef struct acpi_dmtable_data
     ACPI_DMTABLE_HANDLER    TableHandler;
     ACPI_CMTABLE_HANDLER    CmTableHandler;
     const unsigned char     *Template;
-    char                    *Name;
 
 } ACPI_DMTABLE_DATA;
 
@@ -430,6 +430,18 @@ extern ACPI_DMTABLE_INFO        AcpiDmTableInfoMsct[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoMsct0[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoMtmr[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoMtmr0[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfitHdr[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit0[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit1[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit2[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit2a[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit3[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit3a[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit4[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit5[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit6[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoNfit6a[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPmtt[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPmtt0[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPmtt1[];
@@ -475,11 +487,11 @@ extern ACPI_DMTABLE_INFO        AcpiDmTableInfoXenv[];
 
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoGeneric[][2];
 
-
 /*
- * dmtable
+ * dmtable and ahtable
  */
-extern ACPI_DMTABLE_DATA        AcpiDmTableData[];
+extern const ACPI_DMTABLE_DATA  AcpiDmTableData[];
+extern const AH_TABLE           AcpiSupportedTables[];
 
 UINT8
 AcpiDmGenerateChecksum (
@@ -487,7 +499,7 @@ AcpiDmGenerateChecksum (
     UINT32                  Length,
     UINT8                   OriginalChecksum);
 
-ACPI_DMTABLE_DATA *
+const ACPI_DMTABLE_DATA *
 AcpiDmGetTableData (
     char                    *Signature);
 
@@ -612,6 +624,10 @@ AcpiDmDumpMsct (
 
 void
 AcpiDmDumpMtmr (
+    ACPI_TABLE_HEADER       *Table);
+
+void
+AcpiDmDumpNfit (
     ACPI_TABLE_HEADER       *Table);
 
 void

@@ -132,6 +132,7 @@
 static char         Gbl_Buffer[BUFFER_LENGTH];
 static char         Gbl_LineBuffer[LINE_BUFFER_LENGTH];
 
+
 /* Local prototypes */
 
 static BOOLEAN
@@ -169,6 +170,22 @@ AhPrintOneField (
     UINT32                  CurrentPosition,
     UINT32                  MaxPosition,
     const char              *Field);
+
+
+void
+AhDisplayDirectives (
+    void)
+{
+    const AH_DIRECTIVE_INFO *Info;
+
+
+    printf ("iASL Preprocessor directives:\n\n");
+
+    for (Info = PreprocessorDirectives; Info->Name; Info++)
+    {
+        printf ("%16s : %s\n", Info->Name, Info->Operands);
+    }
+}
 
 
 /*******************************************************************************
@@ -967,12 +984,64 @@ AhDisplayUuids (
     const AH_UUID           *Info;
 
 
-    printf ("ACPI-related UUIDs:\n\n");
+    printf ("ACPI-related UUIDs/GUIDs:\n");
+
+    /* Display entire table of known ACPI-related UUIDs/GUIDs */
 
     for (Info = AcpiUuids; Info->Description; Info++)
     {
-        printf ("%32s : %s\n", Info->Description, Info->String);
+        if (!Info->String) /* Null UUID string means group description */
+        {
+            printf ("\n%36s\n", Info->Description);
+        }
+        else
+        {
+            printf ("%32s : %s\n", Info->Description, Info->String);
+        }
     }
+
+    /* Help info on how UUIDs/GUIDs strings are encoded */
+
+    printf ("\n\nByte encoding of UUID/GUID strings"
+        " into ACPI Buffer objects (use ToUUID from ASL):\n\n");
+
+    printf ("%32s : %s\n", "Input UUID/GUID String format",
+        "aabbccdd-eeff-gghh-iijj-kkllmmnnoopp");
+
+    printf ("%32s : %s\n", "Expected output ACPI buffer",
+        "dd,cc,bb,aa, ff,ee, hh,gg, ii,jj, kk,ll,mm,nn,oo,pp");
+}
+
+
+/*******************************************************************************
+ *
+ * FUNCTION:    AhDisplayTables
+ *
+ * PARAMETERS:  None
+ *
+ * RETURN:      None
+ *
+ * DESCRIPTION: Display all known ACPI tables
+ *
+ ******************************************************************************/
+
+void
+AhDisplayTables (
+    void)
+{
+    const AH_TABLE          *Info;
+    UINT32                  i = 0;
+
+
+    printf ("Known ACPI tables:\n");
+
+    for (Info = AcpiSupportedTables; Info->Signature; Info++)
+    {
+        printf ("%8s : %s\n", Info->Signature, Info->Description);
+        i++;
+    }
+
+    printf ("\nTotal %u ACPI tables\n\n", i);
 }
 
 
