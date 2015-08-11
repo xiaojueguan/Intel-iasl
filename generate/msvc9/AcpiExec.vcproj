@@ -232,7 +232,7 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source Files"
+			Name="Source"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<Filter
@@ -572,6 +572,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\source\components\utilities\utnonansi.c"
+					>
 				</File>
 				<File
 					RelativePath="..\..\source\components\utilities\utobject.c"
@@ -1673,7 +1677,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="AcpiExec"
+				Name="Local"
 				>
 				<File
 					RelativePath="..\..\source\Tools\AcpiExec\aeexec.c"
@@ -1962,6 +1966,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\source\components\debugger\dbobject.c"
+					>
 				</File>
 				<File
 					RelativePath="..\..\source\COMPONENTS\DEBUGGER\dbstats.c"
@@ -2598,28 +2606,6 @@
 				<File
 					RelativePath="..\..\source\components\disassembler\dmdeferred.c"
 					>
-				</File>
-				<File
-					RelativePath="..\..\SOURCE\COMPONENTS\disassembler\dmobject.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\source\COMPONENTS\Disassembler\dmopcode.c"
@@ -3551,6 +3537,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath="..\..\source\components\dispatcher\dsdebug.c"
+					>
+				</File>
+				<File
 					RelativePath="..\..\source\components\dispatcher\dsfield.c"
 					>
 					<FileConfiguration
@@ -3817,7 +3807,7 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Header Files"
+			Name="Standard Headers"
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
@@ -3969,19 +3959,23 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\source\Tools\AcpiExec\aecommon.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\source\tools\acpiexec\aetables.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\source\Include\amlcode.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\source\INCLUDE\amlresrc.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Local Headers"
+			>
+			<File
+				RelativePath="..\..\source\Tools\AcpiExec\aecommon.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\source\tools\acpiexec\aetables.h"
 				>
 			</File>
 		</Filter>

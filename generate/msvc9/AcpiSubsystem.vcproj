@@ -192,7 +192,7 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source Files"
+			Name="Source"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<Filter
@@ -393,6 +393,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\source\components\utilities\utfileio.c"
+					>
+				</File>
+				<File
 					RelativePath="..\..\source\components\utilities\utglobal.c"
 					>
 					<FileConfiguration
@@ -413,6 +417,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\source\components\utilities\uthex.c"
+					>
 				</File>
 				<File
 					RelativePath="..\..\source\components\utilities\utids.c"
@@ -549,6 +557,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath="..\..\source\components\utilities\utnonansi.c"
+					>
+				</File>
+				<File
 					RelativePath="..\..\source\components\utilities\utobject.c"
 					>
 					<FileConfiguration
@@ -650,6 +662,14 @@
 				</File>
 				<File
 					RelativePath="..\..\source\components\utilities\utstring.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\source\components\utilities\uttrack.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\source\components\utilities\utuuid.c"
 					>
 				</File>
 				<File
@@ -2117,28 +2137,6 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\..\SOURCE\COMPONENTS\disassembler\dmobject.c"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							AdditionalIncludeDirectories=""
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath="..\..\source\COMPONENTS\Disassembler\dmopcode.c"
 					>
 					<FileConfiguration
@@ -2457,6 +2455,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\source\components\debugger\dbobject.c"
+					>
 				</File>
 				<File
 					RelativePath="..\..\source\COMPONENTS\DEBUGGER\dbstats.c"
@@ -3101,6 +3103,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath="..\..\source\components\dispatcher\dsdebug.c"
+					>
+				</File>
+				<File
 					RelativePath="..\..\source\components\dispatcher\dsfield.c"
 					>
 					<FileConfiguration
@@ -3578,7 +3584,7 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="Header Files"
+			Name="Standard Headers"
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
@@ -3742,10 +3748,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="AcpiSubsystem.plg"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

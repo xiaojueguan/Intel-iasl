@@ -157,7 +157,6 @@ FlSetLineNumber (
          LineNumber, Gbl_LogicalLineNumber);
 
     Gbl_CurrentLineNumber = LineNumber;
-    Gbl_LogicalLineNumber = LineNumber;
 }
 
 
@@ -376,6 +375,7 @@ FlOpenIncludeWithPrefix (
 {
     FILE                    *IncludeFile;
     char                    *Pathname;
+    UINT32                  OriginalLineNumber;
 
 
     /* Build the full pathname to the file */
@@ -404,8 +404,11 @@ FlOpenIncludeWithPrefix (
      * recognized (by the compiler, not the preprocessor.)
      *
      * Note: DtGetNextLine strips/ignores comments.
+     * Save current line number since DtGetNextLine modifies it.
      */
-    while (DtGetNextLine (IncludeFile) != ASL_EOF)
+    Gbl_CurrentLineNumber--;
+    OriginalLineNumber = Gbl_CurrentLineNumber;
+    while (DtGetNextLine (IncludeFile, DT_ALLOW_MULTILINE_QUOTES) != ASL_EOF)
     {
         if (Gbl_CurrentLineBuffer[0] == '#')
         {
@@ -413,6 +416,7 @@ FlOpenIncludeWithPrefix (
                 Op, "use #include instead");
         }
     }
+    Gbl_CurrentLineNumber = OriginalLineNumber;
 
     /* Must seek back to the start of the file */
 
@@ -613,6 +617,26 @@ FlOpenMiscOutputFiles (
 {
     char                    *Filename;
 
+
+     /* Create/Open a map file if requested */
+
+    if (Gbl_MapfileFlag)
+    {
+        Filename = FlGenerateFilename (FilenamePrefix, FILE_SUFFIX_MAP);
+        if (!Filename)
+        {
+            AslCommonError (ASL_ERROR, ASL_MSG_LISTING_FILENAME,
+                0, 0, 0, 0, NULL, NULL);
+            return (AE_ERROR);
+        }
+
+        /* Open the hex file, text mode (closed at compiler exit) */
+
+        FlOpenFile (ASL_FILE_MAP_OUTPUT, Filename, "w+t");
+
+        AslCompilerSignon (ASL_FILE_MAP_OUTPUT);
+        AslCompilerFileHeader (ASL_FILE_MAP_OUTPUT);
+    }
 
     /* All done for disassembler */
 
@@ -878,26 +902,6 @@ FlOpenMiscOutputFiles (
 
         AslCompilerSignon (ASL_FILE_NAMESPACE_OUTPUT);
         AslCompilerFileHeader (ASL_FILE_NAMESPACE_OUTPUT);
-    }
-
-    /* Create/Open a map file if requested */
-
-    if (Gbl_MapfileFlag)
-    {
-        Filename = FlGenerateFilename (FilenamePrefix, FILE_SUFFIX_MAP);
-        if (!Filename)
-        {
-            AslCommonError (ASL_ERROR, ASL_MSG_LISTING_FILENAME,
-                0, 0, 0, 0, NULL, NULL);
-            return (AE_ERROR);
-        }
-
-        /* Open the hex file, text mode (closed at compiler exit) */
-
-        FlOpenFile (ASL_FILE_MAP_OUTPUT, Filename, "w+t");
-
-        AslCompilerSignon (ASL_FILE_MAP_OUTPUT);
-        AslCompilerFileHeader (ASL_FILE_MAP_OUTPUT);
     }
 
     return (AE_OK);

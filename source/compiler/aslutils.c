@@ -513,7 +513,7 @@ UtDisplaySummary (
             "%-14s %s - %u lines, %u bytes, %u keywords\n",
             "ASL Input:",
             Gbl_Files[ASL_FILE_INPUT].Filename, Gbl_CurrentLineNumber,
-            Gbl_InputByteCount, TotalKeywords);
+            Gbl_OriginalInputFileSize, TotalKeywords);
 
         /* AML summary */
 
@@ -546,7 +546,7 @@ UtDisplaySummary (
             continue;
         }
 
-        /* .TMP is the preprocessor temp file */
+        /* .PRE is the preprocessor intermediate file */
 
         if ((i == ASL_FILE_PREPROCESSOR)  && (!Gbl_KeepPreprocessorTempFile))
         {
@@ -1007,7 +1007,7 @@ UtDoConstant (
     char                    ErrBuf[64];
 
 
-    Status = UtStrtoul64 (String, 0, &Converted);
+    Status = stroul64 (String, 0, &Converted);
     if (ACPI_FAILURE (Status))
     {
         sprintf (ErrBuf, "%s %s\n", "Conversion error:",
@@ -1023,7 +1023,7 @@ UtDoConstant (
 
 /*******************************************************************************
  *
- * FUNCTION:    UtStrtoul64
+ * FUNCTION:    stroul64
  *
  * PARAMETERS:  String              - Null terminated string
  *              Terminater          - Where a pointer to the terminating byte
@@ -1037,7 +1037,7 @@ UtDoConstant (
  ******************************************************************************/
 
 ACPI_STATUS
-UtStrtoul64 (
+stroul64 (
     char                    *String,
     UINT32                  Base,
     UINT64                  *RetInteger)
@@ -1080,17 +1080,17 @@ UtStrtoul64 (
      */
     if (*String == '-')
     {
-        Sign = NEGATIVE;
+        Sign = ACPI_SIGN_NEGATIVE;
         ++String;
     }
     else if (*String == '+')
     {
         ++String;
-        Sign = POSITIVE;
+        Sign = ACPI_SIGN_POSITIVE;
     }
     else
     {
-        Sign = POSITIVE;
+        Sign = ACPI_SIGN_POSITIVE;
     }
 
     /*
@@ -1178,7 +1178,7 @@ UtStrtoul64 (
 
     /* If a minus sign was present, then "the conversion is negated": */
 
-    if (Sign == NEGATIVE)
+    if (Sign == ACPI_SIGN_NEGATIVE)
     {
         ReturnValue = (ACPI_UINT32_MAX - ReturnValue) + 1;
     }

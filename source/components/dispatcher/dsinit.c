@@ -296,7 +296,7 @@ AcpiDsInitializeObjects (
 
     /* Set all init info to zero */
 
-    ACPI_MEMSET (&Info, 0, sizeof (ACPI_INIT_WALK_INFO));
+    memset (&Info, 0, sizeof (ACPI_INIT_WALK_INFO));
 
     Info.OwnerId = OwnerId;
     Info.TableIndex = TableIndex;
@@ -326,6 +326,15 @@ AcpiDsInitializeObjects (
     {
         return_ACPI_STATUS (Status);
     }
+
+    /* DSDT is always the first AML table */
+
+    if (ACPI_COMPARE_NAME (Table->Signature, ACPI_SIG_DSDT))
+    {
+        ACPI_DEBUG_PRINT_RAW ((ACPI_DB_INIT, "\nInitializing Namespace objects:\n"));
+    }
+
+    /* Summary of objects initialized */
 
     ACPI_DEBUG_PRINT_RAW ((ACPI_DB_INIT,
         "Table [%4.4s] (id %4.4X) - %4u Objects with %3u Devices, "

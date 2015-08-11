@@ -320,7 +320,7 @@ AcpiDbDumpNamespace (
 
         if (DepthArg)
         {
-            MaxDepth = ACPI_STRTOUL (DepthArg, NULL, 0);
+            MaxDepth = strtoul (DepthArg, NULL, 0);
         }
     }
 
@@ -391,13 +391,13 @@ AcpiDbDumpNamespaceByOwner (
     ACPI_OWNER_ID           OwnerId;
 
 
-    OwnerId = (ACPI_OWNER_ID) ACPI_STRTOUL (OwnerArg, NULL, 0);
+    OwnerId = (ACPI_OWNER_ID) strtoul (OwnerArg, NULL, 0);
 
     /* Now we can check for the depth argument */
 
     if (DepthArg)
     {
-        MaxDepth = ACPI_STRTOUL (DepthArg, NULL, 0);
+        MaxDepth = strtoul (DepthArg, NULL, 0);
     }
 
     AcpiDbSetOutputDestination (ACPI_DB_DUPLICATE_OUTPUT);
@@ -457,7 +457,7 @@ AcpiDbWalkAndMatchName (
     /* Get the full pathname to this object */
 
     Buffer.Length = ACPI_ALLOCATE_LOCAL_BUFFER;
-    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer);
+    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, FALSE);
     if (ACPI_FAILURE (Status))
     {
         AcpiOsPrintf ("Could Not get pathname for object %p\n", ObjHandle);
@@ -498,7 +498,7 @@ AcpiDbFindNameInNamespace (
     char                    *AcpiNamePtr = AcpiName;
 
 
-    if (ACPI_STRLEN (NameArg) > 4)
+    if (strlen (NameArg) > ACPI_NAME_SIZE)
     {
         AcpiOsPrintf ("Name must be no longer than 4 characters\n");
         return (AE_OK);
@@ -654,7 +654,7 @@ AcpiDbWalkForSpecificObjects (
     /* Get and display the full pathname to this object */
 
     Buffer.Length = ACPI_ALLOCATE_LOCAL_BUFFER;
-    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer);
+    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, FALSE);
     if (ACPI_FAILURE (Status))
     {
         AcpiOsPrintf ("Could Not get pathname for object %p\n", ObjHandle);
@@ -902,7 +902,7 @@ AcpiDbFindReferences (
 
     /* Convert string to object pointer */
 
-    Address = ACPI_STRTOUL (ObjectArg, NULL, 16);
+    Address = strtoul (ObjectArg, NULL, 16);
     ObjDesc = ACPI_TO_POINTER (Address);
 
     /* Search all nodes in namespace */
@@ -958,7 +958,7 @@ AcpiDbBusWalk (
     /* Get the full path to this device object */
 
     Buffer.Length = ACPI_ALLOCATE_LOCAL_BUFFER;
-    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer);
+    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, FALSE);
     if (ACPI_FAILURE (Status))
     {
         AcpiOsPrintf ("Could Not get pathname for object %p\n", ObjHandle);

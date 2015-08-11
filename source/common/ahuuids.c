@@ -185,9 +185,16 @@ AcpiAhMatchUuid (
 
     for (Info = AcpiUuids; Info->Description; Info++)
     {
+        /* Null string means desciption is a UUID class */
+
+        if (!Info->String)
+        {
+            continue;
+        }
+
         AcpiUtConvertStringToUuid (Info->String, UuidBuffer);
 
-        if (!ACPI_MEMCMP (Data, UuidBuffer, UUID_BUFFER_LENGTH))
+        if (!memcmp (Data, UuidBuffer, UUID_BUFFER_LENGTH))
         {
             return (Info->Description);
         }

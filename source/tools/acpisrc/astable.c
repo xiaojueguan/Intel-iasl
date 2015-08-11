@@ -336,6 +336,7 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ACPI_MEM_SPACE_CONTEXT",              SRC_TYPE_STRUCT},
     {"ACPI_MEMORY_ATTRIBUTE",               SRC_TYPE_STRUCT},
     {"ACPI_MEMORY_LIST",                    SRC_TYPE_STRUCT},
+    {"ACPI_METHOD_LOCAL",                   SRC_TYPE_STRUCT},
     {"ACPI_MTMR_ENTRY",                     SRC_TYPE_STRUCT},
     {"ACPI_MUTEX",                          SRC_TYPE_SIMPLE},
     {"ACPI_MUTEX_HANDLE",                   SRC_TYPE_SIMPLE},
@@ -490,6 +491,7 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ACPI_TAG_INFO",                       SRC_TYPE_STRUCT},
     {"ACPI_THREAD_ID",                      SRC_TYPE_SIMPLE},
     {"ACPI_THREAD_STATE",                   SRC_TYPE_STRUCT},
+    {"ACPI_TRACE_EVENT_TYPE",               SRC_TYPE_SIMPLE},
     {"ACPI_TYPED_IDENTIFIER_TABLE",         SRC_TYPE_STRUCT},
     {"ACPI_UINTPTR_T",                      SRC_TYPE_SIMPLE},
     {"ACPI_UPDATE_STATE",                   SRC_TYPE_STRUCT},
@@ -563,6 +565,7 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ASL_LISTING_NODE",                    SRC_TYPE_STRUCT},
     {"ASL_MAPPING_ENTRY",                   SRC_TYPE_STRUCT},
     {"ASL_METHOD_INFO",                     SRC_TYPE_STRUCT},
+    {"ASL_METHOD_LOCAL",                    SRC_TYPE_STRUCT},
     {"ASL_RESERVED_INFO",                   SRC_TYPE_STRUCT},
     {"ASL_RESOURCE_INFO",                   SRC_TYPE_STRUCT},
     {"ASL_RESOURCE_NODE",                   SRC_TYPE_STRUCT},
@@ -739,6 +742,8 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ACPI_SRAT_MEM_AFFINITY",              SRC_TYPE_STRUCT},
     {"ACPI_SRAT_X2APIC_CPU_AFFINITY",       SRC_TYPE_STRUCT},
     {"ACPI_SRAT_GICC_AFFINITY",             SRC_TYPE_STRUCT},
+    {"ACPI_TABLE_TCPA_CLIENT",              SRC_TYPE_STRUCT},
+    {"ACPI_TABLE_TCPA_SERVER",              SRC_TYPE_STRUCT},
     {"ACPI_TPM2_CONTROL",                   SRC_TYPE_STRUCT},
     {"ACPI_WDAT_ENTRY",                     SRC_TYPE_STRUCT},
 
@@ -788,14 +793,6 @@ ACPI_IDENTIFIER_TABLE       LinuxAddStruct[] = {
     {"acpi_parse_object"},
     {"acpi_table_desc"},
     {"acpi_walk_state"},
-    {NULL}
-};
-
-
-ACPI_IDENTIFIER_TABLE       LinuxEliminateMacros[] = {
-
-    {"ACPI_GET_ADDRESS"},
-    {"ACPI_VALID_ADDRESS"},
     {NULL}
 };
 
@@ -881,7 +878,7 @@ ACPI_CONVERSION_TABLE       LinuxConversionTable = {
     LinuxDataTypes,
     LinuxEliminateLines_C,
     NULL,
-    LinuxEliminateMacros,
+    NULL,
     AcpiIdentifiers,
     NULL,
     (CVT_COUNT_TABS | CVT_COUNT_NON_ANSI_COMMENTS | CVT_COUNT_LINES |

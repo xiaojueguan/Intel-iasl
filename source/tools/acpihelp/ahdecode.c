@@ -172,6 +172,18 @@ AhPrintOneField (
     const char              *Field);
 
 
+/*******************************************************************************
+ *
+ * FUNCTION:    AhDisplayDirectives
+ *
+ * PARAMETERS:  None
+ *
+ * RETURN:      None
+ *
+ * DESCRIPTION: Display all iASL preprocessor directives.
+ *
+ ******************************************************************************/
+
 void
 AhDisplayDirectives (
     void)
@@ -179,11 +191,11 @@ AhDisplayDirectives (
     const AH_DIRECTIVE_INFO *Info;
 
 
-    printf ("iASL Preprocessor directives:\n\n");
+    printf ("iASL Preprocessor Directives\n\n");
 
     for (Info = PreprocessorDirectives; Info->Name; Info++)
     {
-        printf ("%16s : %s\n", Info->Name, Info->Operands);
+        printf ("  %-36s : %s\n", Info->Name, Info->Description);
     }
 }
 
@@ -220,7 +232,7 @@ AhFindPredefinedNames (
 
     /* Contruct a local name or name prefix */
 
-    AhStrupr (NamePrefix);
+    AcpiUtStrupr (NamePrefix);
     if (*NamePrefix == '_')
     {
         NamePrefix++;
@@ -230,7 +242,7 @@ AhFindPredefinedNames (
     strncpy (&Name[1], NamePrefix, 7);
 
     Length = strlen (Name);
-    if (Length > 4)
+    if (Length > ACPI_NAME_SIZE)
     {
         printf ("%.8s: Predefined name must be 4 characters maximum\n", Name);
         return;
@@ -405,7 +417,7 @@ AhFindAmlOpcode (
     BOOLEAN                 Found = FALSE;
 
 
-    AhStrupr (Name);
+    AcpiUtStrupr (Name);
 
     /* Find/display all opcode names that match the input name prefix */
 
@@ -426,7 +438,7 @@ AhFindAmlOpcode (
         /* Upper case the opcode name before substring compare */
 
         strcpy (Gbl_Buffer, Op->OpcodeName);
-        AhStrupr (Gbl_Buffer);
+        AcpiUtStrupr (Gbl_Buffer);
 
         if (strstr (Gbl_Buffer, Name) == Gbl_Buffer)
         {
@@ -469,7 +481,7 @@ AhDecodeAmlOpcode (
         return;
     }
 
-    Opcode = ACPI_STRTOUL (OpcodeString, NULL, 16);
+    Opcode = strtoul (OpcodeString, NULL, 16);
     if (Opcode > ACPI_UINT16_MAX)
     {
         printf ("Invalid opcode (more than 16 bits)\n");
@@ -583,7 +595,7 @@ AhFindAslKeywords (
     BOOLEAN                 Found = FALSE;
 
 
-    AhStrupr (Name);
+    AcpiUtStrupr (Name);
 
     for (Keyword = AslKeywordInfo; Keyword->Name; Keyword++)
     {
@@ -597,7 +609,7 @@ AhFindAslKeywords (
         /* Upper case the operator name before substring compare */
 
         strcpy (Gbl_Buffer, Keyword->Name);
-        AhStrupr (Gbl_Buffer);
+        AcpiUtStrupr (Gbl_Buffer);
 
         if (strstr (Gbl_Buffer, Name) == Gbl_Buffer)
         {
@@ -698,7 +710,7 @@ AhFindAslOperators (
     BOOLEAN                 MatchCount = 0;
 
 
-    AhStrupr (Name);
+    AcpiUtStrupr (Name);
 
     /* Find/display all names that match the input name prefix */
 
@@ -714,7 +726,7 @@ AhFindAslOperators (
         /* Upper case the operator name before substring compare */
 
         strcpy (Gbl_Buffer, Operator->Name);
-        AhStrupr (Gbl_Buffer);
+        AcpiUtStrupr (Gbl_Buffer);
 
         if (strstr (Gbl_Buffer, Name) == Gbl_Buffer)
         {
@@ -938,7 +950,7 @@ AhDisplayDeviceIds (
 
     /* Find/display all names that match the input name prefix */
 
-    AhStrupr (Name);
+    AcpiUtStrupr (Name);
     for (Info = AslDeviceIds; Info->Name; Info++)
     {
         Matched = TRUE;
@@ -1097,7 +1109,7 @@ AhDecodeException (
 
     /* Decode a single user-supplied exception code */
 
-    Status = ACPI_STRTOUL (HexString, NULL, 16);
+    Status = strtoul (HexString, NULL, 16);
     if (!Status)
     {
         printf ("%s: Invalid hexadecimal exception code value\n", HexString);

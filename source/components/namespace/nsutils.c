@@ -162,7 +162,7 @@ AcpiNsPrintNodePathname (
 
     Buffer.Length = ACPI_ALLOCATE_LOCAL_BUFFER;
 
-    Status = AcpiNsHandleToPathname (Node, &Buffer);
+    Status = AcpiNsHandleToPathname (Node, &Buffer, FALSE);
     if (ACPI_SUCCESS (Status))
     {
         if (Message)
@@ -419,7 +419,7 @@ AcpiNsBuildInternalName (
             {
                 /* Convert the character to uppercase and save it */
 
-                Result[i] = (char) ACPI_TOUPPER ((int) *ExternalName);
+                Result[i] = (char) toupper ((int) *ExternalName);
                 ExternalName++;
             }
         }

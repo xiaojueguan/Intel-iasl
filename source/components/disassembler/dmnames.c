@@ -251,7 +251,7 @@ AcpiPsDisplayObjectPathname (
     /* Convert NamedDesc/handle to a full pathname */
 
     Buffer.Length = ACPI_ALLOCATE_LOCAL_BUFFER;
-    Status = AcpiNsHandleToPathname (Node, &Buffer);
+    Status = AcpiNsHandleToPathname (Node, &Buffer, FALSE);
     if (ACPI_FAILURE (Status))
     {
         AcpiOsPrintf ("****Could not get pathname****)");
@@ -486,6 +486,8 @@ AcpiDmValidateName (
     char                    *Name,
     ACPI_PARSE_OBJECT       *Op)
 {
+    ACPI_PARSE_OBJECT       *TargetOp;
+
 
     if ((!Name) ||
         (!Op->Common.Parent))
@@ -498,9 +500,6 @@ AcpiDmValidateName (
         AcpiOsPrintf (
             " /**** Name not found or not accessible from this scope ****/ ");
     }
-
-    ACPI_PARSE_OBJECT       *TargetOp;
-
 
     if ((!Name) ||
         (!Op->Common.Parent))

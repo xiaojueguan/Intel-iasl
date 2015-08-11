@@ -205,7 +205,7 @@ AcpiDsMethodDataInitArgs (
 
 
 static ACPI_TABLE_DESC      LocalTables[1];
-ACPI_PARSE_OBJECT    *AcpiGbl_ParseOpRoot;
+static ACPI_PARSE_OBJECT    *AcpiGbl_ParseOpRoot;
 
 
 /*******************************************************************************
@@ -315,7 +315,7 @@ AdAmlDisassemble (
         while (ExternalFileList)
         {
             ExternalFilename = ExternalFileList->Path;
-            if (!ACPI_STRCMP (ExternalFilename, Filename))
+            if (!strcmp (ExternalFilename, Filename))
             {
                 /* Next external file */
 
@@ -868,8 +868,8 @@ AdStoreTable (
 
     AcpiTbInitTableDescriptor (TableDesc, ACPI_PTR_TO_PHYSADDR (Table),
         ACPI_TABLE_ORIGIN_INTERNAL_VIRTUAL, Table);
-    AcpiTbValidateTable (TableDesc);
-    return (AE_OK);
+    Status = AcpiTbValidateTable (TableDesc);
+    return (Status);
 }
 
 
@@ -964,7 +964,7 @@ AdParseTable (
 
     /* Create the root object */
 
-    AcpiGbl_ParseOpRoot = AcpiPsCreateScopeOp ();
+    AcpiGbl_ParseOpRoot = AcpiPsCreateScopeOp (AmlStart);
     if (!AcpiGbl_ParseOpRoot)
     {
         return (AE_NO_MEMORY);

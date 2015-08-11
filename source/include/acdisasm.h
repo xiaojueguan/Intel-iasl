@@ -258,13 +258,16 @@ typedef struct acpi_dmtable_data
 
 typedef struct acpi_op_walk_info
 {
+    ACPI_WALK_STATE         *WalkState;
+    ACPI_PARSE_OBJECT       *MappingOp;
+    UINT8                   *PreviousAml;
+    UINT8                   *StartAml;
     UINT32                  Level;
     UINT32                  LastLevel;
     UINT32                  Count;
     UINT32                  BitOffset;
     UINT32                  Flags;
-    ACPI_WALK_STATE         *WalkState;
-    ACPI_PARSE_OBJECT       *MappingOp;
+    UINT32                  AmlOffset;
 
 } ACPI_OP_WALK_INFO;
 
@@ -471,7 +474,9 @@ extern ACPI_DMTABLE_INFO        AcpiDmTableInfoSrat2[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoSrat3[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoStao[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoStaoStr[];
-extern ACPI_DMTABLE_INFO        AcpiDmTableInfoTcpa[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoTcpaHdr[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoTcpaClient[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoTcpaServer[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoTpm2[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoUefi[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoVrtc[];
@@ -667,6 +672,10 @@ AcpiDmDumpStao (
     ACPI_TABLE_HEADER       *Table);
 
 void
+AcpiDmDumpTcpa (
+    ACPI_TABLE_HEADER       *Table);
+
+void
 AcpiDmDumpVrtc (
     ACPI_TABLE_HEADER       *Table);
 
@@ -708,10 +717,6 @@ AcpiDmDisassembleOneOp (
     ACPI_WALK_STATE         *WalkState,
     ACPI_OP_WALK_INFO       *Info,
     ACPI_PARSE_OBJECT       *Op);
-
-void
-AcpiDmDecodeInternalObject (
-    ACPI_OPERAND_OBJECT     *ObjDesc);
 
 UINT32
 AcpiDmListType (
@@ -769,29 +774,6 @@ AcpiPsDisplayObjectPathname (
 void
 AcpiDmNamestring (
     char                    *Name);
-
-
-/*
- * dmobject
- */
-void
-AcpiDmDisplayInternalObject (
-    ACPI_OPERAND_OBJECT     *ObjDesc,
-    ACPI_WALK_STATE         *WalkState);
-
-void
-AcpiDmDisplayArguments (
-    ACPI_WALK_STATE         *WalkState);
-
-void
-AcpiDmDisplayLocals (
-    ACPI_WALK_STATE         *WalkState);
-
-void
-AcpiDmDumpMethodInfo (
-    ACPI_STATUS             Status,
-    ACPI_WALK_STATE         *WalkState,
-    ACPI_PARSE_OBJECT       *Op);
 
 
 /*

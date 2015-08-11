@@ -722,7 +722,7 @@ AcpiGetTagPathname (
 
     /* Get the full pathname to the parent buffer */
 
-    RequiredSize = AcpiNsGetPathnameLength (BufferNode);
+    RequiredSize = AcpiNsBuildNormalizedPath (BufferNode, NULL, 0, FALSE);
     if (!RequiredSize)
     {
         return (NULL);
@@ -734,12 +734,8 @@ AcpiGetTagPathname (
         return (NULL);
     }
 
-    Status = AcpiNsBuildExternalPath (BufferNode, RequiredSize, Pathname);
-    if (ACPI_FAILURE (Status))
-    {
-        ACPI_FREE (Pathname);
-        return (NULL);
-    }
+    (void) AcpiNsBuildNormalizedPath (BufferNode, Pathname,
+            RequiredSize, FALSE);
 
     /*
      * Create the full path to the resource and tag by: remove the buffer name,
@@ -751,10 +747,10 @@ AcpiGetTagPathname (
      * end up in the final compiled AML, it's just an appearance issue for the
      * disassembled code.
      */
-    Pathname[ACPI_STRLEN (Pathname) - ACPI_NAME_SIZE] = 0;
-    ACPI_STRNCAT (Pathname, ResourceNode->Name.Ascii, ACPI_NAME_SIZE);
-    ACPI_STRCAT (Pathname, ".");
-    ACPI_STRNCAT (Pathname, Tag, ACPI_NAME_SIZE);
+    Pathname[strlen (Pathname) - ACPI_NAME_SIZE] = 0;
+    strncat (Pathname, ResourceNode->Name.Ascii, ACPI_NAME_SIZE);
+    strcat (Pathname, ".");
+    strncat (Pathname, Tag, ACPI_NAME_SIZE);
 
     /* Internalize the namepath to AML format */
 
