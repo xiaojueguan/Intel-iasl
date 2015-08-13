@@ -123,6 +123,7 @@
 #define _COMPONENT          ACPI_CA_DEBUGGER
         ACPI_MODULE_NAME    ("dbinput")
 
+
 /* Local prototypes */
 
 static UINT32
@@ -271,7 +272,7 @@ static const ACPI_DB_COMMAND_INFO   AcpiGbl_DbCommands[] =
     {"METHODS",      0},
     {"NAMESPACE",    0},
     {"NOTIFY",       2},
-    {"OBJECTS",      1},
+    {"OBJECTS",      0},
     {"OPEN",         1},
     {"OSI",          0},
     {"OWNER",        1},
@@ -338,7 +339,7 @@ static const ACPI_DB_COMMAND_HELP   AcpiGbl_DbCommandHelp[] =
     {1, "  Methods",                           "Display list of loaded control methods\n"},
     {1, "  Namespace [Object] [Depth]",        "Display loaded namespace tree/subtree\n"},
     {1, "  Notify <Object> <Value>",           "Send a notification on Object\n"},
-    {1, "  Objects <ObjectType>",              "Display all objects of the given type\n"},
+    {1, "  Objects [ObjectType]",              "Display summary of all objects or just given type\n"},
     {1, "  Owner <OwnerId> [Depth]",           "Display loaded namespace by object owner\n"},
     {1, "  Paths",                             "Display full pathnames of namespace objects\n"},
     {1, "  Predefined",                        "Check all predefined names\n"},
@@ -717,7 +718,8 @@ AcpiDbGetLine (
     if (AcpiUtSafeStrcpy (AcpiGbl_DbParsedBuf, sizeof (AcpiGbl_DbParsedBuf),
         InputBuffer))
     {
-        AcpiOsPrintf ("Buffer overflow while parsing input line (max %u characters)\n",
+        AcpiOsPrintf (
+            "Buffer overflow while parsing input line (max %u characters)\n",
             sizeof (AcpiGbl_DbParsedBuf));
         return (0);
     }
@@ -779,7 +781,7 @@ AcpiDbMatchCommand (
     for (i = CMD_FIRST_VALID; AcpiGbl_DbCommands[i].Name; i++)
     {
         if (strstr (AcpiGbl_DbCommands[i].Name, UserCommand) ==
-                         AcpiGbl_DbCommands[i].Name)
+            AcpiGbl_DbCommands[i].Name)
         {
             return (i);
         }
@@ -849,7 +851,8 @@ AcpiDbCommandDispatch (
             ParamCount, AcpiGbl_DbCommands[CommandIndex].Name,
             AcpiGbl_DbCommands[CommandIndex].MinArgs);
 
-        AcpiDbDisplayCommandInfo (AcpiGbl_DbCommands[CommandIndex].Name, FALSE);
+        AcpiDbDisplayCommandInfo (
+            AcpiGbl_DbCommands[CommandIndex].Name, FALSE);
         return (AE_CTRL_TRUE);
     }
 
@@ -1021,9 +1024,11 @@ AcpiDbCommandDispatch (
 
         if (ParamCount == 0)
         {
-            AcpiOsPrintf ("Current debug level for file output is:    %8.8lX\n",
+            AcpiOsPrintf (
+                "Current debug level for file output is:    %8.8lX\n",
                 AcpiGbl_DbDebugLevel);
-            AcpiOsPrintf ("Current debug level for console output is: %8.8lX\n",
+            AcpiOsPrintf (
+                "Current debug level for console output is: %8.8lX\n",
                 AcpiGbl_DbConsoleDebugLevel);
         }
         else if (ParamCount == 2)

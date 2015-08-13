@@ -535,6 +535,16 @@ typedef struct acpi_simple_repair_info
 #define ACPI_NUM_RTYPES                 5   /* Number of actual object types */
 
 
+/* Info for running the _REG methods */
+
+typedef struct acpi_reg_walk_info
+{
+    ACPI_ADR_SPACE_TYPE     SpaceId;
+    UINT32                  RegRunCount;
+
+} ACPI_REG_WALK_INFO;
+
+
 /*****************************************************************************
  *
  * Event typedefs and structs
@@ -1387,6 +1397,13 @@ typedef struct acpi_integrity_info
 #define ACPI_DB_REDIRECTABLE_OUTPUT     0x01
 #define ACPI_DB_CONSOLE_OUTPUT          0x02
 #define ACPI_DB_DUPLICATE_OUTPUT        0x03
+
+
+typedef struct acpi_object_info
+{
+    UINT32                  Types[ACPI_TOTAL_TYPES];
+
+} ACPI_OBJECT_INFO;
 
 
 /*****************************************************************************
