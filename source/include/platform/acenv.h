@@ -143,13 +143,14 @@
 
 #ifdef ACPI_ASL_COMPILER
 #define ACPI_APPLICATION
-#define ACPI_DISASSEMBLER
 #define ACPI_DEBUG_OUTPUT
 #define ACPI_CONSTANT_EVAL_ONLY
 #define ACPI_LARGE_NAMESPACE_NODE
 #define ACPI_DATA_TABLE_DISASSEMBLY
 #define ACPI_SINGLE_THREADED
 #define ACPI_32BIT_PHYSICAL_ADDRESS
+
+#define ACPI_DISASSEMBLER 1
 #endif
 
 /* AcpiExec configuration. Multithreaded with full AML debugger */
@@ -214,6 +215,7 @@
 
 #ifdef ACPI_LIBRARY
 #define ACPI_USE_LOCAL_CACHE
+#define ACPI_FULL_DEBUG
 #endif
 
 /* Common for all ACPICA applications */
@@ -223,14 +225,13 @@
 #define ACPI_USE_LOCAL_CACHE
 #endif
 
-/* Common debug support */
+/* Common debug/disassembler support */
 
 #ifdef ACPI_FULL_DEBUG
-#define ACPI_DEBUGGER
 #define ACPI_DEBUG_OUTPUT
-#define ACPI_DISASSEMBLER
+#define ACPI_DEBUGGER 1
+#define ACPI_DISASSEMBLER 1
 #endif
-
 
 /*! [Begin] no source code translation */
 

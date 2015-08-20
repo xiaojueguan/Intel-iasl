@@ -118,14 +118,9 @@
 #include "acdispat.h"
 #include "acnamesp.h"
 #include "acdebug.h"
-#ifdef ACPI_DISASSEMBLER
-#include "acdisasm.h"
-#endif
 #include "acparser.h"
 #include "acpredef.h"
 
-
-#ifdef ACPI_DEBUGGER
 
 #define _COMPONENT          ACPI_CA_DEBUGGER
         ACPI_MODULE_NAME    ("dbmethod")
@@ -472,14 +467,14 @@ AcpiDbDisassembleMethod (
 
     Status = AcpiPsParseAml (WalkState);
 
-#ifdef ACPI_DISASSEMBER
+#ifdef ACPI_DISASSEMBLER
     (void) AcpiDmParseDeferredOps (Op);
 
     /* Now we can disassemble the method */
 
-    AcpiGbl_DbOpt_Verbose = FALSE;
+    AcpiGbl_DmOpt_Verbose = FALSE;
     AcpiDmDisassemble (NULL, Op, 0);
-    AcpiGbl_DbOpt_Verbose = TRUE;
+    AcpiGbl_DmOpt_Verbose = TRUE;
 #endif
 
     AcpiPsDeleteParseTree (Op);
@@ -491,5 +486,3 @@ AcpiDbDisassembleMethod (
     AcpiUtReleaseOwnerId (&ObjDesc->Method.OwnerId);
     return (AE_OK);
 }
-
-#endif /* ACPI_DEBUGGER */

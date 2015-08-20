@@ -120,8 +120,6 @@
 #include "acpredef.h"
 
 
-#ifdef ACPI_DEBUGGER
-
 #define _COMPONENT          ACPI_CA_DEBUGGER
         ACPI_MODULE_NAME    ("dbnames")
 
@@ -471,7 +469,7 @@ AcpiDbWalkAndMatchName (
     /* Get the full pathname to this object */
 
     Buffer.Length = ACPI_ALLOCATE_LOCAL_BUFFER;
-    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, FALSE);
+    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, TRUE);
     if (ACPI_FAILURE (Status))
     {
         AcpiOsPrintf ("Could Not get pathname for object %p\n",
@@ -706,7 +704,7 @@ AcpiDbWalkForSpecificObjects (
     /* Get and display the full pathname to this object */
 
     Buffer.Length = ACPI_ALLOCATE_LOCAL_BUFFER;
-    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, FALSE);
+    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, TRUE);
     if (ACPI_FAILURE (Status))
     {
         AcpiOsPrintf ("Could Not get pathname for object %p\n", ObjHandle);
@@ -1045,7 +1043,7 @@ AcpiDbBusWalk (
     /* Get the full path to this device object */
 
     Buffer.Length = ACPI_ALLOCATE_LOCAL_BUFFER;
-    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, FALSE);
+    Status = AcpiNsHandleToPathname (ObjHandle, &Buffer, TRUE);
     if (ACPI_FAILURE (Status))
     {
         AcpiOsPrintf ("Could Not get pathname for object %p\n",
@@ -1143,5 +1141,3 @@ AcpiDbGetBusInfo (
     (void) AcpiWalkNamespace (ACPI_TYPE_ANY, ACPI_ROOT_OBJECT,
         ACPI_UINT32_MAX, AcpiDbBusWalk, NULL, NULL, NULL);
 }
-
-#endif /* ACPI_DEBUGGER */

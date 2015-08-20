@@ -117,11 +117,8 @@
 #include "accommon.h"
 #include "acparser.h"
 #include "amlcode.h"
-#include "acdisasm.h"
 #include "acdebug.h"
 
-
-#ifdef ACPI_DISASSEMBLER
 
 #define _COMPONENT          ACPI_CA_DEBUGGER
         ACPI_MODULE_NAME    ("dmwalk")
@@ -540,10 +537,13 @@ AcpiDmDescendingOp (
         {
             AmlOffset = (UINT32) ACPI_PTR_DIFF (Op->Common.Aml,
                             Info->WalkState->ParserState.AmlStart);
-            VERBOSE_PRINT ((DB_FULL_OP_INFO,
-                (Info->WalkState->MethodNode ?
-                    Info->WalkState->MethodNode->Name.Ascii : "   "),
-                AmlOffset, (UINT32) Op->Common.AmlOpcode));
+            if (AcpiGbl_DmOpt_Verbose)
+            {
+                AcpiOsPrintf (DB_FULL_OP_INFO,
+                    (Info->WalkState->MethodNode ?
+                        Info->WalkState->MethodNode->Name.Ascii : "   "),
+                    AmlOffset, (UINT32) Op->Common.AmlOpcode);
+            }
         }
 
         if (Op->Common.AmlOpcode == AML_SCOPE_OP)
@@ -673,7 +673,7 @@ AcpiDmDescendingOp (
 
                 if (Op->Common.AmlOpcode != AML_INT_NAMEDFIELD_OP)
                 {
-                    if (AcpiGbl_DbOpt_Verbose)
+                    if (AcpiGbl_DmOpt_Verbose)
                     {
                         (void) AcpiPsDisplayObjectPathname (NULL, Op);
                     }
@@ -1137,5 +1137,3 @@ AcpiDmAscendingOp (
 
     return (AE_OK);
 }
-
-#endif  /* ACPI_DISASSEMBLER */

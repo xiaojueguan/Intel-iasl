@@ -123,8 +123,6 @@
 #include "acdebug.h"
 
 
-#ifdef ACPI_DEBUGGER
-
 #define _COMPONENT          ACPI_CA_DEBUGGER
         ACPI_MODULE_NAME    ("dbdisply")
 
@@ -408,7 +406,7 @@ AcpiDbDecodeAndDisplayObject (
 DumpNode:
     /* Now dump the NS node */
 
-    Status = AcpiGetName (Node, ACPI_FULL_PATHNAME, &RetBuf);
+    Status = AcpiGetName (Node, ACPI_FULL_PATHNAME_NO_TRAILING, &RetBuf);
     if (ACPI_FAILURE (Status))
     {
         AcpiOsPrintf ("Could not convert name to pathname\n");
@@ -923,7 +921,7 @@ AcpiDbDisplayGpes (
         while (GpeBlock)
         {
             Status = AcpiGetName (GpeBlock->Node,
-                ACPI_FULL_PATHNAME, &RetBuf);
+                ACPI_FULL_PATHNAME_NO_TRAILING, &RetBuf);
             if (ACPI_FAILURE (Status))
             {
                 AcpiOsPrintf ("Could not convert name to pathname\n");
@@ -1273,5 +1271,3 @@ AcpiDbDisplayNonRootHandlers (
     ACPI_FREE (Pathname);
     return (AE_OK);
 }
-
-#endif /* ACPI_DEBUGGER */
