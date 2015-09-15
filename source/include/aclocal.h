@@ -159,10 +159,8 @@ union acpi_parse_object;
 #define ACPI_MTX_EVENTS                 3   /* Data for ACPI events */
 #define ACPI_MTX_CACHES                 4   /* Internal caches, general purposes */
 #define ACPI_MTX_MEMORY                 5   /* Debug memory tracking lists */
-#define ACPI_MTX_DEBUG_CMD_COMPLETE     6   /* AML debugger */
-#define ACPI_MTX_DEBUG_CMD_READY        7   /* AML debugger */
 
-#define ACPI_MAX_MUTEX                  7
+#define ACPI_MAX_MUTEX                  5
 #define ACPI_NUM_MUTEX                  ACPI_MAX_MUTEX+1
 
 
@@ -1089,7 +1087,7 @@ typedef struct acpi_parse_state
 #define ACPI_PARSEOP_PARAMLIST          0x02
 #define ACPI_PARSEOP_EMPTY_TERMLIST     0x04
 #define ACPI_PARSEOP_PREDEF_CHECKED     0x08
-#define ACPI_PARSEOP_SPECIAL            0x10
+#define ACPI_PARSEOP_CLOSING_PAREN      0x10
 #define ACPI_PARSEOP_COMPOUND           0x20
 #define ACPI_PARSEOP_ASSIGNMENT         0x40
 
