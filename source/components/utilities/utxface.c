@@ -244,7 +244,6 @@ AcpiGetSystemInfo (
      * Populate the return buffer
      */
     InfoPtr = (ACPI_SYSTEM_INFO *) OutBuffer->Pointer;
-
     InfoPtr->AcpiCaVersion = ACPI_CA_VERSION;
 
     /* System flags (ACPI capabilities) */
@@ -312,11 +311,9 @@ AcpiGetStatistics (
     memcpy (Stats->FixedEventCount, AcpiFixedEventCount,
         sizeof (AcpiFixedEventCount));
 
-
     /* Other counters */
 
     Stats->MethodCount = AcpiMethodCount;
-
     return_ACPI_STATUS (AE_OK);
 }
 

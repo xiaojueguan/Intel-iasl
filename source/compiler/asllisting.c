@@ -293,6 +293,7 @@ LsAmlListingWalk (
             FlFileError (ASL_FILE_AML_OUTPUT, ASL_MSG_READ);
             AslAbort ();
         }
+
         LsWriteListingHexBytes (&FileByte, 1, FileId);
     }
 
@@ -388,7 +389,7 @@ LsWriteNodeToListing (
     {
         switch (Op->Asl.ParseOpcode)
         {
-        case PARSEOP_DEFINITIONBLOCK:
+        case PARSEOP_DEFINITION_BLOCK:
         case PARSEOP_METHODCALL:
         case PARSEOP_INCLUDE:
         case PARSEOP_INCLUDE_END:
@@ -434,7 +435,7 @@ LsWriteNodeToListing (
 
     switch (Op->Asl.ParseOpcode)
     {
-    case PARSEOP_DEFINITIONBLOCK:
+    case PARSEOP_DEFINITION_BLOCK:
 
         LsWriteSourceLines (Op->Asl.EndLine, Op->Asl.EndLogicalLine, FileId);
 

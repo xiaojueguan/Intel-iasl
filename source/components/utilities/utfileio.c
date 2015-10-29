@@ -196,6 +196,7 @@ AcpiUtCheckTextModeCorruption (
 
                 Pairs++;
             }
+
             i++;
         }
     }
@@ -216,6 +217,7 @@ AcpiUtCheckTextModeCorruption (
     AcpiOsPrintf ("Table has been corrupted by text mode conversion\n");
     AcpiOsPrintf ("All LFs (%u) were changed to CR/LF pairs\n", Pairs);
     AcpiOsPrintf ("Table cannot be repaired!\n");
+
     return (AE_BAD_VALUE);
 }
 
@@ -246,6 +248,7 @@ AcpiUtReadTable (
     UINT32                  FileSize;
     BOOLEAN                 StandardHeader = TRUE;
     INT32                   Count;
+
 
     /* Get the file size */
 
@@ -346,12 +349,12 @@ AcpiUtReadTable (
             /* Now validate the checksum */
 
             Status = AcpiTbVerifyChecksum ((void *) *Table,
-                        ACPI_CAST_PTR (ACPI_TABLE_HEADER, *Table)->Length);
+                ACPI_CAST_PTR (ACPI_TABLE_HEADER, *Table)->Length);
 
             if (Status == AE_BAD_CHECKSUM)
             {
                 Status = AcpiUtCheckTextModeCorruption ((UINT8 *) *Table,
-                            FileSize, (*Table)->Length);
+                    FileSize, (*Table)->Length);
                 return (Status);
             }
         }
@@ -387,6 +390,34 @@ AcpiUtReadTable (
  ******************************************************************************/
 
 ACPI_STATUS
+AcpiUtReadTablesFromFile (
+    FILE                    *File,
+    ACPI_TABLE_HEADER       **Table)
+{
+    ACPI_TABLE_HEADER       TableHeader;
+    INT32                   Count;
+    long                    Position;
+
+
+    Position = ftell (File);
+    Count = fread (&TableHeader, 1, sizeof (ACPI_TABLE_HEADER), File);
+    if (Count < sizeof (ACPI_TABLE_HEADER))
+    {
+        return (AE_CTRL_TERMINATE);
+    }
+
+    /* Allocate a buffer for the table */
+
+    *Table = AcpiOsAllocate ((size_t) TableHeader.Length);
+    fseek (File, Position, SEEK_SET);
+
+    Count = fread (*Table, 1, TableHeader.Length, File);
+
+    return (AE_OK);
+}
+
+
+ACPI_STATUS
 AcpiUtReadTableFromFile (
     char                    *Filename,
     ACPI_TABLE_HEADER       **Table)
@@ -398,6 +429,7 @@ AcpiUtReadTableFromFile (
 
 
     /* Open the file, get current size */
+
 
     File = fopen (Filename, "rb");
     if (!File)
