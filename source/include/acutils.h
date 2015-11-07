@@ -556,23 +556,6 @@ AcpiUtExecutePowerMethods (
 
 
 /*
- * utfileio - file operations
- */
-#ifdef ACPI_APPLICATION
-
-ACPI_STATUS
-AcpiUtReadTablesFromFile (
-    FILE                    *File,
-    ACPI_TABLE_HEADER       **Table);
-
-ACPI_STATUS
-AcpiUtReadTableFromFile (
-    char                    *Filename,
-    ACPI_TABLE_HEADER       **Table);
-#endif
-
-
-/*
  * utids - device ID support
  */
 ACPI_STATUS
@@ -582,11 +565,6 @@ AcpiUtExecute_HID (
 
 ACPI_STATUS
 AcpiUtExecute_UID (
-    ACPI_NAMESPACE_NODE     *DeviceNode,
-    ACPI_PNP_DEVICE_ID      **ReturnId);
-
-ACPI_STATUS
-AcpiUtExecute_SUB (
     ACPI_NAMESPACE_NODE     *DeviceNode,
     ACPI_PNP_DEVICE_ID      **ReturnId);
 
