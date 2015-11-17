@@ -124,7 +124,7 @@
 /* Local prototypes */
 
 static int
-NsDumpEntireNamespace (
+AnDumpEntireNamespace (
     ACPI_NEW_TABLE_DESC     *ListHead);
 
 
@@ -173,7 +173,103 @@ usage (
 
 /******************************************************************************
  *
- * FUNCTION:    NsDumpEntireNamespace
+ * FUNCTION:    main
+ *
+ * PARAMETERS:  argc, argv
+ *
+ * RETURN:      Status (pass/fail)
+ *
+ * DESCRIPTION: Main routine for NsDump utility
+ *
+ *****************************************************************************/
+
+int ACPI_SYSTEM_XFACE
+main (
+    int                     argc,
+    char                    **argv)
+{
+    ACPI_NEW_TABLE_DESC     *ListHead = NULL;
+    ACPI_STATUS             Status;
+    int                     j;
+
+
+    ACPI_DEBUG_INITIALIZE (); /* For debug version only */
+
+    /* Init debug globals and ACPICA */
+
+    AcpiDbgLevel = ACPI_NORMAL_DEFAULT | ACPI_LV_TABLES;
+    AcpiDbgLayer = 0xFFFFFFFF;
+
+    Status = AcpiInitializeSubsystem ();
+    ACPI_CHECK_OK (AcpiInitializeSubsystem, Status);
+    if (ACPI_FAILURE (Status))
+    {
+        return (-1);
+    }
+
+    printf (ACPI_COMMON_SIGNON (AN_UTILITY_NAME));
+    if (argc < 2)
+    {
+        usage ();
+        return (0);
+    }
+
+    /* Get the command line options */
+
+    while ((j = AcpiGetopt (argc, argv, AN_SUPPORTED_OPTIONS)) != ACPI_OPT_END) switch(j)
+    {
+    case 'l':
+
+        AcpiGbl_NsLoadOnly = TRUE;
+        break;
+
+    case 'v': /* -v: (Version): signon already emitted, just exit */
+
+        return (0);
+
+    case 'x':
+
+        AcpiDbgLevel = strtoul (AcpiGbl_Optarg, NULL, 0);
+        printf ("Debug Level: 0x%8.8X\n", AcpiDbgLevel);
+        break;
+
+    case '?':
+    case 'h':
+    default:
+
+        usage();
+        return (0);
+    }
+
+    /* Get each of the ACPI table files on the command line */
+
+    while (argv[AcpiGbl_Optind])
+    {
+        /* Get all ACPI AML tables in this file */
+
+        Status = AcpiAcGetAllTablesFromFile (argv[AcpiGbl_Optind],
+            ACPI_GET_ONLY_AML_TABLES, &ListHead);
+        if (ACPI_FAILURE (Status))
+        {
+            return (-1);
+        }
+
+        AcpiGbl_Optind++;
+    }
+
+    printf ("\n");
+
+    /*
+     * The next argument is the filename for the DSDT or SSDT.
+     * Open the file, build namespace and dump it.
+     */
+    return (AnDumpEntireNamespace (ListHead));
+}
+
+
+/******************************************************************************
+ *
+ * FUNCTION:    AnDumpEntireNamespace
  *
  * PARAMETERS:  AmlFilename         - Filename for DSDT or SSDT AML table
  *
@@ -185,7 +281,7 @@ usage (
  *****************************************************************************/
 
 static int
-NsDumpEntireNamespace (
+AnDumpEntireNamespace (
     ACPI_NEW_TABLE_DESC     *ListHead)
 {
     ACPI_STATUS             Status;
@@ -196,7 +292,7 @@ NsDumpEntireNamespace (
      * Build a local XSDT with all tables. Normally, here is where the
      * RSDP search is performed to find the ACPI tables
      */
-    Status = AeBuildLocalTables (ListHead);
+    Status = AnBuildLocalTables (ListHead);
     if (ACPI_FAILURE (Status))
     {
         return (-1);
@@ -275,103 +371,7 @@ NsDumpEntireNamespace (
     /* Example: get a handle to the _GPE scope */
 
     Status = AcpiGetHandle (NULL, "\\_GPE", &Handle);
-    AE_CHECK_OK (AcpiGetHandle, Status);
+    ACPI_CHECK_OK (AcpiGetHandle, Status);
 
     return (0);
-}
-
-
-/******************************************************************************
- *
- * FUNCTION:    main
- *
- * PARAMETERS:  argc, argv
- *
- * RETURN:      Status (pass/fail)
- *
- * DESCRIPTION: Main routine for NsDump utility
- *
- *****************************************************************************/
-
-int ACPI_SYSTEM_XFACE
-main (
-    int                     argc,
-    char                    **argv)
-{
-    ACPI_NEW_TABLE_DESC     *ListHead = NULL;
-    ACPI_STATUS             Status;
-    int                     j;
-
-
-    ACPI_DEBUG_INITIALIZE (); /* For debug version only */
-
-    /* Init debug globals and ACPICA */
-
-    AcpiDbgLevel = ACPI_NORMAL_DEFAULT | ACPI_LV_TABLES;
-    AcpiDbgLayer = 0xFFFFFFFF;
-
-    Status = AcpiInitializeSubsystem ();
-    AE_CHECK_OK (AcpiInitializeSubsystem, Status);
-    if (ACPI_FAILURE (Status))
-    {
-        return (-1);
-    }
-
-    printf (ACPI_COMMON_SIGNON (AN_UTILITY_NAME));
-    if (argc < 2)
-    {
-        usage ();
-        return (0);
-    }
-
-    /* Get the command line options */
-
-    while ((j = AcpiGetopt (argc, argv, AN_SUPPORTED_OPTIONS)) != ACPI_OPT_END) switch(j)
-    {
-    case 'l':
-
-        AcpiGbl_NsLoadOnly = TRUE;
-        break;
-
-    case 'v': /* -v: (Version): signon already emitted, just exit */
-
-        return (0);
-
-    case 'x':
-
-        AcpiDbgLevel = strtoul (AcpiGbl_Optarg, NULL, 0);
-        printf ("Debug Level: 0x%8.8X\n", AcpiDbgLevel);
-        break;
-
-    case '?':
-    case 'h':
-    default:
-
-        usage();
-        return (0);
-    }
-
-    /* Get each of the ACPI table files on the command line */
-
-    while (argv[AcpiGbl_Optind])
-    {
-        /* Get all ACPI AML tables in this file */
-
-        Status = AcpiAcGetAllTablesFromFile (argv[AcpiGbl_Optind],
-            ACPI_GET_ONLY_AML_TABLES, &ListHead);
-        if (ACPI_FAILURE (Status))
-        {
-            return (-1);
-        }
-
-        AcpiGbl_Optind++;
-    }
-
-    printf ("\n");
-
-    /*
-     * The next argument is the filename for the DSDT or SSDT.
-     * Open the file, build namespace and dump it.
-     */
-    return (NsDumpEntireNamespace (ListHead));
 }
