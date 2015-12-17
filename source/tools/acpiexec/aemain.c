@@ -224,9 +224,11 @@ usage (
     ACPI_OPTION ("-dt",                 "Disable allocation tracking (performance)");
     printf ("\n");
 
+    ACPI_OPTION ("-ed",                 "Enable timer output for Debug Object");
     ACPI_OPTION ("-ef",                 "Enable display of final memory statistics");
     ACPI_OPTION ("-ei",                 "Enable additional tests for ACPICA interfaces");
     ACPI_OPTION ("-el",                 "Enable loading of additional test tables");
+    ACPI_OPTION ("-em",                 "Enable grouping of module-level code");
     ACPI_OPTION ("-es",                 "Enable Interpreter Slack Mode");
     ACPI_OPTION ("-et",                 "Enable debug semaphore timeout");
     printf ("\n");
@@ -330,6 +332,11 @@ AeDoOptions (
 
         switch (AcpiGbl_Optarg[0])
         {
+        case 'd':
+
+            AcpiGbl_DisplayDebugTimer = TRUE;
+            break;
+
         case 'f':
 
             #ifdef ACPI_DBG_TRACK_ALLOCATIONS
@@ -345,6 +352,11 @@ AeDoOptions (
         case 'l':
 
             AcpiGbl_LoadTestTables = TRUE;
+            break;
+
+        case 'm':
+
+            AcpiGbl_GroupModuleLevelCode = TRUE;
             break;
 
         case 's':
@@ -528,6 +540,7 @@ main (
 
     /* Init ACPICA and start debugger thread */
 
+    AcpiGbl_OverrideDefaultRegionHandlers = TRUE;
     Status = AcpiInitializeSubsystem ();
     ACPI_CHECK_OK (AcpiInitializeSubsystem, Status);
     if (ACPI_FAILURE (Status))
@@ -606,28 +619,21 @@ main (
         goto ErrorExit;
     }
 
-    Status = AeInstallTables ();
+    /* Install all of the ACPI tables */
 
-    /*
-     * Exit namespace initialization for the "load namespace only" option.
-     * No control methods will be executed. However, still enter the
-     * the debugger.
-     */
-    if (AcpiGbl_AeLoadOnly)
-    {
-        goto EnterDebugger;
-    }
+    Status = AeInstallTables ();
 
     if (ACPI_FAILURE (Status))
     {
-        printf ("**** Could not load ACPI tables, %s\n",
+        printf ("**** Could not install ACPI tables, %s\n",
             AcpiFormatException (Status));
         goto EnterDebugger;
     }
 
     /*
-     * Install most of the handlers.
-     * Override some default region handlers, especially SystemMemory
+     * Install most of the handlers (Regions, Notify, Table, etc.)
+     * Override the default region handlers, especially SystemMemory,
+     * which is simulated in this utility.
      */
     Status = AeInstallEarlyHandlers ();
     if (ACPI_FAILURE (Status))
@@ -651,6 +657,25 @@ main (
     if (ACPI_FAILURE (Status))
     {
         printf ("**** Could not EnableSubsystem, %s\n",
+            AcpiFormatException (Status));
+        goto EnterDebugger;
+    }
+
+    Status = AeLoadTables ();
+
+    /*
+     * Exit namespace initialization for the "load namespace only" option.
+     * No control methods will be executed. However, still enter the
+     * the debugger.
+     */
+    if (AcpiGbl_AeLoadOnly)
+    {
+        goto EnterDebugger;
+    }
+
+    if (ACPI_FAILURE (Status))
+    {
+        printf ("**** Could not load ACPI tables, %s\n",
             AcpiFormatException (Status));
         goto EnterDebugger;
     }
@@ -709,6 +734,7 @@ EnterDebugger:
         break;
     }
 
+    (void) AcpiOsTerminate ();
     return (0);
 
 
