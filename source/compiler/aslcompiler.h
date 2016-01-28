@@ -995,9 +995,29 @@ DbgPrint (
 #define ASL_PARSE_OUTPUT    1
 #define ASL_TREE_OUTPUT     2
 
+UINT8
+UtIsBigEndianMachine (
+    void);
+
 BOOLEAN
 UtQueryForOverwrite (
     char                    *Pathname);
+
+void
+UtDumpStringOp (
+    ACPI_PARSE_OBJECT       *Op,
+    UINT32                  Level);
+
+void
+UtDumpIntegerOp (
+    ACPI_PARSE_OBJECT       *Op,
+    UINT32                  Level,
+    UINT32                  IntegerLength);
+
+void
+UtDumpBasicOp (
+    ACPI_PARSE_OBJECT       *Op,
+    UINT32                  Level);
 
 void
 UtDisplaySupportedTables (
@@ -1018,11 +1038,6 @@ UtEndEvent (
 void *
 UtLocalCalloc (
     UINT32                  Size);
-
-void
-UtPrintFormattedName (
-    UINT16                  ParseOpcode,
-    UINT32                  Level);
 
 void
 UtDisplaySummary (
@@ -1077,12 +1092,6 @@ UtCheckIntegerRange (
 UINT64
 UtDoConstant (
     char                    *String);
-
-ACPI_STATUS
-stroul64 (
-    char                    *String,
-    UINT32                  Base,
-    UINT64                  *RetInteger);
 
 
 /*
