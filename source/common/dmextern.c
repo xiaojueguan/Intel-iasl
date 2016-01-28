@@ -1157,7 +1157,7 @@ AcpiDmEmitExternals (
         if ((NextExternal->Type == ACPI_TYPE_METHOD) &&
             (!(NextExternal->Flags & ACPI_EXT_RESOLVED_REFERENCE)))
         {
-            AcpiOsPrintf ("    External (%s%s",
+            AcpiOsPrintf ("    //External (%s%s",
                 NextExternal->Path,
                 AcpiDmGetObjectTypeName (NextExternal->Type));
 
@@ -1165,7 +1165,7 @@ AcpiDmEmitExternals (
                 "guessing %u arguments\n",
                 NextExternal->Value);
 
-            NextExternal->Flags |= ACPI_EXT_EXTERNAL_EMITTED;
+            //NextExternal->Flags |= ACPI_EXT_EXTERNAL_EMITTED;
         }
 
         NextExternal = NextExternal->Next;
@@ -1189,7 +1189,7 @@ AcpiDmEmitExternals (
             if (!(NextExternal->Flags & ACPI_EXT_EXTERNAL_EMITTED) &&
                 (NextExternal->Flags & ACPI_EXT_ORIGIN_FROM_FILE))
             {
-                AcpiOsPrintf ("    External (%s%s",
+                AcpiOsPrintf ("    //External (%s%s",
                     NextExternal->Path,
                     AcpiDmGetObjectTypeName (NextExternal->Type));
 
@@ -1202,7 +1202,7 @@ AcpiDmEmitExternals (
                 {
                     AcpiOsPrintf (")\n");
                 }
-                NextExternal->Flags |= ACPI_EXT_EXTERNAL_EMITTED;
+                //NextExternal->Flags |= ACPI_EXT_EXTERNAL_EMITTED;
             }
 
             NextExternal = NextExternal->Next;
@@ -1226,12 +1226,36 @@ AcpiDmEmitExternals (
 
             if (AcpiGbl_ExternalList->Type == ACPI_TYPE_METHOD)
             {
-                AcpiOsPrintf (")    // %u Arguments\n",
-                    AcpiGbl_ExternalList->Value);
+                if (!(AcpiGbl_ExternalList->Flags & ACPI_EXT_RESOLVED_REFERENCE))
+                {
+                    AcpiOsPrintf (")    // Warning: Unresolved method, "
+                        "guessing %u arguments\n",
+                        AcpiGbl_ExternalList->Value);
+                }
+                else if (AcpiGbl_ExternalList->Flags & ACPI_EXT_ORIGIN_FROM_FILE)
+                {
+                    AcpiOsPrintf (")    // Imported: %u Arguments\n",
+                        AcpiGbl_ExternalList->Value);
+                }
+                else
+                {
+                    AcpiOsPrintf (")\n");
+                }
             }
             else
             {
-                AcpiOsPrintf (")\n");
+                if (!(AcpiGbl_ExternalList->Flags & ACPI_EXT_RESOLVED_REFERENCE))
+                {
+                    AcpiOsPrintf (") // Warning: unresolved\n");
+                }
+                else if (AcpiGbl_ExternalList->Flags & ACPI_EXT_ORIGIN_FROM_FILE)
+                {
+                    AcpiOsPrintf (") // Imported\n");
+                }
+                else
+                {
+                    AcpiOsPrintf (")\n");
+                }
             }
         }
 
