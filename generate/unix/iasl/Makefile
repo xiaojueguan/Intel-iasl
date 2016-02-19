@@ -102,6 +102,7 @@ OBJECTS = \
 	$(OBJDIR)/asluuid.o\
 	$(OBJDIR)/aslwalks.o\
 	$(OBJDIR)/aslxref.o\
+	$(OBJDIR)/aslxrefout.o\
 	$(OBJDIR)/cmfsize.o\
 	$(OBJDIR)/dbfileio.o\
 	$(OBJDIR)/dmbuffer.o\
@@ -142,6 +143,7 @@ OBJECTS = \
 	$(OBJDIR)/dttable2.o\
 	$(OBJDIR)/dttemplate.o\
 	$(OBJDIR)/dtutils.o\
+	$(OBJDIR)/exconcat.o\
 	$(OBJDIR)/exconvrt.o\
 	$(OBJDIR)/excreate.o\
 	$(OBJDIR)/exdump.o\

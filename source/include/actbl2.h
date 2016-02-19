@@ -436,7 +436,7 @@ typedef struct acpi_csrt_descriptor
  * DBG2 - Debug Port Table 2
  *        Version 0 (Both main table and subtables)
  *
- * Conforms to "Microsoft Debug Port Table 2 (DBG2)", May 22 2012.
+ * Conforms to "Microsoft Debug Port Table 2 (DBG2)", December 10, 2015
  *
  ******************************************************************************/
 
@@ -493,6 +493,11 @@ typedef struct acpi_dbg2_device
 
 #define ACPI_DBG2_16550_COMPATIBLE  0x0000
 #define ACPI_DBG2_16550_SUBSET      0x0001
+#define ACPI_DBG2_ARM_PL011         0x0003
+#define ACPI_DBG2_ARM_SBSA_32BIT    0x000D
+#define ACPI_DBG2_ARM_SBSA_GENERIC  0x000E
+#define ACPI_DBG2_ARM_DCC           0x000F
+#define ACPI_DBG2_BCM2835           0x0010
 
 #define ACPI_DBG2_1394_STANDARD     0x0000
 
@@ -1356,10 +1361,10 @@ typedef struct acpi_table_slic
 /*******************************************************************************
  *
  * SPCR - Serial Port Console Redirection table
- *        Version 1
+ *        Version 2
  *
  * Conforms to "Serial Port Console Redirection Table",
- * Version 1.00, January 11, 2002
+ * Version 1.03, August 10, 2015
  *
  ******************************************************************************/
 
@@ -1392,6 +1397,8 @@ typedef struct acpi_table_spcr
 /* Masks for PciFlags field above */
 
 #define ACPI_SPCR_DO_NOT_DISABLE    (1)
+
+/* Values for Interface Type: See the definition of the DBG2 table */
 
 
 /*******************************************************************************

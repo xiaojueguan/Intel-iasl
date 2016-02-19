@@ -1183,6 +1183,10 @@
 				Name="Interpreter"
 				>
 				<File
+					RelativePath="..\..\source\components\executer\exconcat.c"
+					>
+				</File>
+				<File
 					RelativePath="..\..\source\components\executer\exconvrt.c"
 					>
 					<FileConfiguration
@@ -3370,6 +3374,10 @@
 				</File>
 				<File
 					RelativePath="..\..\source\compiler\aslxref.c"
+					>
+				</File>
+				<File
+					RelativePath="..\..\source\compiler\aslxrefout.c"
 					>
 				</File>
 			</Filter>

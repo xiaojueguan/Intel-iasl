@@ -573,6 +573,7 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ASL_RESOURCE_INFO",                   SRC_TYPE_STRUCT},
     {"ASL_RESOURCE_NODE",                   SRC_TYPE_STRUCT},
     {"ASL_WALK_CALLBACK",                   SRC_TYPE_SIMPLE},
+    {"ASL_XREF_INFO",                       SRC_TYPE_STRUCT},
     {"UINT64_OVERLAY",                      SRC_TYPE_UNION},
     {"UINT64_STRUCT",                       SRC_TYPE_STRUCT},
 
@@ -662,7 +663,8 @@ ACPI_TYPED_IDENTIFIER_TABLE           AcpiIdentifiers[] = {
     {"ACPI_ERST_INFO",                      SRC_TYPE_STRUCT},
     {"ACPI_FPDT_HEADER",                    SRC_TYPE_STRUCT},
     {"ACPI_FPDT_BOOT",                      SRC_TYPE_STRUCT},
-    {"ACPI_FPDT_S3PT_PTR",                  SRC_TYPE_STRUCT},
+    {"ACPI_FPDT_BOOT_POINTER",              SRC_TYPE_STRUCT},
+    {"ACPI_FPDT_S3PT_POINTER",              SRC_TYPE_STRUCT},
     {"ACPI_GTDT_HEADER",                    SRC_TYPE_STRUCT},
     {"ACPI_GTDT_TIMER_BLOCK",               SRC_TYPE_STRUCT},
     {"ACPI_GTDT_TIMER_ENTRY",               SRC_TYPE_STRUCT},
