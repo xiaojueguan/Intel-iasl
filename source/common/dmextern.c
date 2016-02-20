@@ -1205,7 +1205,7 @@ AcpiDmEmitExternals (
         if ((NextExternal->Type == ACPI_TYPE_METHOD) &&
             (!(NextExternal->Flags & ACPI_EXT_RESOLVED_REFERENCE)))
         {
-            AcpiOsPrintf ("    //External (%s%s",
+            AcpiOsPrintf ("    External (%s%s",
                 NextExternal->Path,
                 AcpiDmGetObjectTypeName (NextExternal->Type));
 
@@ -1213,7 +1213,7 @@ AcpiDmEmitExternals (
                 "guessing %u arguments\n",
                 NextExternal->Value);
 
-            //NextExternal->Flags |= ACPI_EXT_EXTERNAL_EMITTED;
+            NextExternal->Flags |= ACPI_EXT_EXTERNAL_EMITTED;
         }
 
         NextExternal = NextExternal->Next;
@@ -1237,7 +1237,7 @@ AcpiDmEmitExternals (
             if (!(NextExternal->Flags & ACPI_EXT_EXTERNAL_EMITTED) &&
                 (NextExternal->Flags & ACPI_EXT_ORIGIN_FROM_FILE))
             {
-                AcpiOsPrintf ("    //External (%s%s",
+                AcpiOsPrintf ("    External (%s%s",
                     NextExternal->Path,
                     AcpiDmGetObjectTypeName (NextExternal->Type));
 
@@ -1250,7 +1250,7 @@ AcpiDmEmitExternals (
                 {
                     AcpiOsPrintf (")\n");
                 }
-                //NextExternal->Flags |= ACPI_EXT_EXTERNAL_EMITTED;
+                NextExternal->Flags |= ACPI_EXT_EXTERNAL_EMITTED;
             }
 
             NextExternal = NextExternal->Next;

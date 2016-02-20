@@ -776,7 +776,7 @@ LdNamespace1Begin (
             {
                 /* Allow update of externals of unknown type. */
 
-                if (AcpiNsOpensScope (ActualObjectType))
+                if (AcpiNsOpensScope (ActualObjectType) || Node->Type == ActualObjectType)
                 {
                     Node->Type = (UINT8) ActualObjectType;
                     Status = AE_OK;
