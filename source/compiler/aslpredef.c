@@ -781,7 +781,7 @@ TypeErrorExit:
             PredefinedName, TypeName, PackageIndex, StringBuffer);
     }
 
-    AslError (ASL_ERROR, ASL_MSG_RESERVED_OPERAND_TYPE, Op, MsgBuffer);
+    AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_RESERVED_OPERAND_TYPE, Op, MsgBuffer);
     return (AE_TYPE);
 }
 
