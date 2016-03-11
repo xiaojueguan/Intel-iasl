@@ -482,7 +482,7 @@ ApCheckForPredefinedObject (
      */
     if (!ThisName->Info.ExpectedBtypes)
     {
-        AslError (ASL_ERROR, ASL_MSG_RESERVED_METHOD, Op,
+        AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_RESERVED_METHOD, Op,
             "with zero arguments");
         return;
     }
