@@ -9,7 +9,7 @@ At this point, it has several changes that make it easier to deal with the proce
 
 Downloads of the built binary are kept on bitbucket:
 
-https://bitbucket.org/RehabMan/acpica
+https://bitbucket.org/RehabMan/acpica/downloads
 
 
 ### How to install
