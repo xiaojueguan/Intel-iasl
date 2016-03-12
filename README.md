@@ -63,7 +63,6 @@ Get a copy of the project:
 mkdir ~/Projects
 cd ~/Projects
 git clone https://github.com/RehabMan/Intel-iasl.git iasl.git
-cd iasl.git
 ```
 
 Build it:
@@ -74,6 +73,7 @@ make
 
 Install it:
 ```
+cd ~/Projects/iasl.git
 sudo make install
 ```
 
@@ -85,11 +85,11 @@ sudo cp /usr/bin/iasl /Applications/MaciASL.app/Contents/MacOS/iasl61
 
 ### Differences between the Intel version
 
-- Modified to build with Xcode tools.
+Modified to build with Xcode tools.
 
-- Comments that would confuse MaciASL's parser are not implemented.
+Comments that would confuse MaciASL's parser are not implemented.
 
-- Errors changed to warnings:
+Errors changed to warnings:
 
 'Reserved name must be a control method (with zero arguments)' (3103) 
 
