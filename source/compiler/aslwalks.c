@@ -178,7 +178,8 @@ AnMethodTypingWalkEnd (
                  *
                  * Check for a recursive method call first.
                  */
-                if (Op->Asl.ParentMethod != Op->Asl.Child->Asl.Node->Op)
+                if (Op->Asl.Child->Asl.Node &&
+                    (Op->Asl.ParentMethod != Op->Asl.Child->Asl.Node->Op))
                 {
                     /* We must type the method here */
 
