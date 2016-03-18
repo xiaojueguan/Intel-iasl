@@ -91,6 +91,8 @@ Comments that would confuse MaciASL's parser are not implemented.
 
 Errors changed to warnings:
 
+'Invalid combination of Length and Min/Max fixed flags' (3043, one form only)
+
 'Reserved name must be a control method (with zero arguments)' (3103) 
 
 'invalid object type for reserved name' (3105)
