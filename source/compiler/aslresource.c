@@ -438,7 +438,7 @@ RsLargeAddressCheck (
         case (ACPI_RESOURCE_FLAG_MIF | ACPI_RESOURCE_FLAG_MAF):
         default:
 
-            AslError (ASL_ERROR, ASL_MSG_INVALID_ADDR_FLAGS, LengthOp, NULL);
+            AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_INVALID_ADDR_FLAGS, LengthOp, NULL);
         }
     }
 }
