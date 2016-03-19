@@ -482,7 +482,7 @@ ApCheckForPredefinedObject (
      */
     if (!ThisName->Info.ExpectedBtypes)
     {
-        AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_RESERVED_METHOD, Op,
+        AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_RESERVED_METHOD, Op,
             "with zero arguments");
         return;
     }
@@ -781,7 +781,7 @@ TypeErrorExit:
             PredefinedName, TypeName, PackageIndex, StringBuffer);
     }
 
-    AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_RESERVED_OPERAND_TYPE, Op, MsgBuffer);
+    AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_RESERVED_OPERAND_TYPE, Op, MsgBuffer);
     return (AE_TYPE);
 }
 

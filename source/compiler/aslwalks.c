@@ -664,14 +664,14 @@ AnOtherSemanticAnalysisWalkBegin (
                     (PrevArgOp) &&
                     (PrevArgOp->Asl.ParseOpcode == PARSEOP_ZERO))
                 {
-                    AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_RESULT_NOT_USED,
+                    AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_RESULT_NOT_USED,
                         Op, Op->Asl.ExternalName);
                 }
             }
 
             else if (ArgOp->Asl.ParseOpcode == PARSEOP_ZERO)
             {
-                AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_RESULT_NOT_USED,
+                AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_RESULT_NOT_USED,
                     Op, Op->Asl.ExternalName);
             }
         }
@@ -691,7 +691,7 @@ AnOtherSemanticAnalysisWalkBegin (
 
             default:
 
-                AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_RESULT_NOT_USED,
+                AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_RESULT_NOT_USED,
                     Op, Op->Asl.ExternalName);
                 break;
             }

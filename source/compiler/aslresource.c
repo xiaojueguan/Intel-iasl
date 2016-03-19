@@ -208,7 +208,7 @@ RsSmallAddressCheck (
         }
         else if (Length > (Maximum - Minimum + 1))
         {
-            AslError (ASL_ERROR, ASL_MSG_INVALID_LENGTH, LengthOp, NULL);
+            AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_INVALID_LENGTH, LengthOp, NULL);
         }
 
         /* Special case for Memory24, min/max values are compressed */
@@ -333,7 +333,7 @@ RsLargeAddressCheck (
     }
     else if (Length > (Maximum - Minimum + 1))
     {
-        AslError (ASL_ERROR, ASL_MSG_INVALID_LENGTH, LengthOp, NULL);
+        AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_INVALID_LENGTH, LengthOp, NULL);
         return;
     }
 
@@ -382,7 +382,7 @@ RsLargeAddressCheck (
 
             if (Length != (Maximum - Minimum + 1))
             {
-                AslError (ASL_ERROR, ASL_MSG_INVALID_LENGTH_FIXED, LengthOp, NULL);
+                AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_INVALID_LENGTH_FIXED, LengthOp, NULL);
             }
             break;
 
@@ -438,7 +438,7 @@ RsLargeAddressCheck (
         case (ACPI_RESOURCE_FLAG_MIF | ACPI_RESOURCE_FLAG_MAF):
         default:
 
-            AslError (ASL_WARNING/*ASL_ERROR*/, ASL_MSG_INVALID_ADDR_FLAGS, LengthOp, NULL);
+            AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_INVALID_ADDR_FLAGS, LengthOp, NULL);
         }
     }
 }

@@ -1224,8 +1224,14 @@ AcpiDmEmitExternals (
                 {
                     AcpiOsPrintf ("    // %u Arguments",
                         AcpiGbl_ExternalList->Value);
+
                     if (AcpiGbl_ExternalList->Flags & ACPI_EXT_ORIGIN_FROM_OPCODE)
                         AcpiOsPrintf(" (from opcode)");
+                }
+                else
+                {
+                    if (AcpiGbl_ExternalList->Flags & ACPI_EXT_ORIGIN_FROM_OPCODE)
+                        AcpiOsPrintf("    // (from opcode)");
                 }
             }
 

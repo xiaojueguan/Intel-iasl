@@ -91,17 +91,19 @@ Comments that would confuse MaciASL's parser are not implemented.
 
 Errors changed to warnings:
 
-'Invalid combination of Length and Min/Max fixed flags' (3043, one form only)
+'Invalid combination of Length and Min/Max fixed flags' (6043->3043, one form only)
 
-'Reserved name must be a control method (with zero arguments)' (3103) 
+'Length is larger than Min/Max window' (6049->3049)
 
-'invalid object type for reserved name' (3105)
+'Length is not equal to fixed Min/Max window' (6050->3050)
 
-'result not used' (3114)
+'Reserved name must be a control method (with zero arguments)' (6103->3103)
 
-'Non-hex letters must be upper case' (3136)
+'invalid object type for reserved name' (6105->3105)
 
-'Result is not used, operator has no effect' (3114)
+'Non-hex letters must be upper case' (6136->3136)
+
+'Result is not used, operator has no effect' (6114->3114)
 
 
-
+You can use the -Rd flag to disable these changes regarding errors vs. warnings.
