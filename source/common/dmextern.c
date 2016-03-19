@@ -1173,7 +1173,6 @@ AcpiDmEmitExternals (
      */
     while (AcpiGbl_ExternalList)
     {
-        AcpiGbl_ExternalList = AcpiGbl_ExternalList;
         if (!(AcpiGbl_ExternalList->Flags & ACPI_EXT_EXTERNAL_EMITTED))
         {
             //REVIEW_REHABMAN: not really used anymore, but original intent of flag
