@@ -507,8 +507,10 @@ AcpiDmIsUnicodeBuffer (
      * Unicode string must have an even number of bytes and last
      * word must be zero
      */
+    //REVIEW_REHABMAN: changed ByteCount < 4 to ByteCount <= 4
+    // ... so that 4 byte buffers will not be disassembled as Unicode
     if ((!ByteCount)     ||
-         (ByteCount < 4) ||
+         (ByteCount <= 4) ||
          (ByteCount & 1) ||
         ((UINT16 *) (void *) ByteData)[WordCount - 1] != 0)
     {
