@@ -188,7 +188,7 @@ RsSmallAddressCheck (
         {
             /* No resource tag. Descriptor is fixed and is also illegal */
 
-            AslError (ASL_ERROR, ASL_MSG_NULL_DESCRIPTOR, Op, NULL);
+            AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_NULL_DESCRIPTOR, Op, NULL);
         }
 
         return;
@@ -318,7 +318,7 @@ RsLargeAddressCheck (
         {
             /* No resource tag. Descriptor is fixed and is also illegal */
 
-            AslError (ASL_ERROR, ASL_MSG_NULL_DESCRIPTOR, Op, NULL);
+            AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_NULL_DESCRIPTOR, Op, NULL);
         }
 
         return;
