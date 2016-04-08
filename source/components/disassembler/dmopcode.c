@@ -1128,11 +1128,16 @@ AcpiDmConvertToElseIf (
     ACPI_PARSE_OBJECT       *ElseOp;
 
 
-    /* Examine the first child of the Else */
-
+    /*
+     * To be able to perform the conversion, two conditions must be satisfied:
+     * 1) The first child of the Else must be an If statement.
+     * 2) The If block can only be followed by an Else block and these must
+     *    be the only blocks under the original Else.
+     */
     IfOp = OriginalElseOp->Common.Value.Arg;
-    //REVIEW_REHABMAN: disable this feature for now (it is broken).
-    if (1 || !IfOp || (IfOp->Common.AmlOpcode != AML_IF_OP))
+    if (!IfOp ||
+        (IfOp->Common.AmlOpcode != AML_IF_OP) ||
+        (IfOp->Asl.Next && (IfOp->Asl.Next->Common.AmlOpcode != AML_ELSE_OP)))
     {
         /* Not an Else..If sequence, cannot convert to ElseIf */
 
