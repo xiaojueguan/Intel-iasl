@@ -91,6 +91,8 @@ Comments that would confuse MaciASL's parser are not implemented.
 
 Errors changed to warnings:
 
+'Illegal open scope on external object from within DSDT' (6148->3148)
+
 'Min/Max/Length/Gran are all zero, but no resource tag' (6090->3090)
 
 'Invalid combination of Length and Min/Max fixed flags' (6043->3043, one form only)

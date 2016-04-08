@@ -629,7 +629,7 @@ LdNamespace1Begin (
                 {
                     /* Not in a control method, error */
 
-                    AslError (ASL_ERROR, ASL_MSG_CROSS_TABLE_SCOPE, Op, NULL);
+                    AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_CROSS_TABLE_SCOPE, Op, NULL);
                 }
             }
         }
