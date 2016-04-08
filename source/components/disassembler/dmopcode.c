@@ -1131,7 +1131,8 @@ AcpiDmConvertToElseIf (
     /* Examine the first child of the Else */
 
     IfOp = OriginalElseOp->Common.Value.Arg;
-    if (!IfOp || (IfOp->Common.AmlOpcode != AML_IF_OP))
+    //REVIEW_REHABMAN: disable this feature for now (it is broken).
+    if (1 || !IfOp || (IfOp->Common.AmlOpcode != AML_IF_OP))
     {
         /* Not an Else..If sequence, cannot convert to ElseIf */
 
