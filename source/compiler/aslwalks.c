@@ -945,7 +945,7 @@ AnAnalyzeStoreOperator (
          * Although legal syntax up until ACPI 6.1, support for this
          * will be removed for ACPI 6.2 (02/2016)
          */
-        AslError (ASL_ERROR, ASL_MSG_SYNTAX,
+        AslError (Gbl_RehabManHacks ? ASL_WARNING : ASL_ERROR, ASL_MSG_SYNTAX,
             TargetOperandOp, "Illegal method invocation as a target operand");
         return;
 

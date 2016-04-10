@@ -91,6 +91,8 @@ Comments that would confuse MaciASL's parser are not implemented.
 
 Errors changed to warnings:
 
+'Illegal method invocation as target operand' (6126->3126)
+
 'Illegal open scope on external object from within DSDT' (6148->3148)
 
 'Min/Max/Length/Gran are all zero, but no resource tag' (6090->3090)
