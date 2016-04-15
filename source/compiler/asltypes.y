@@ -134,7 +134,6 @@ NoEcho('
 %type <n> NamedObject
 %type <n> NameSpaceModifier
 %type <n> Object
-%type <n> ObjectList
 %type <n> PackageData
 %type <n> ParameterTypePackage
 %type <n> ParameterTypePackageList
@@ -385,6 +384,7 @@ NoEcho('
 %type <n> GpioIntTerm
 %type <n> GpioIoTerm
 %type <n> I2cSerialBusTerm
+%type <n> I2cSerialBusTermV2
 %type <n> InterruptTerm
 %type <n> IOTerm
 %type <n> IRQNoFlagsTerm
@@ -399,9 +399,11 @@ NoEcho('
 %type <n> QWordSpaceTerm
 %type <n> RegisterTerm
 %type <n> SpiSerialBusTerm
+%type <n> SpiSerialBusTermV2
 %type <n> StartDependentFnNoPriTerm
 %type <n> StartDependentFnTerm
 %type <n> UartSerialBusTerm
+%type <n> UartSerialBusTermV2
 %type <n> VendorLongTerm
 %type <n> VendorShortTerm
 %type <n> WordBusNumberTerm
