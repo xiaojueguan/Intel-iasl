@@ -347,10 +347,24 @@ AslDoOptions (
         {
         case '^':
 
+            /* Get the required argument */
+
+            if (AcpiGetoptArgument (argc, argv))
+            {
+                return (-1);
+            }
+
             Gbl_DoCompile = FALSE;
             break;
 
         case 'a':
+
+            /* Get the required argument */
+
+            if (AcpiGetoptArgument (argc, argv))
+            {
+                return (-1);
+            }
 
             Gbl_DoCompile = FALSE;
             Gbl_DisassembleAll = TRUE;
@@ -460,6 +474,11 @@ AslDoOptions (
         case 'c':
 
             UtDisplayConstantOpcodes ();
+            exit (0);
+
+        case 'd':
+
+            AslDisassemblyHelp ();
             exit (0);
 
         case 'f':
@@ -613,9 +632,13 @@ AslDoOptions (
 
         case 'e':
 
-            /* Disable External opcode generation */
+            /* iASL: Disable External opcode generation */
 
             Gbl_DoExternals = FALSE;
+
+            /* Disassembler: Emit embedded external operators */
+
+            AcpiGbl_DmEmitExternalOpcodes = TRUE;
             break;
 
         case 'f':
