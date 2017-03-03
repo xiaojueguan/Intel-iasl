@@ -140,7 +140,7 @@ AslDoResponseFile (
 
 
 #define ASL_TOKEN_SEPARATORS    " \t\n"
-#define ASL_SUPPORTED_OPTIONS   "@:a:b|c|d^D:e:f^gh^i|I:l^m:no|p:P^R:r:s|t|T+G^v^w|x:z"
+#define ASL_SUPPORTED_OPTIONS   "@:a:b|c|d^D:e:f^gh^i|I:l^m:no|p:P^q^R:r:s|t|T+G^v^w|x:z"
 
 static char ASL_BUILD_DATE[] = __DATE__;
 static char ASL_BUILD_TIME[] = __TIME__;
@@ -281,6 +281,24 @@ AslDoOptions (
 
         switch (AcpiGbl_Optarg[0])
         {
+
+        case 'c':
+
+            printf ("Debug ASL to ASL+ conversion\n");
+
+            Gbl_DoAslConversion = TRUE;
+            Gbl_FoldConstants = FALSE;
+            Gbl_IntegerOptimizationFlag = FALSE;
+            Gbl_ReferenceOptimizationFlag = FALSE;
+            Gbl_OptimizeTrivialParseNodes = FALSE;
+            Gbl_CaptureComments = TRUE;
+            AcpiGbl_DoDisassemblerOptimizations = FALSE;
+            AcpiGbl_DebugAslConversion = TRUE;
+            AcpiGbl_DmEmitExternalOpcodes = TRUE;
+            Gbl_DoExternalsInPlace = TRUE;
+
+            return (0);
+
         case 'f':
 
             AslCompilerdebug = 1; /* same as yydebug */
@@ -332,6 +350,22 @@ AslDoOptions (
 
         switch (AcpiGbl_Optarg[0])
         {
+
+        case 'a':
+
+            printf ("Convert ASL to ASL+ with comments\n");
+            Gbl_DoAslConversion = TRUE;
+            Gbl_FoldConstants = FALSE;
+            Gbl_IntegerOptimizationFlag = FALSE;
+            Gbl_ReferenceOptimizationFlag = FALSE;
+            Gbl_OptimizeTrivialParseNodes = FALSE;
+            Gbl_CaptureComments = TRUE;
+            AcpiGbl_DoDisassemblerOptimizations = FALSE;
+            AcpiGbl_DmEmitExternalOpcodes = TRUE;
+            Gbl_DoExternalsInPlace = TRUE;
+
+            return (0);
+
         case 'r':
 
             Gbl_NoResourceChecking = TRUE;
@@ -626,6 +660,8 @@ AslDoOptions (
             Gbl_FoldConstants = FALSE;
             Gbl_IntegerOptimizationFlag = FALSE;
             Gbl_ReferenceOptimizationFlag = FALSE;
+            Gbl_OptimizeTrivialParseNodes = FALSE;
+
             break;
 
         case 'c':
@@ -644,13 +680,19 @@ AslDoOptions (
 
         case 'e':
 
-            /* iASL: Disable External opcode generation */
-
-            Gbl_DoExternals = FALSE;
-
             /* Disassembler: Emit embedded external operators */
 
             AcpiGbl_DmEmitExternalOpcodes = TRUE;
+            break;
+
+        case 'E':
+
+            /*
+             * iASL: keep External opcodes in place.
+             * No affect if Gbl_DoExternals is false.
+             */
+
+            Gbl_DoExternalsInPlace = TRUE;
             break;
 
         case 'f':
@@ -730,6 +772,17 @@ AslDoOptions (
                 return (-1);
         }
         break;
+
+    case 'q':   /* ASL/ASl+ converter: compile only and leave badaml. */
+
+        printf ("Convert ASL to ASL+ with comments\n");
+        Gbl_FoldConstants = FALSE;
+        Gbl_IntegerOptimizationFlag = FALSE;
+        Gbl_ReferenceOptimizationFlag = FALSE;
+        Gbl_OptimizeTrivialParseNodes = FALSE;
+        Gbl_CaptureComments = TRUE;
+        Gbl_DoExternalsInPlace = TRUE;
+        return (0);
 
     case 'r':   /* Override revision found in table header */
 
