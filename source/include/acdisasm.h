@@ -512,6 +512,8 @@ extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPcctHdr[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPcct0[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPcct1[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPcct2[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPcct3[];
+extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPcct4[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPptt0[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPptt0a[];
 extern ACPI_DMTABLE_INFO        AcpiDmTableInfoPptt1[];
@@ -916,6 +918,12 @@ AcpiDmAddOpToExternalList (
     UINT16                  Flags);
 
 void
+AcpiDmCreateSubobjectForExternal (
+    UINT8                   Type,
+    ACPI_NAMESPACE_NODE     **Node,
+    UINT32                  Value);
+
+void
 AcpiDmAddNodeToExternalList (
     ACPI_NAMESPACE_NODE     *Node,
     UINT8                   Type,
@@ -923,11 +931,17 @@ AcpiDmAddNodeToExternalList (
     UINT16                  Flags);
 
 void
-AcpiDmAddExternalsToNamespace (
+AcpiDmAddExternalListToNamespace (
     void);
 
+void
+AcpiDmAddOneExternalToNamespace (
+    char                    *Path,
+    UINT8                   Type,
+    UINT32                  Value);
+
 UINT32
-AcpiDmGetExternalMethodCount (
+AcpiDmGetUnresolvedExternalMethodCount (
     void);
 
 void
@@ -950,6 +964,11 @@ AcpiDmUnresolvedWarning (
 void
 AcpiDmGetExternalsFromFile (
     void);
+
+void
+AcpiDmMarkExternalConflict (
+    ACPI_NAMESPACE_NODE     *Node);
+
 
 /*
  * dmresrc
@@ -1070,6 +1089,41 @@ AcpiDmVendorLargeDescriptor (
 
 void
 AcpiDmGpioDescriptor (
+    ACPI_OP_WALK_INFO       *Info,
+    AML_RESOURCE            *Resource,
+    UINT32                  Length,
+    UINT32                  Level);
+
+void
+AcpiDmPinFunctionDescriptor (
+    ACPI_OP_WALK_INFO       *Info,
+    AML_RESOURCE            *Resource,
+    UINT32                  Length,
+    UINT32                  Level);
+
+void
+AcpiDmPinConfigDescriptor (
+    ACPI_OP_WALK_INFO       *Info,
+    AML_RESOURCE            *Resource,
+    UINT32                  Length,
+    UINT32                  Level);
+
+void
+AcpiDmPinGroupDescriptor (
+    ACPI_OP_WALK_INFO       *Info,
+    AML_RESOURCE            *Resource,
+    UINT32                  Length,
+    UINT32                  Level);
+
+void
+AcpiDmPinGroupFunctionDescriptor (
+    ACPI_OP_WALK_INFO       *Info,
+    AML_RESOURCE            *Resource,
+    UINT32                  Length,
+    UINT32                  Level);
+
+void
+AcpiDmPinGroupConfigDescriptor (
     ACPI_OP_WALK_INFO       *Info,
     AML_RESOURCE            *Resource,
     UINT32                  Length,

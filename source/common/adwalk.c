@@ -747,7 +747,6 @@ AcpiDmLoadDescendingOp (
 
     WalkState = Info->WalkState;
     OpInfo = AcpiPsGetOpcodeInfo (Op->Common.AmlOpcode);
-    ObjectType = OpInfo->ObjectType;
     ObjectType = AslMapNamedOpcodeToDataType (Op->Asl.AmlOpcode);
 
     /* Only interested in operators that create new names */
@@ -885,7 +884,6 @@ AcpiDmXrefDescendingOp (
 
     WalkState = Info->WalkState;
     OpInfo = AcpiPsGetOpcodeInfo (Op->Common.AmlOpcode);
-    ObjectType = OpInfo->ObjectType;
     ObjectType = AslMapNamedOpcodeToDataType (Op->Asl.AmlOpcode);
 
     if ((!(OpInfo->Flags & AML_NAMED)) &&
@@ -893,25 +891,6 @@ AcpiDmXrefDescendingOp (
         (Op->Common.AmlOpcode != AML_INT_NAMEPATH_OP) &&
         (Op->Common.AmlOpcode != AML_NOTIFY_OP))
     {
-        goto Exit;
-    }
-    else if (Op->Common.Parent &&
-             Op->Common.Parent->Common.AmlOpcode == AML_EXTERNAL_OP)
-    {
-        /* External() NamePath */
-
-        Path = Op->Common.Value.String;
-        ObjectType = (ACPI_OBJECT_TYPE) Op->Common.Next->Common.Value.Integer;
-        if (ObjectType == ACPI_TYPE_METHOD)
-        {
-            ParamCount = (UINT32)
-                Op->Common.Next->Common.Next->Common.Value.Integer;
-        }
-
-        Flags |= ACPI_EXT_RESOLVED_REFERENCE | ACPI_EXT_ORIGIN_FROM_OPCODE;
-        AcpiDmAddOpToExternalList (Op, Path,
-            (UINT8) ObjectType, ParamCount, Flags);
-
         goto Exit;
     }
 
@@ -934,7 +913,8 @@ AcpiDmXrefDescendingOp (
                 Path = NextOp->Common.Value.String;
             }
         }
-        else if (Op->Common.AmlOpcode == AML_SCOPE_OP)
+        else if (Op->Common.AmlOpcode == AML_SCOPE_OP ||
+                 Op->Common.AmlOpcode == AML_EXTERNAL_OP)
         {
             Path = Op->Named.Path;
         }
@@ -1182,14 +1162,11 @@ AcpiDmCommonAscendingOp (
     void                    *Context)
 {
     ACPI_OP_WALK_INFO       *Info = Context;
-    const ACPI_OPCODE_INFO  *OpInfo;
     ACPI_OBJECT_TYPE        ObjectType;
 
 
     /* Close scope if necessary */
 
-    OpInfo = AcpiPsGetOpcodeInfo (Op->Common.AmlOpcode);
-    ObjectType = OpInfo->ObjectType;
     ObjectType = AslMapNamedOpcodeToDataType (Op->Asl.AmlOpcode);
 
     if (AcpiNsOpensScope (ObjectType))
