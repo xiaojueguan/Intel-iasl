@@ -259,10 +259,11 @@ AcpiDmDisasmByteList (
             }
         }
 
-        /* Dump the ASCII equivalents within a comment */
-/*REVIEW_REHAB: disable this for now as it causes problems for MaciASL */
+        /*REVIEW_REHAB: disable this for now as it causes problems for MaciASL */
 #if 0
-        AcpiOsPrintf ("  /* ");
+        /* Dump the ASCII equivalents within a comment */
+        
+        AcpiOsPrintf ("  // ");
         for (j = 0; j < ACPI_BUFFER_BYTES_PER_LINE; j++)
         {
             CurrentIndex = i + j;
@@ -270,7 +271,7 @@ AcpiDmDisasmByteList (
             {
                 break;
             }
-
+            
             BufChar = ByteData[CurrentIndex];
             if (isprint (BufChar))
             {
@@ -281,11 +282,9 @@ AcpiDmDisasmByteList (
                 AcpiOsPrintf (".");
             }
         }
-
+        
         /* Finished with this line */
-
-        AcpiOsPrintf (" */\n");
-#else
+        
         AcpiOsPrintf ("\n");
 #endif
     }

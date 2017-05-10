@@ -584,13 +584,6 @@ AcpiDmDescendingOp (
         return (AE_CTRL_DEPTH);
     }
 
-    if (AcpiDmIsTempName(Op))
-    {
-        /* Ignore compiler generated temporary names */
-
-        return (AE_CTRL_DEPTH);
-    }
-
     if (Op->Common.DisasmOpcode == ACPI_DASM_IGNORE_SINGLE)
     {
         /* Ignore this op, but not it's children */
@@ -782,7 +775,7 @@ AcpiDmDescendingOp (
                 Name = AcpiPsGetName (Op);
                 if (Op->Named.Path)
                 {
-                    AcpiDmNamestring ((char *) Op->Named.Path);
+                    AcpiDmNamestring (Op->Named.Path);
                 }
                 else
                 {
