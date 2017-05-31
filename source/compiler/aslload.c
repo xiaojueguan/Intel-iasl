@@ -803,7 +803,7 @@ LdNamespace1Begin (
             {
                 if (Gbl_RehabManHacks && Node->Type != ACPI_TYPE_ANY && Node->Type != ObjectType)
                 {
-                    sprintf (MsgBuffer, "1: %s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
+                    sprintf (MsgBuffer, "%s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
                     AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
                     return_ACPI_STATUS (AE_OK);
                 }
@@ -852,7 +852,7 @@ LdNamespace1Begin (
                 {
                     if (ActualObjectType != ACPI_TYPE_ANY)
                     {
-                        sprintf (MsgBuffer, "2: %s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
+                        sprintf (MsgBuffer, "%s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
                         AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
                     }
                     return_ACPI_STATUS (Status);
@@ -903,7 +903,7 @@ LdNamespace1Begin (
                 {
                     if (ActualObjectType != ACPI_TYPE_ANY)
                     {
-                        sprintf (MsgBuffer, "3: %s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
+                        sprintf (MsgBuffer, "%s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
                         AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
                     }
                     return_ACPI_STATUS (AE_OK);
