@@ -543,6 +543,7 @@ AslDoOptions (
         {
         case '^':
 
+            printf (ACPI_COMMON_SIGNON (ASL_COMPILER_NAME));
             Usage ();
             exit (0);
 
