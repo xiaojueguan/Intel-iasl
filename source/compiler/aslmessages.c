@@ -275,6 +275,7 @@ const char                      *AslCompilerMsgs [] =
 /*    ASL_MSG_MULTIPLE_DEFAULT */           "More than one Default statement within Switch construct",
 /*    ASL_MSG_MULTIPLE_TYPES */             "Multiple types",
 /*    ASL_MSG_NAME_EXISTS */                "Name already exists in scope",
+/*    ASL_MSG_NAME_ALREADY_HAS_TYPE */      "Name already has different type in scope",
 /*    ASL_MSG_NAME_OPTIMIZATION */          "NamePath optimized",
 /*    ASL_MSG_NAMED_OBJECT_IN_WHILE */      "Creating a named object in a While loop",
 /*    ASL_MSG_NESTED_COMMENT */             "Nested comment found",

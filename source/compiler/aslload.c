@@ -801,6 +801,12 @@ LdNamespace1Begin (
             else if ((Node->Flags & ANOBJ_IS_EXTERNAL) &&
                      (Op->Asl.ParseOpcode != PARSEOP_EXTERNAL))
             {
+                if (Gbl_RehabManHacks && Node->Type != ACPI_TYPE_ANY && Node->Type != ObjectType)
+                {
+                    sprintf (MsgBuffer, "1: %s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
+                    AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
+                    return_ACPI_STATUS (AE_OK);
+                }
                 /*
                  * Allow one create on an object or segment that was
                  * previously declared External only if WalkState->OwnerId and
@@ -823,7 +829,8 @@ LdNamespace1Begin (
 
                 Status = AE_OK;
 
-                if (Node->OwnerId == WalkState->OwnerId)
+
+                if (!Gbl_RehabManHacks && Node->OwnerId == WalkState->OwnerId)
                 {
                     AslError (ASL_ERROR, ASL_MSG_NAME_EXISTS, Op,
                         Op->Asl.ExternalName);
@@ -841,7 +848,17 @@ LdNamespace1Begin (
                  */
                 Status = AE_OK;
 
-                if (Node->OwnerId == WalkState->OwnerId)
+                if (Gbl_RehabManHacks && Node->Type != ActualObjectType)
+                {
+                    if (ActualObjectType != ACPI_TYPE_ANY)
+                    {
+                        sprintf (MsgBuffer, "2: %s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
+                        AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
+                    }
+                    return_ACPI_STATUS (Status);
+                }
+
+                if (!Gbl_RehabManHacks && Node->OwnerId == WalkState->OwnerId)
                 {
                     AslError (ASL_ERROR, ASL_MSG_NAME_EXISTS, Op,
                         Op->Asl.ExternalName);
@@ -882,7 +899,17 @@ LdNamespace1Begin (
                  */
                 Node->OwnerId = WalkState->OwnerId;
 
-                if (AcpiNsOpensScope (ActualObjectType) || Node->Type == ActualObjectType)
+                if (Gbl_RehabManHacks && Node->Type != ACPI_TYPE_ANY && Node->Type != ActualObjectType)
+                {
+                    if (ActualObjectType != ACPI_TYPE_ANY)
+                    {
+                        sprintf (MsgBuffer, "3: %s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
+                        AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
+                    }
+                    return_ACPI_STATUS (AE_OK);
+                }
+                else if (AcpiNsOpensScope (ActualObjectType) ||
+                         (Gbl_RehabManHacks && Node->Type == ACPI_TYPE_ANY) || Node->Type == ActualObjectType)
                 {
                     Node->Type = (UINT8) ActualObjectType;
                     Status = AE_OK;
