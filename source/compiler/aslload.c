@@ -805,7 +805,8 @@ LdNamespace1Begin (
                 {
                     sprintf (MsgBuffer, "%s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
                     AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
-                    return_ACPI_STATUS (AE_OK);
+                    //REVIEW_REHABMAN: we can't just ignore it here, as there is no good way to avoid opening the scope...
+                    //return_ACPI_STATUS (AE_OK);
                 }
                 /*
                  * Allow one create on an object or segment that was
