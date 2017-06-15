@@ -283,10 +283,10 @@ AcpiDmDisasmByteList (
             }
         }
         
-        /* Finished with this line */
-        
-        AcpiOsPrintf ("\n");
 #endif
+        /* Finished with this line */
+
+        AcpiOsPrintf ("\n");
     }
 }
 

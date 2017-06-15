@@ -564,7 +564,7 @@ LdNamespace1Begin (
          * a new scope so that the resource subfield names can be entered into
          * the namespace underneath this name
          */
-        if (Op->Asl.CompileFlags & NODE_IS_RESOURCE_DESC)
+        if (Op->Asl.CompileFlags & OP_IS_RESOURCE_DESC)
         {
             ForceNewScope = TRUE;
         }
@@ -614,7 +614,7 @@ LdNamespace1Begin (
 
     case PARSEOP_DEFAULT_ARG:
 
-        if (Op->Asl.CompileFlags == NODE_IS_RESOURCE_DESC)
+        if (Op->Asl.CompileFlags == OP_IS_RESOURCE_DESC)
         {
             Status = LdLoadResourceElements (Op, WalkState);
             return_ACPI_STATUS (Status);
@@ -829,11 +829,16 @@ LdNamespace1Begin (
 
                 Status = AE_OK;
 
-
-                if (!Gbl_RehabManHacks && Node->OwnerId == WalkState->OwnerId)
+                if (!Gbl_RehabManHacks &&
+                    Node->OwnerId == WalkState->OwnerId &&
+                    !(Node->Flags & IMPLICIT_EXTERNAL))
                 {
                     AslError (ASL_ERROR, ASL_MSG_NAME_EXISTS, Op,
                         Op->Asl.ExternalName);
+                }
+                if (Node->Flags & IMPLICIT_EXTERNAL)
+                {
+                    Node->Flags &= ~IMPLICIT_EXTERNAL;
                 }
             }
             else if (!(Node->Flags & ANOBJ_IS_EXTERNAL) &&
@@ -1027,7 +1032,7 @@ LdNamespace2Begin (
     /* Get the type to determine if we should push the scope */
 
     if ((Op->Asl.ParseOpcode == PARSEOP_DEFAULT_ARG) &&
-        (Op->Asl.CompileFlags == NODE_IS_RESOURCE_DESC))
+        (Op->Asl.CompileFlags == OP_IS_RESOURCE_DESC))
     {
         ObjectType = ACPI_TYPE_LOCAL_RESOURCE;
     }
@@ -1040,7 +1045,7 @@ LdNamespace2Begin (
 
     if (Op->Asl.ParseOpcode == PARSEOP_NAME)
     {
-        if (Op->Asl.CompileFlags & NODE_IS_RESOURCE_DESC)
+        if (Op->Asl.CompileFlags & OP_IS_RESOURCE_DESC)
         {
             ForceNewScope = TRUE;
         }
@@ -1151,7 +1156,7 @@ LdCommonNamespaceEnd (
     /* Get the type to determine if we should pop the scope */
 
     if ((Op->Asl.ParseOpcode == PARSEOP_DEFAULT_ARG) &&
-        (Op->Asl.CompileFlags == NODE_IS_RESOURCE_DESC))
+        (Op->Asl.CompileFlags == OP_IS_RESOURCE_DESC))
     {
         /* TBD: Merge into AcpiDsMapNamedOpcodeToDataType */
 
@@ -1166,7 +1171,7 @@ LdCommonNamespaceEnd (
 
     if (Op->Asl.ParseOpcode == PARSEOP_NAME)
     {
-        if (Op->Asl.CompileFlags & NODE_IS_RESOURCE_DESC)
+        if (Op->Asl.CompileFlags & OP_IS_RESOURCE_DESC)
         {
             ForceNewScope = TRUE;
         }
