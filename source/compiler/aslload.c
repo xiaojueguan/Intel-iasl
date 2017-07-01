@@ -801,7 +801,9 @@ LdNamespace1Begin (
             else if ((Node->Flags & ANOBJ_IS_EXTERNAL) &&
                      (Op->Asl.ParseOpcode != PARSEOP_EXTERNAL))
             {
-                if (Gbl_RehabManHacks && Node->Type != ACPI_TYPE_ANY && Node->Type != ObjectType)
+                if (Gbl_RehabManHacks && Node->Type != ACPI_TYPE_ANY && Node->Type != ObjectType
+                    // this exception for External(CPU0, DeviceObj), followed by Processor(CPU0,...)
+                    && !(ObjectType == ACPI_TYPE_PROCESSOR && Node->Type == ACPI_TYPE_DEVICE))
                 {
                     sprintf (MsgBuffer, "%s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
                     AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
