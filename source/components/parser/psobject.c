@@ -507,8 +507,10 @@ AcpiPsCreateOp (
              */
             AcpiOsPrintf (
                 "// Invalid external declaration at AML offset 0x%x (see bz1397).\n",
-                WalkState->Aml - WalkState->ParserState.AmlStart);
+                WalkState->Aml - WalkState->ParserState.AmlStart +
+                sizeof (ACPI_TABLE_HEADER));
             WalkState->Aml = WalkState->ParserState.Aml + 2;
+            WalkState->ParserState.Aml = WalkState->Aml;
             return_ACPI_STATUS (AE_CTRL_PARSE_CONTINUE);
         }
 #endif
