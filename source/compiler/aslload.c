@@ -317,7 +317,7 @@ LdLoadFieldElements (
                 }
                 else if (Status == AE_ALREADY_EXISTS &&
                     (Node->Flags & ANOBJ_IS_EXTERNAL) &&
-                    Node->OwnerId != WalkState->OwnerId)
+                    (Node->OwnerId != WalkState->OwnerId || Gbl_RehabManHacks))
                 {
                     Node->Type = (UINT8) ACPI_TYPE_LOCAL_REGION_FIELD;
                 }
@@ -804,7 +804,8 @@ LdNamespace1Begin (
             {
                 if (Gbl_RehabManHacks && Node->Type != ACPI_TYPE_ANY && Node->Type != ObjectType
                     // this exception for External(CPU0, DeviceObj), followed by Processor(CPU0,...)
-                    && !(ObjectType == ACPI_TYPE_PROCESSOR && Node->Type == ACPI_TYPE_DEVICE))
+                    && !(ObjectType == ACPI_TYPE_PROCESSOR && Node->Type == ACPI_TYPE_DEVICE)
+                    && !(ObjectType == ACPI_TYPE_THERMAL && Node->Type == ACPI_TYPE_DEVICE))
                 {
                     sprintf (MsgBuffer, "%s [%s]", Op->Asl.ExternalName, AcpiUtGetTypeName (Node->Type));
                     AslError (ASL_ERROR, ASL_MSG_NAME_ALREADY_HAS_TYPE, Op, MsgBuffer);
