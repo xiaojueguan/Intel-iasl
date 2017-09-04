@@ -500,11 +500,9 @@ AcpiPsCreateOp (
              * external declaration opcode. Setting WalkState->Aml to
              * WalkState->ParserState.Aml + 2 moves increments the
              * WalkState->Aml past the object type and the paramcount of the
-             * external opcode. For the error message, only print the AML
-             * offset. We could attempt to print the name but this may cause
-             * a segmentation fault when printing the namepath because the
-             * AML may be incorrect.
+             * external opcode.
              */
+            //REVIEW_REHABMAN: for some reason, Intel removed this diagnostic... keeping it for now.
             AcpiOsPrintf (
                 "// Invalid external declaration at AML offset 0x%x (see bz1397).\n",
                 WalkState->Aml - WalkState->ParserState.AmlStart +
