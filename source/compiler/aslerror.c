@@ -485,6 +485,12 @@ AePrintErrorSourceLine (
                 *PrematureEOF = TRUE;
             }
         }
+        else
+        {
+            fprintf (OutputFile,
+                "[*** iASL: Source File Does not exist ***]\n");
+            return AE_IO_ERROR;
+        }
     }
 
     /* Print filename and line number if present and valid */
@@ -515,8 +521,8 @@ AePrintErrorSourceLine (
             /*
              * Seek to the offset in the combined source file,
              * read the source line, and write it to the output.
-	     */
-	    Actual = fseek (SourceFile,
+         */
+        Actual = fseek (SourceFile,
                 (long) Enode->LogicalByteOffset, (int) SEEK_SET);
             if (Actual)
             {
