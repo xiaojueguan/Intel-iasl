@@ -352,6 +352,8 @@ const char                      *AslCompilerMsgs [] =
 /*    ASL_MSG_EXCEPTION_NOT_RECEIVED */     "Expected remark, warning, or error did not occur. Message ID:",
 /*    ASL_MSG_NULL_RESOURCE_TEMPLATE */     "Empty Resource Template (END_TAG only)",
 /*    ASL_MSG_FOUND_HERE */                 "Original name creation/declaration below: ",
+/*    ASL_MSG_ILLEGAL_RECURSION */          "Illegal recursive call to method that creates named objects"
+//REVIEW_REHABMAN: added
 /*    ASL_MSG_NAME_ALREADY_HAS_TYPE */      "Name already has different type in scope",
 };
 

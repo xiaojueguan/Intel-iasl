@@ -354,6 +354,9 @@ typedef enum
     ASL_MSG_EXCEPTION_NOT_RECEIVED,
     ASL_MSG_NULL_RESOURCE_TEMPLATE,
     ASL_MSG_FOUND_HERE,
+    ASL_MSG_ILLEGAL_RECURSION,
+
+//REVIEW_REHABMAN: added
     ASL_MSG_NAME_ALREADY_HAS_TYPE,
 
     /* These messages are used by the Data Table compiler only */
