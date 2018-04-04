@@ -567,6 +567,21 @@ AcpiDmIsSwitchBlock (
         CurrentOp->Common.DisasmOpcode = ACPI_DASM_DEFAULT;
     }
 
+    /*
+     * From the first If advance to the Break op. It's possible to
+     * have an Else (Default) op here when there is only one Case
+     * statement, so check for it.
+     */
+    CurrentOp = StoreOp->Common.Next->Common.Next;
+    if (!CurrentOp)
+    {
+        return (FALSE);
+    }
+    if (CurrentOp->Common.AmlOpcode == AML_ELSE_OP)
+    {
+        CurrentOp = CurrentOp->Common.Next;
+    }
+
     /* Ignore the Break Op */
 
     BreakOp->Common.DisasmFlags |= ACPI_PARSEOP_IGNORE;
