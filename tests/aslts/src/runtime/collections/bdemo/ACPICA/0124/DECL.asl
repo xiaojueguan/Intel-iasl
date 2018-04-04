@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -34,7 +34,7 @@
     {
         Name (P000, Package (0x02)
         {
-            0x00, 
+            0x00,
             0x01
         })
         Name (B000, Buffer (0x03)
@@ -44,14 +44,13 @@
         Name (S000, "5678")
         /* a) Index > 0xffffffff */
         /* c) Modulo(Index, 0x100000000) < Size. */
-        CH03 ("", 0x00, 0x00, 0x2C, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         Store (P000 [0x0000000100000001], Local0)
-        CH04 ("", 0x01, 0x37, 0x00, 0x2E, 0x00, 0x00) /* AE_AML_PACKAGE_LIMIT */
-        CH03 ("", 0x00, 0x02, 0x30, 0x00)
+        CH04 (__METHOD__, 0x01, 0x37, 0x00, __LINE__, 0x00, 0x00) /* AE_AML_PACKAGE_LIMIT */
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         Store (B000 [0x0000000100000002], Local0)
-        CH04 ("", 0x01, 0x36, 0x00, 0x32, 0x00, 0x00) /* AE_AML_BUFFER_LIMIT */
-        CH03 ("", 0x00, 0x04, 0x34, 0x00)
+        CH04 (__METHOD__, 0x01, 0x36, 0x00, __LINE__, 0x00, 0x00) /* AE_AML_BUFFER_LIMIT */
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         Store (S000 [0x0000000100000003], Local0)
-        CH04 ("", 0x01, 0x3D, 0x00, 0x36, 0x00, 0x00) /* AE_AML_STRING_LIMIT */
+        CH04 (__METHOD__, 0x01, 0x3D, 0x00, __LINE__, 0x00, 0x00) /* AE_AML_STRING_LIMIT */
     }
-

@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -32,7 +32,6 @@
     Name (Z086, 0x56)
     Method (M611, 0, Serialized)
     {
-        Name (TS, "m611")
         /* Integer to String implicit conversion Cases. */
         /* Integer to String conversion of the Integer second operand of */
         /* Logical operators when the first operand is evaluated as String. */
@@ -1838,10 +1837,10 @@
                 M600 (Arg0, 0x11, Local0, BB30)
             }
 
-            Mid (I604, DerefOf (PAUI [0x05]), DerefOf (PAUI [0x0B]), 
+            Mid (I604, DerefOf (PAUI [0x05]), DerefOf (PAUI [0x0B]),
                 Local0)
             M600 (Arg0, 0x12, Local0, BB1D)
-            Mid (I60F, DerefOf (PAUI [0x06]), DerefOf (PAUI [0x0A]), 
+            Mid (I60F, DerefOf (PAUI [0x06]), DerefOf (PAUI [0x0A]),
                 Local0)
             M600 (Arg0, 0x13, Local0, BB30)
             /* Method returns Index and Length parameters */
@@ -1919,10 +1918,10 @@
                 M600 (Arg0, 0x11, Local0, BB31)
             }
 
-            Mid (I603, DerefOf (PAUI [0x05]), DerefOf (PAUI [0x09]), 
+            Mid (I603, DerefOf (PAUI [0x05]), DerefOf (PAUI [0x09]),
                 Local0)
             M600 (Arg0, 0x12, Local0, BB1C)
-            Mid (I60F, DerefOf (PAUI [0x06]), DerefOf (PAUI [0x08]), 
+            Mid (I60F, DerefOf (PAUI [0x06]), DerefOf (PAUI [0x08]),
                 Local0)
             M600 (Arg0, 0x13, Local0, BB31)
             /* Method returns Index and Length parameters */
@@ -9985,13 +9984,13 @@
             }
             Else
             {
-                CH03 (Arg0, Z086, 0x00, 0x2E2C, 0x00)
+                CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
                 Store (M601 (0x02, 0x06) [S614], Local3)
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x2E2F, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
                 Store (M601 (0x03, 0x06) [S614], Local3)
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x2E32, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
                 Store (M601 (0x04, 0x00) [S614], Local3)
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x2E35, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
             }
 
             /* Method returns Reference */
@@ -10041,13 +10040,13 @@
             }
             Else
             {
-                CH03 (Arg0, Z086, 0x00, 0x2E70, 0x00)
+                CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
                 Local0 = M601 (0x02, 0x06) [S614] /* \S614 */
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x2E73, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
                 Local0 = M601 (0x03, 0x06) [S614] /* \S614 */
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x2E76, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
                 Local0 = M601 (0x04, 0x00) [S614] /* \S614 */
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x2E79, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
             }
 
             /* Method returns Reference */
@@ -10122,7 +10121,7 @@
         /* (it can only be checked an exception does not occur) */
         Method (M02E, 1, NotSerialized)
         {
-            CH03 (Arg0, Z086, 0x00, 0x2ECA, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Fatal (0xFF, 0xFFFFFFFF, S601)
             If (F64)
             {
@@ -10133,7 +10132,7 @@
                 Fatal (0xFF, 0xFFFFFFFF, S604)
             }
 
-            CH03 (Arg0, Z086, 0x01, 0x2ED1, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
         }
 
         /* String to Integer conversion of the String Index and Length */
@@ -10634,39 +10633,39 @@
         {
             Local0 = Match (Package (0x0F)
                     {
-                        0x0A50, 
-                        0x0A51, 
-                        0x0A52, 
-                        0x0A53, 
-                        0x0A54, 
-                        0x0A55, 
-                        0x0A56, 
-                        0x0A57, 
-                        0x0A58, 
-                        0x0A59, 
-                        0x0A5A, 
-                        0x0A5B, 
-                        0x0A5C, 
-                        0x0A5D, 
+                        0x0A50,
+                        0x0A51,
+                        0x0A52,
+                        0x0A53,
+                        0x0A54,
+                        0x0A55,
+                        0x0A56,
+                        0x0A57,
+                        0x0A58,
+                        0x0A59,
+                        0x0A5A,
+                        0x0A5B,
+                        0x0A5C,
+                        0x0A5D,
                         0x0A5E
                     }, MEQ, 0x0A5D, MTR, 0x00, S614)
             M600 (Arg0, 0x00, Local0, 0x0D)
             Local0 = Match (Package (0x0F)
                     {
-                        0x0A50, 
-                        0x0A51, 
-                        0x0A52, 
-                        0x0A53, 
-                        0x0A54, 
-                        0x0A55, 
-                        0x0A56, 
-                        0x0A57, 
-                        0x0A58, 
-                        0x0A59, 
-                        0x0A5A, 
-                        0x0A5B, 
-                        0x0A5C, 
-                        0x0A5D, 
+                        0x0A50,
+                        0x0A51,
+                        0x0A52,
+                        0x0A53,
+                        0x0A54,
+                        0x0A55,
+                        0x0A56,
+                        0x0A57,
+                        0x0A58,
+                        0x0A59,
+                        0x0A5A,
+                        0x0A5B,
+                        0x0A5C,
+                        0x0A5D,
                         0x0A5E
                     }, MEQ, 0x0A5A, MTR, 0x00, S614)
             M600 (Arg0, 0x01, Local0, Ones)
@@ -10682,10 +10681,10 @@
                 M600 (Arg0, 0x05, Local0, Ones)
             }
 
-            Local0 = Match (DerefOf (PAUP [0x00]), MEQ, 0x0A5D, MTR, 0x00, 
+            Local0 = Match (DerefOf (PAUP [0x00]), MEQ, 0x0A5D, MTR, 0x00,
                 S614)
             M600 (Arg0, 0x06, Local0, 0x0D)
-            Local0 = Match (DerefOf (PAUP [0x00]), MEQ, 0x0A5A, MTR, 0x00, 
+            Local0 = Match (DerefOf (PAUP [0x00]), MEQ, 0x0A5A, MTR, 0x00,
                 S614)
             M600 (Arg0, 0x07, Local0, Ones)
             /* Method returns Object */
@@ -10698,10 +10697,10 @@
 
             If (Y500)
             {
-                Local0 = Match (DerefOf (M602 (0x04, 0x00, 0x01)), MEQ, 0x0A5D, MTR, 0x00, 
+                Local0 = Match (DerefOf (M602 (0x04, 0x00, 0x01)), MEQ, 0x0A5D, MTR, 0x00,
                     S614)
                 M600 (Arg0, 0x0A, Local0, 0x0D)
-                Local0 = Match (DerefOf (M602 (0x04, 0x00, 0x01)), MEQ, 0x0A5A, MTR, 0x00, 
+                Local0 = Match (DerefOf (M602 (0x04, 0x00, 0x01)), MEQ, 0x0A5A, MTR, 0x00,
                     S614)
                 M600 (Arg0, 0x0B, Local0, Ones)
             }
@@ -10713,29 +10712,29 @@
         /* of the Method execution control operators (Sleep, Stall) */
         Method (M031, 1, NotSerialized)
         {
-            CH03 (Arg0, Z086, 0x02, 0x3145, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             /* Sleep */
 
             Local0 = Timer
             Sleep (S601)
-            CH03 (Arg0, Z086, 0x03, 0x314C, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local1 = Timer
             Local2 = (Local1 - Local0)
             If ((Local2 < C08C))
             {
-                ERR (Arg0, Z086, 0x3151, 0x00, 0x00, Local2, C08C)
+                ERR (Arg0, Z086, __LINE__, 0x00, 0x00, Local2, C08C)
             }
 
             /* Stall */
 
             Local0 = Timer
             Stall (S61B)
-            CH03 (Arg0, Z086, 0x04, 0x3159, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local1 = Timer
             Local2 = (Local1 - Local0)
             If ((Local2 < 0x03DE))
             {
-                ERR (Arg0, Z086, 0x315E, 0x00, 0x00, Local2, 0x03DE)
+                ERR (Arg0, Z086, __LINE__, 0x00, 0x00, Local2, 0x03DE)
             }
         }
 
@@ -10745,17 +10744,17 @@
         {
             Mutex (MTX0, 0x00)
             Acquire (MTX0, 0x0000)
-            CH03 (Arg0, Z086, 0x05, 0x3169, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local0 = Timer
             /* Compiler allows only Integer constant as TimeoutValue (Bug 1)
              Acquire(MTX0, s601)
              */
-            CH03 (Arg0, Z086, 0x06, 0x3170, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local1 = Timer
             Local2 = (Local1 - Local0)
             If ((Local2 < C08C))
             {
-                ERR (Arg0, Z086, 0x3175, 0x00, 0x00, Local2, C08C)
+                ERR (Arg0, Z086, __LINE__, 0x00, 0x00, Local2, C08C)
             }
         }
 
@@ -10764,15 +10763,15 @@
         Method (M033, 1, Serialized)
         {
             Event (EVT0)
-            CH03 (Arg0, Z086, 0x07, 0x317F, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local0 = Timer
             Wait (EVT0, S601)
-            CH03 (Arg0, Z086, 0x08, 0x3184, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local1 = Timer
             Local2 = (Local1 - Local0)
             If ((Local2 < C08C))
             {
-                ERR (Arg0, Z086, 0x3189, 0x00, 0x00, Local2, C08C)
+                ERR (Arg0, Z086, __LINE__, 0x00, 0x00, Local2, C08C)
             }
         }
 
@@ -19731,13 +19730,13 @@
             }
             Else
             {
-                CH03 (Arg0, Z086, 0x00, 0x5AC9, 0x00)
+                CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
                 Store (M601 (0x02, 0x06) [B60E], Local3)
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x5ACC, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
                 Store (M601 (0x03, 0x06) [B60E], Local3)
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x5ACF, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
                 Store (M601 (0x04, 0x00) [B60E], Local3)
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x5AD2, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
             }
 
             /* Method returns Reference */
@@ -19787,13 +19786,13 @@
             }
             Else
             {
-                CH03 (Arg0, Z086, 0x00, 0x5B0D, 0x00)
+                CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
                 Local0 = M601 (0x02, 0x06) [B60E] /* \B60E */
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x5B10, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
                 Local0 = M601 (0x03, 0x06) [B60E] /* \B60E */
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x5B13, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
                 Local0 = M601 (0x04, 0x00) [B60E] /* \B60E */
-                CH04 (Arg0, 0x00, 0x55, Z086, 0x5B16, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
+                CH04 (Arg0, 0x00, 0x55, Z086, __LINE__, 0x00, 0x00) /* AE_INDEX_TO_NOT_ATTACHED */
             }
 
             /* Method returns Reference */
@@ -19868,7 +19867,7 @@
         /* (it can only be checked an exception does not occur) */
         Method (M068, 1, NotSerialized)
         {
-            CH03 (Arg0, Z086, 0x09, 0x5B67, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Fatal (0xFF, 0xFFFFFFFF, B606)
             If (F64)
             {
@@ -19879,7 +19878,7 @@
                 Fatal (0xFF, 0xFFFFFFFF, B60A)
             }
 
-            CH03 (Arg0, Z086, 0x0A, 0x5B6E, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
         }
 
         /* Buffer to Integer conversion of the Buffer Index and Length */
@@ -20380,39 +20379,39 @@
         {
             Local0 = Match (Package (0x0F)
                     {
-                        0x0A50, 
-                        0x0A51, 
-                        0x0A52, 
-                        0x0A53, 
-                        0x0A54, 
-                        0x0A55, 
-                        0x0A56, 
-                        0x0A57, 
-                        0x0A58, 
-                        0x0A59, 
-                        0x0A5A, 
-                        0x0A5B, 
-                        0x0A5C, 
-                        0x0A5D, 
+                        0x0A50,
+                        0x0A51,
+                        0x0A52,
+                        0x0A53,
+                        0x0A54,
+                        0x0A55,
+                        0x0A56,
+                        0x0A57,
+                        0x0A58,
+                        0x0A59,
+                        0x0A5A,
+                        0x0A5B,
+                        0x0A5C,
+                        0x0A5D,
                         0x0A5E
                     }, MEQ, 0x0A5D, MTR, 0x00, B60E)
             M600 (Arg0, 0x00, Local0, 0x0D)
             Local0 = Match (Package (0x0F)
                     {
-                        0x0A50, 
-                        0x0A51, 
-                        0x0A52, 
-                        0x0A53, 
-                        0x0A54, 
-                        0x0A55, 
-                        0x0A56, 
-                        0x0A57, 
-                        0x0A58, 
-                        0x0A59, 
-                        0x0A5A, 
-                        0x0A5B, 
-                        0x0A5C, 
-                        0x0A5D, 
+                        0x0A50,
+                        0x0A51,
+                        0x0A52,
+                        0x0A53,
+                        0x0A54,
+                        0x0A55,
+                        0x0A56,
+                        0x0A57,
+                        0x0A58,
+                        0x0A59,
+                        0x0A5A,
+                        0x0A5B,
+                        0x0A5C,
+                        0x0A5D,
                         0x0A5E
                     }, MEQ, 0x0A5A, MTR, 0x00, B60E)
             M600 (Arg0, 0x01, Local0, Ones)
@@ -20428,10 +20427,10 @@
                 M600 (Arg0, 0x05, Local0, Ones)
             }
 
-            Local0 = Match (DerefOf (PAUP [0x00]), MEQ, 0x0A5D, MTR, 0x00, 
+            Local0 = Match (DerefOf (PAUP [0x00]), MEQ, 0x0A5D, MTR, 0x00,
                 B60E)
             M600 (Arg0, 0x06, Local0, 0x0D)
-            Local0 = Match (DerefOf (PAUP [0x00]), MEQ, 0x0A5A, MTR, 0x00, 
+            Local0 = Match (DerefOf (PAUP [0x00]), MEQ, 0x0A5A, MTR, 0x00,
                 B60E)
             M600 (Arg0, 0x07, Local0, Ones)
             /* Method returns Object */
@@ -20444,10 +20443,10 @@
 
             If (Y500)
             {
-                Local0 = Match (DerefOf (M602 (0x04, 0x00, 0x01)), MEQ, 0x0A5D, MTR, 0x00, 
+                Local0 = Match (DerefOf (M602 (0x04, 0x00, 0x01)), MEQ, 0x0A5D, MTR, 0x00,
                     B60E)
                 M600 (Arg0, 0x0A, Local0, 0x0D)
-                Local0 = Match (DerefOf (M602 (0x04, 0x00, 0x01)), MEQ, 0x0A5A, MTR, 0x00, 
+                Local0 = Match (DerefOf (M602 (0x04, 0x00, 0x01)), MEQ, 0x0A5A, MTR, 0x00,
                     B60E)
                 M600 (Arg0, 0x0B, Local0, Ones)
             }
@@ -20459,29 +20458,29 @@
         /* of the Method execution control operators (Sleep, Stall) */
         Method (M06B, 1, NotSerialized)
         {
-            CH03 (Arg0, Z086, 0x0B, 0x5DE2, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             /* Sleep */
 
             Local0 = Timer
             Sleep (B606)
-            CH03 (Arg0, Z086, 0x0C, 0x5DE9, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local1 = Timer
             Local2 = (Local1 - Local0)
             If ((Local2 < C08C))
             {
-                ERR (Arg0, Z086, 0x5DEE, 0x00, 0x00, Local2, C08C)
+                ERR (Arg0, Z086, __LINE__, 0x00, 0x00, Local2, C08C)
             }
 
             /* Stall */
 
             Local0 = Timer
             Stall (B613)
-            CH03 (Arg0, Z086, 0x0D, 0x5DF6, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local1 = Timer
             Local2 = (Local1 - Local0)
             If ((Local2 < 0x03DE))
             {
-                ERR (Arg0, Z086, 0x5DFB, 0x00, 0x00, Local2, 0x03DE)
+                ERR (Arg0, Z086, __LINE__, 0x00, 0x00, Local2, 0x03DE)
             }
         }
 
@@ -20491,17 +20490,17 @@
         {
             Mutex (MTX0, 0x00)
             Acquire (MTX0, 0x0000)
-            CH03 (Arg0, Z086, 0x0E, 0x5E07, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local0 = Timer
             /* Compiler allows only Integer constant as TimeoutValue (Bug 1)
              Acquire(MTX0, b606)
              */
-            CH03 (Arg0, Z086, 0x0F, 0x5E0E, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local1 = Timer
             Local2 = (Local1 - Local0)
             If ((Local2 < C08C))
             {
-                ERR (Arg0, Z086, 0x5E13, 0x00, 0x00, Local2, C08C)
+                ERR (Arg0, Z086, __LINE__, 0x00, 0x00, Local2, C08C)
             }
         }
 
@@ -20510,15 +20509,15 @@
         Method (M06D, 1, Serialized)
         {
             Event (EVT0)
-            CH03 (Arg0, Z086, 0x10, 0x5E1D, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local0 = Timer
             Wait (EVT0, B606)
-            CH03 (Arg0, Z086, 0x11, 0x5E22, 0x00)
+            CH03 (Arg0, Z086, __LINE__, 0x00, 0x00)
             Local1 = Timer
             Local2 = (Local1 - Local0)
             If ((Local2 < C08C))
             {
-                ERR (Arg0, Z086, 0x5E27, 0x00, 0x00, Local2, C08C)
+                ERR (Arg0, Z086, __LINE__, 0x00, 0x00, Local2, C08C)
             }
         }
 
@@ -21022,13 +21021,13 @@
         /* LEqual LGreater LGreaterEqual LLess LLessEqual LNotEqual */
         If (F64)
         {
-            Concatenate (TS, "-m640", Local0)
+            Concatenate (__METHOD__, "-m640", Local0)
             SRMT (Local0)
             M640 (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m320", Local0)
+            Concatenate (__METHOD__, "-m320", Local0)
             SRMT (Local0)
             M320 (Local0)
         }
@@ -21037,13 +21036,13 @@
         /* Concatenate operator when the first operand is evaluated as String */
         If (F64)
         {
-            Concatenate (TS, "-m641", Local0)
+            Concatenate (__METHOD__, "-m641", Local0)
             SRMT (Local0)
             M641 (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m321", Local0)
+            Concatenate (__METHOD__, "-m321", Local0)
             SRMT (Local0)
             M321 (Local0)
         }
@@ -21054,13 +21053,13 @@
         /* (LEqual, LGreater, LGreaterEqual, LLess, LLessEqual, LNotEqual) */
         If (F64)
         {
-            Concatenate (TS, "-m644", Local0)
+            Concatenate (__METHOD__, "-m644", Local0)
             SRMT (Local0)
             M644 (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m324", Local0)
+            Concatenate (__METHOD__, "-m324", Local0)
             SRMT (Local0)
             M324 (Local0)
         }
@@ -21069,13 +21068,13 @@
         /* Concatenate operator */
         If (F64)
         {
-            Concatenate (TS, "-m645", Local0)
+            Concatenate (__METHOD__, "-m645", Local0)
             SRMT (Local0)
             M645 (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m325", Local0)
+            Concatenate (__METHOD__, "-m325", Local0)
             SRMT (Local0)
             M325 (Local0)
         }
@@ -21084,13 +21083,13 @@
         /* Concatenate operator when the first operand is evaluated as Buffer */
         If (F64)
         {
-            Concatenate (TS, "-m646", Local0)
+            Concatenate (__METHOD__, "-m646", Local0)
             SRMT (Local0)
             M646 (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m326", Local0)
+            Concatenate (__METHOD__, "-m326", Local0)
             SRMT (Local0)
             M326 (Local0)
         }
@@ -21099,13 +21098,13 @@
         /* ToString operator */
         If (F64)
         {
-            Concatenate (TS, "-m647", Local0)
+            Concatenate (__METHOD__, "-m647", Local0)
             SRMT (Local0)
             M647 (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m327", Local0)
+            Concatenate (__METHOD__, "-m327", Local0)
             SRMT (Local0)
             M327 (Local0)
         }
@@ -21114,13 +21113,13 @@
         /* Mid operator */
         If (F64)
         {
-            Concatenate (TS, "-m648", Local0)
+            Concatenate (__METHOD__, "-m648", Local0)
             SRMT (Local0)
             M648 (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m328", Local0)
+            Concatenate (__METHOD__, "-m328", Local0)
             SRMT (Local0)
             M328 (Local0)
         }
@@ -21131,33 +21130,33 @@
         /* (Decrement, Increment, FindSetLeftBit, FindSetRightBit, Not) */
         If (F64)
         {
-            Concatenate (TS, "-m64b", Local0)
+            Concatenate (__METHOD__, "-m64b", Local0)
             SRMT (Local0)
             M64B (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32b", Local0)
+            Concatenate (__METHOD__, "-m32b", Local0)
             SRMT (Local0)
             M32B (Local0)
         }
 
         /* String to Integer conversion of the String sole operand */
         /* of the LNot Logical Integer operator */
-        Concatenate (TS, "-m000", Local0)
+        Concatenate (__METHOD__, "-m000", Local0)
         SRMT (Local0)
         M000 (Local0)
         /* String to Integer conversion of the String sole operand */
         /* of the FromBCD and ToBCD conversion operators */
         If (F64)
         {
-            Concatenate (TS, "-m64c", Local0)
+            Concatenate (__METHOD__, "-m64c", Local0)
             SRMT (Local0)
             M64C (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32c", Local0)
+            Concatenate (__METHOD__, "-m32c", Local0)
             SRMT (Local0)
             M32C (Local0)
         }
@@ -21168,39 +21167,39 @@
         /* ShiftLeft, ShiftRight, Subtract, Xor */
         If (F64)
         {
-            M64D (Concatenate (TS, "-m64d"))
+            M64D (Concatenate (__METHOD__, "-m64d"))
         }
         Else
         {
-            M32D (Concatenate (TS, "-m32d"))
+            M32D (Concatenate (__METHOD__, "-m32d"))
         }
 
         /* String to Integer conversion of each String operand */
         /* of the 2-parameter Logical Integer operators LAnd and LOr */
         If (F64)
         {
-            M64E (Concatenate (TS, "-m64e"))
+            M64E (Concatenate (__METHOD__, "-m64e"))
         }
         Else
         {
-            M32E (Concatenate (TS, "-m32e"))
+            M32E (Concatenate (__METHOD__, "-m32e"))
         }
 
         /* String to Integer conversion of the String second operand of */
         /* Logical operators when the first operand is evaluated as Integer */
         /* (LEqual, LGreater, LGreaterEqual, LLess, LLessEqual, LNotEqual) */
-        Concatenate (TS, "-m02b", Local0)
+        Concatenate (__METHOD__, "-m02b", Local0)
         SRMT (Local0)
         M02B (Local0)
         If (F64)
         {
-            Concatenate (TS, "-m64f", Local0)
+            Concatenate (__METHOD__, "-m64f", Local0)
             SRMT (Local0)
             M64F (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32f", Local0)
+            Concatenate (__METHOD__, "-m32f", Local0)
             SRMT (Local0)
             M32F (Local0)
         }
@@ -21209,72 +21208,72 @@
         /* operand of Concatenate operator in case the first one is Integer */
         If (F64)
         {
-            Concatenate (TS, "-m64g", Local0)
+            Concatenate (__METHOD__, "-m64g", Local0)
             SRMT (Local0)
             M64G (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32g", Local0)
+            Concatenate (__METHOD__, "-m32g", Local0)
             SRMT (Local0)
             M32G (Local0)
         }
 
         /* String to Integer conversion of the String Length (second) */
         /* operand of the ToString operator */
-        Concatenate (TS, "-m02c", Local0)
+        Concatenate (__METHOD__, "-m02c", Local0)
         SRMT (Local0)
         M02C (Local0)
         If (F64)
         {
-            Concatenate (TS, "-m64h", Local0)
+            Concatenate (__METHOD__, "-m64h", Local0)
             SRMT (Local0)
             M64H (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32h", Local0)
+            Concatenate (__METHOD__, "-m32h", Local0)
             SRMT (Local0)
             M32H (Local0)
         }
 
         /* String to Integer conversion of the String Index (second) */
         /* operand of the Index operator */
-        Concatenate (TS, "-m02d", Local0)
+        Concatenate (__METHOD__, "-m02d", Local0)
         SRMT (Local0)
         M02D (Local0)
         /* String to Integer conversion of the String Arg (third) */
         /* operand of the Fatal operator */
         /* (it can only be checked an exception does not occur) */
-        Concatenate (TS, "-m02e", Local0)
+        Concatenate (__METHOD__, "-m02e", Local0)
         SRMT (Local0)
         M02E (Local0)
         /* String to Integer conversion of the String Index and Length */
         /* operands of the Mid operator */
-        Concatenate (TS, "-m02f", Local0)
+        Concatenate (__METHOD__, "-m02f", Local0)
         SRMT (Local0)
         M02F (Local0)
         If (F64)
         {
-            Concatenate (TS, "-m64i", Local0)
+            Concatenate (__METHOD__, "-m64i", Local0)
             SRMT (Local0)
             M64I (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32i", Local0)
+            Concatenate (__METHOD__, "-m32i", Local0)
             SRMT (Local0)
             M32I (Local0)
         }
 
         /* String to Integer conversion of the String StartIndex */
         /* operand of the Match operator */
-        Concatenate (TS, "-m030", Local0)
+        Concatenate (__METHOD__, "-m030", Local0)
         SRMT (Local0)
         M030 (Local0)
         /* String to Integer conversion of the String sole operand */
         /* of the Method execution control operators (Sleep, Stall) */
-        Concatenate (TS, "-m031", Local0)
+        Concatenate (__METHOD__, "-m031", Local0)
         SRMT (Local0)
         M031 (Local0)
         /* String to Integer conversion of the String TimeoutValue */
@@ -21286,13 +21285,13 @@
          */
         /* String to Integer conversion of the String TimeoutValue */
         /* (second) operand of the Wait operator */
-        Concatenate (TS, "-m033", Local0)
+        Concatenate (__METHOD__, "-m033", Local0)
         SRMT (Local0)
         M033 (Local0)
         /* String to Integer conversion of the String value */
         /* of Predicate of the Method execution control statements */
         /* (If, ElseIf, While) */
-        Concatenate (TS, "-m034", Local0)
+        Concatenate (__METHOD__, "-m034", Local0)
         SRMT (Local0)
         If (Y111)
         {
@@ -21312,18 +21311,18 @@
         /* String to Buffer conversion of the String second operand of */
         /* Logical operators when the first operand is evaluated as Buffer */
         /* (LEqual, LGreater, LGreaterEqual, LLess, LLessEqual, LNotEqual) */
-        Concatenate (TS, "-m035", Local0)
+        Concatenate (__METHOD__, "-m035", Local0)
         SRMT (Local0)
         M035 (Local0)
         /* String to Buffer conversion of the String second operand of */
         /* Concatenate operator when the first operand is evaluated as Buffer */
-        Concatenate (TS, "-m036", Local0)
+        Concatenate (__METHOD__, "-m036", Local0)
         SRMT (Local0)
         M036 (Local0)
         /* String to Buffer conversion of the String Source operand of */
         /* ToString operator (has a visual effect in shortening of the */
         /* String taken the null character) */
-        Concatenate (TS, "-m037", Local0)
+        Concatenate (__METHOD__, "-m037", Local0)
         SRMT (Local0)
         M037 (Local0)
         /* Buffer to Integer implicit conversion Cases. */
@@ -21332,33 +21331,33 @@
         /* (Decrement, Increment, FindSetLeftBit, FindSetRightBit, Not) */
         If (F64)
         {
-            Concatenate (TS, "-m64l", Local0)
+            Concatenate (__METHOD__, "-m64l", Local0)
             SRMT (Local0)
             M64L (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32l", Local0)
+            Concatenate (__METHOD__, "-m32l", Local0)
             SRMT (Local0)
             M32L (Local0)
         }
 
         /* Buffer to Integer conversion of the Buffer sole operand */
         /* of the LNot Logical Integer operator */
-        Concatenate (TS, "-m03a", Local0)
+        Concatenate (__METHOD__, "-m03a", Local0)
         SRMT (Local0)
         M03A (Local0)
         /* Buffer to Integer conversion of the Buffer sole operand */
         /* of the FromBCD and ToBCD conversion operators */
         If (F64)
         {
-            Concatenate (TS, "-m64m", Local0)
+            Concatenate (__METHOD__, "-m64m", Local0)
             SRMT (Local0)
             M64M (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32m", Local0)
+            Concatenate (__METHOD__, "-m32m", Local0)
             SRMT (Local0)
             M32M (Local0)
         }
@@ -21369,39 +21368,39 @@
         /* ShiftLeft, ShiftRight, Subtract, Xor */
         If (F64)
         {
-            M64N (Concatenate (TS, "-m64n"))
+            M64N (Concatenate (__METHOD__, "-m64n"))
         }
         Else
         {
-            M32N (Concatenate (TS, "-m32n"))
+            M32N (Concatenate (__METHOD__, "-m32n"))
         }
 
         /* Buffer to Integer conversion of each Buffer operand */
         /* of the 2-parameter Logical Integer operators LAnd and LOr */
         If (F64)
         {
-            M64O (Concatenate (TS, "-m64o"))
+            M64O (Concatenate (__METHOD__, "-m64o"))
         }
         Else
         {
-            M32O (Concatenate (TS, "-m32o"))
+            M32O (Concatenate (__METHOD__, "-m32o"))
         }
 
         /* Buffer to Integer conversion of the Buffer second operand of */
         /* Logical operators when the first operand is evaluated as Integer */
         /* (LEqual, LGreater, LGreaterEqual, LLess, LLessEqual, LNotEqual) */
-        Concatenate (TS, "-m065", Local0)
+        Concatenate (__METHOD__, "-m065", Local0)
         SRMT (Local0)
         M065 (Local0)
         If (F64)
         {
-            Concatenate (TS, "-m64p", Local0)
+            Concatenate (__METHOD__, "-m64p", Local0)
             SRMT (Local0)
             M64P (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32p", Local0)
+            Concatenate (__METHOD__, "-m32p", Local0)
             SRMT (Local0)
             M32P (Local0)
         }
@@ -21410,72 +21409,72 @@
         /* operand of Concatenate operator in case the first one is Integer */
         If (F64)
         {
-            Concatenate (TS, "-m64q", Local0)
+            Concatenate (__METHOD__, "-m64q", Local0)
             SRMT (Local0)
             M64Q (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32q", Local0)
+            Concatenate (__METHOD__, "-m32q", Local0)
             SRMT (Local0)
             M32Q (Local0)
         }
 
         /* Buffer to Integer conversion of the Buffer Length (second) */
         /* operand of the ToString operator */
-        Concatenate (TS, "-m066", Local0)
+        Concatenate (__METHOD__, "-m066", Local0)
         SRMT (Local0)
         M066 (Local0)
         If (F64)
         {
-            Concatenate (TS, "-m64r", Local0)
+            Concatenate (__METHOD__, "-m64r", Local0)
             SRMT (Local0)
             M64R (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32r", Local0)
+            Concatenate (__METHOD__, "-m32r", Local0)
             SRMT (Local0)
             M32R (Local0)
         }
 
         /* Buffer to Integer conversion of the Buffer Index (second) */
         /* operand of the Index operator */
-        Concatenate (TS, "-m067", Local0)
+        Concatenate (__METHOD__, "-m067", Local0)
         SRMT (Local0)
         M067 (Local0)
         /* Buffer to Integer conversion of the String Arg (third) */
         /* operand of the Fatal operator */
         /* (it can only be checked an exception does not occur) */
-        Concatenate (TS, "-m068", Local0)
+        Concatenate (__METHOD__, "-m068", Local0)
         SRMT (Local0)
         M068 (Local0)
         /* Buffer to Integer conversion of the Buffer Index and Length */
         /* operands of the Mid operator */
-        Concatenate (TS, "-m069", Local0)
+        Concatenate (__METHOD__, "-m069", Local0)
         SRMT (Local0)
         M069 (Local0)
         If (F64)
         {
-            Concatenate (TS, "-m64s", Local0)
+            Concatenate (__METHOD__, "-m64s", Local0)
             SRMT (Local0)
             M64S (Local0)
         }
         Else
         {
-            Concatenate (TS, "-m32s", Local0)
+            Concatenate (__METHOD__, "-m32s", Local0)
             SRMT (Local0)
             M32S (Local0)
         }
 
         /* Buffer to Integer conversion of the Buffer StartIndex */
         /* operand of the Match operator */
-        Concatenate (TS, "-m06a", Local0)
+        Concatenate (__METHOD__, "-m06a", Local0)
         SRMT (Local0)
         M06A (Local0)
         /* Buffer to Integer conversion of the Buffer sole operand */
         /* of the Method execution control operators (Sleep, Stall) */
-        Concatenate (TS, "-m06b", Local0)
+        Concatenate (__METHOD__, "-m06b", Local0)
         SRMT (Local0)
         M06B (Local0)
         /* Buffer to Integer conversion of the Buffer TimeoutValue */
@@ -21487,13 +21486,13 @@
          */
         /* Buffer to Integer conversion of the Buffer TimeoutValue */
         /* (second) operand of the Wait operator */
-        Concatenate (TS, "-m06d", Local0)
+        Concatenate (__METHOD__, "-m06d", Local0)
         SRMT (Local0)
         M06D (Local0)
         /* Buffer to Integer conversion of the Buffer value */
         /* of Predicate of the Method execution control statements */
         /* (If, ElseIf, While) */
-        Concatenate (TS, "-m06e", Local0)
+        Concatenate (__METHOD__, "-m06e", Local0)
         SRMT (Local0)
         If (Y111)
         {
@@ -21513,18 +21512,17 @@
         /* Buffer to String conversion of the Buffer second operand of */
         /* Logical operators when the first operand is evaluated as String. */
         /* LEqual LGreater LGreaterEqual LLess LLessEqual LNotEqual */
-        Concatenate (TS, "-m06f", Local0)
+        Concatenate (__METHOD__, "-m06f", Local0)
         SRMT (Local0)
         M06F (Local0)
         /* Buffer to String conversion of the Buffer second operand of */
         /* Concatenate operator when the first operand is evaluated as String */
-        Concatenate (TS, "-m070", Local0)
+        Concatenate (__METHOD__, "-m070", Local0)
         SRMT (Local0)
         M070 (Local0)
         /* Check consistency of the test Named Objects */
         /* in the root Scope of the Global ACPI namespace */
-        Concatenate (TS, "-m606", Local0)
+        Concatenate (__METHOD__, "-m606", Local0)
         SRMT (Local0)
         M606 (Local0)
     }
-

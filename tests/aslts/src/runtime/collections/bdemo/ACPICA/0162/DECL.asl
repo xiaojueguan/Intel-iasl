@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -68,7 +68,6 @@
          */
         If (ID01)
         {
-            ERR ("", ZFFF, 0x47, 0x00, 0x00, 0x00, 0x00)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
     }
-

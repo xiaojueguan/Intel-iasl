@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -65,13 +65,12 @@
     {
         If (\D220.NERR)
         {
-            ERR ("", ZFFF, 0x3F, 0x00, 0x00, \D220.NERR, 0x00)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, \D220.NERR, 0x00)
         }
 
         Local0 = (\D220.ACTV - \D220.DACT)
         If ((Local0 != 0x01))
         {
-            ERR ("", ZFFF, 0x45, 0x00, 0x00, Local0, 0x01)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, 0x01)
         }
     }
-

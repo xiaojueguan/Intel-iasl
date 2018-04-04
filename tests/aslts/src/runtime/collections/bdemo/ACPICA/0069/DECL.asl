@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -43,7 +43,7 @@
                          0x02                                             // .
                     }))
         {
-            ERR ("", ZFFF, 0x2C, 0x00, 0x00, Local0, Buffer (0x01)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, Buffer (0x01)
                 {
                      0x02                                             // .
                 })
@@ -51,4 +51,3 @@
 
         Debug = "Finish of test"
     }
-

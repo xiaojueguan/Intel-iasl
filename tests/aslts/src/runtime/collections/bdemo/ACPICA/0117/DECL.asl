@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -40,12 +40,11 @@
         Debug = "Modification of the copied string"
         If ((Local0 != "Strang"))
         {
-            ERR ("", ZFFF, 0x30, 0x00, 0x00, Local0, "Strang")
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, "Strang")
         }
 
         If ((S000 != "String"))
         {
-            ERR ("", ZFFF, 0x33, 0x00, 0x00, S000, "String")
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, S000, "String")
         }
     }
-

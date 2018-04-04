@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -38,7 +38,7 @@
         Local2 = 0x00
         While (Local0)
         {
-            If (CH03 ("", 0x00, Local2, 0x2B, 0x00))
+            If (CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00))
             {
                 Return (Zero)
             }
@@ -59,7 +59,7 @@
 
             }
 
-            If (CH03 ("", 0x00, Local2, 0x39, 0x00))
+            If (CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00))
             {
                 Return (Zero)
             }
@@ -70,7 +70,6 @@
 
         If ((Local1 != 0x03))
         {
-            ERR ("", ZFFF, 0x41, 0x00, 0x00, Local1, 0x03)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local1, 0x03)
         }
     }
-

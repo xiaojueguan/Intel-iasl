@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -57,25 +57,24 @@
         ToDecimalString (B001, Local0)
         If ((Local0 != "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"))
         {
-            ERR ("", ZFFF, 0x36, 0x00, 0x00, Local0, "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1")
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1")
         }
 
         Local1 = SizeOf (Local0)
         If ((Local1 != 0x63))
         {
-            ERR ("", ZFFF, 0x3B, 0x00, 0x00, Local1, 0x63)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local1, 0x63)
         }
 
         ToDecimalString (B000, Local0)
         If ((Local0 != "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"))
         {
-            ERR ("", ZFFF, 0x41, 0x00, 0x00, Local0, "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1")
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1")
         }
 
         Local1 = SizeOf (Local0)
         If ((Local1 != 0x65))
         {
-            ERR ("", ZFFF, 0x46, 0x00, 0x00, Local1, 0x65)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local1, 0x65)
         }
     }
-

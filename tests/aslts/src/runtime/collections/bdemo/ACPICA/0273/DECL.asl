@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -73,40 +73,39 @@
 
         If ((F273 != SSDT))
         {
-            ERR ("", ZFFF, 0x4E, 0x00, 0x00, F273, SSDT)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, F273, SSDT)
         }
 
         If (CondRefOf (\_XT2, Local0))
         {
-            ERR ("", ZFFF, 0x52, 0x00, 0x00, "\\_XT2", 0x01)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "\\_XT2", 0x01)
         }
 
         If (CondRefOf (\D273._XT2, Local0))
         {
-            ERR ("", ZFFF, 0x56, 0x00, 0x00, "\\D273._XT2", 0x01)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "\\D273._XT2", 0x01)
         }
 
         LD ()
         If (CondRefOf (\_XT2, Local0))
         {
-            ERR ("", ZFFF, 0x5C, 0x00, 0x00, "\\_XT2", 0x01)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "\\_XT2", 0x01)
         }
 
         If (CondRefOf (\D273._XT2, Local0)){}
         Else
         {
-            ERR ("", ZFFF, 0x61, 0x00, 0x00, "\\D273._XT2", 0x00)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "\\D273._XT2", 0x00)
         }
 
         UNLD ()
         If (CondRefOf (\_XT2, Local0))
         {
-            ERR ("", ZFFF, 0x67, 0x00, 0x00, "\\_XT2", 0x01)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "\\_XT2", 0x01)
         }
 
         If (CondRefOf (\D273._XT2, Local0))
         {
-            ERR ("", ZFFF, 0x6B, 0x00, 0x00, "\\D273._XT2", 0x01)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "\\D273._XT2", 0x01)
         }
     }
-

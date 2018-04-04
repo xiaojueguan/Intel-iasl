@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -36,8 +36,8 @@
         Name (I001, 0x00220000)
         Name (P000, Package (0x03)
         {
-            0xABCD0000, 
-            0xABCD0001, 
+            0xABCD0000,
+            0xABCD0001,
             0xABCD0002
         })
         Method (M000, 0, NotSerialized)
@@ -53,20 +53,20 @@
         Method (M002, 2, NotSerialized)
         {
             Local0 = Arg0 [0x01]
-            If (CH03 ("", 0x00, 0x01, 0x36, 0x01))
+            If (CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x01))
             {
                 Return (Zero)
             }
 
             Local1 = DerefOf (Local0)
-            If (CH03 ("", 0x00, 0x02, 0x3B, 0x01))
+            If (CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x01))
             {
                 Return (Zero)
             }
 
             If ((Local1 != 0xABCD0001))
             {
-                ERR ("", ZFFF, 0x40, 0x00, 0x00, Local1, 0xABCD0001)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local1, 0xABCD0001)
             }
 
             Return (Zero)
@@ -85,4 +85,3 @@
 
         M002 (M000 (), M001 ((I000 + I001)))
     }
-

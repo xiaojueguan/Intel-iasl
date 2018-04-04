@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -155,13 +155,13 @@
         Local0 = F001 /* \M210.F001 */
         If ((Local0 != 0x00))
         {
-            ERR (Arg0, Z001, 0xAF, 0x00, 0x00, Local0, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
         }
 
         B002 = Arg2
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0xB5, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -181,13 +181,13 @@
         Local0 = F001 /* \M210.F001 */
         If ((Local0 != 0x00))
         {
-            ERR (Arg0, Z001, 0xC9, 0x00, 0x00, Local0, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
         }
 
         B002 = Arg5
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0xCF, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -207,13 +207,13 @@
         Local0 = F001 /* \M210.F001 */
         If ((Local0 != 0x01))
         {
-            ERR (Arg0, Z001, 0xE2, 0x00, 0x00, Local0, 0x01)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x01)
         }
 
         B002 = Arg3
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0xE8, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -233,13 +233,13 @@
         Local0 = F001 /* \M210.F001 */
         If ((Local0 != 0x01))
         {
-            ERR (Arg0, Z001, 0xFB, 0x00, 0x00, Local0, 0x01)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x01)
         }
 
         B002 = Arg4
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0101, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -252,19 +252,19 @@
         Local0 = SizeOf (B001)
         If ((Local0 != Arg6))
         {
-            ERR (Arg0, Z001, 0x010C, 0x00, 0x00, Local0, Arg6)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg6)
         }
 
         Local0 = SizeOf (B002)
         If ((Local0 != Arg6))
         {
-            ERR (Arg0, Z001, 0x0111, 0x00, 0x00, Local0, Arg6)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg6)
         }
 
         Local0 = ObjectType (F001)
         If ((Local0 != C016))
         {
-            ERR (Arg0, Z001, 0x0116, 0x00, 0x00, Local0, C016)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, C016)
         }
 
         If (PR00)
@@ -275,7 +275,6 @@
 
     Method (M211, 0, Serialized)
     {
-        Name (TS, "m211")
         Debug = "TEST: m211, Create 1-Bit Buffer Field:"
         /* Size of buffer (in bytes) */
 
@@ -294,7 +293,7 @@
         {
             If ((NCUR >= BSZ1))
             {
-                ERR (TS, Z001, 0x0136, 0x00, 0x00, NCUR, BSZ1)
+                ERR (__METHOD__, Z001, __LINE__, 0x00, 0x00, NCUR, BSZ1)
                 Break
             }
 
@@ -305,7 +304,7 @@
             B010 [Local0] = Local2
             Local3 = ~Local2
             B101 [Local0] = Local3
-            M210 (TS, NCUR, B000, B0FF, B010, B101, BSZ0)
+            M210 (__METHOD__, NCUR, B000, B0FF, B010, B101, BSZ0)
             N000--
             NCUR++
         }
@@ -339,13 +338,13 @@
         Local0 = F001 /* \M212.F001 */
         If ((Local0 != 0x00))
         {
-            ERR (Arg0, Z001, 0x016A, 0x00, 0x00, Local0, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
         }
 
         B002 = B000 /* \B000 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0170, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -365,13 +364,13 @@
         Local0 = F001 /* \M212.F001 */
         If ((Local0 != 0x00))
         {
-            ERR (Arg0, Z001, 0x0184, 0x00, 0x00, Local0, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
         }
 
         B002 = B101 /* \B101 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x018A, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -391,13 +390,13 @@
         Local0 = F001 /* \M212.F001 */
         If ((Local0 != 0xFF))
         {
-            ERR (Arg0, Z001, 0x019D, 0x00, 0x00, Local0, 0xFF)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xFF)
         }
 
         B002 = B0FF /* \B0FF */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x01A3, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -417,13 +416,13 @@
         Local0 = F001 /* \M212.F001 */
         If ((Local0 != 0xFF))
         {
-            ERR (Arg0, Z001, 0x01B6, 0x00, 0x00, Local0, 0xFF)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xFF)
         }
 
         B002 = B010 /* \B010 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x01BC, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -443,13 +442,13 @@
         Local0 = F001 /* \M212.F001 */
         If ((Local0 != 0x96))
         {
-            ERR (Arg0, Z001, 0x01CF, 0x00, 0x00, Local0, 0x96)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x96)
         }
 
         B002 = B0B0 /* \B0B0 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x01D5, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -462,19 +461,19 @@
         Local0 = SizeOf (B001)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x01E0, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = SizeOf (B002)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x01E5, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = ObjectType (F001)
         If ((Local0 != C016))
         {
-            ERR (Arg0, Z001, 0x01EA, 0x00, 0x00, Local0, C016)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, C016)
         }
 
         If (PR00)
@@ -485,7 +484,6 @@
 
     Method (M213, 0, Serialized)
     {
-        Name (TS, "m213")
         Debug = "TEST: m213, Create 8-Bit Buffer Field:"
         /* Size of buffer (in bytes) */
 
@@ -504,7 +502,7 @@
         {
             If ((NCUR >= BSZ1))
             {
-                ERR (TS, Z001, 0x020A, 0x00, 0x00, NCUR, BSZ1)
+                ERR (__METHOD__, Z001, __LINE__, 0x00, 0x00, NCUR, BSZ1)
                 Break
             }
 
@@ -514,7 +512,7 @@
             B010 [NCUR] = 0xFF
             B0B0 [NCUR] = 0x96
             B101 [NCUR] = 0x00
-            M212 (TS, NCUR, BSZ0)
+            M212 (__METHOD__, NCUR, BSZ0)
             N000--
             NCUR++
         }
@@ -550,13 +548,13 @@
         Local0 = F001 /* \M214.F001 */
         If ((Local0 != 0x00))
         {
-            ERR (Arg0, Z001, 0x023E, 0x00, 0x00, Local0, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
         }
 
         B002 = B000 /* \B000 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0244, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -576,13 +574,13 @@
         Local0 = F001 /* \M214.F001 */
         If ((Local0 != 0x00))
         {
-            ERR (Arg0, Z001, 0x0258, 0x00, 0x00, Local0, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
         }
 
         B002 = B101 /* \B101 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x025E, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -602,13 +600,13 @@
         Local0 = F001 /* \M214.F001 */
         If ((Local0 != 0xFFFF))
         {
-            ERR (Arg0, Z001, 0x0271, 0x00, 0x00, Local0, 0xFFFF)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xFFFF)
         }
 
         B002 = B0FF /* \B0FF */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0277, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -628,13 +626,13 @@
         Local0 = F001 /* \M214.F001 */
         If ((Local0 != 0xFFFF))
         {
-            ERR (Arg0, Z001, 0x028A, 0x00, 0x00, Local0, 0xFFFF)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xFFFF)
         }
 
         B002 = B010 /* \B010 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0290, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -645,13 +643,13 @@
         Local0 = SizeOf (B001)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x0299, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = SizeOf (B002)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x029E, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         /*////////////// E. 0->1 (000->010) */
@@ -666,13 +664,13 @@
         Local0 = F001 /* \M214.F001 */
         If ((Local0 != 0x7698))
         {
-            ERR (Arg0, Z001, 0x02AD, 0x00, 0x00, Local0, 0x7698)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x7698)
         }
 
         B002 = B0B0 /* \B0B0 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x02B3, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -685,19 +683,19 @@
         Local0 = SizeOf (B001)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x02BE, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = SizeOf (B002)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x02C3, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = ObjectType (F001)
         If ((Local0 != C016))
         {
-            ERR (Arg0, Z001, 0x02C8, 0x00, 0x00, Local0, C016)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, C016)
         }
 
         If (PR00)
@@ -708,7 +706,6 @@
 
     Method (M215, 0, Serialized)
     {
-        Name (TS, "m215")
         Debug = "TEST: m215, Create 16-Bit Buffer Field:"
         /* Size of buffer (in bytes) */
 
@@ -727,7 +724,7 @@
         {
             If ((NCUR >= BSZ1))
             {
-                ERR (TS, Z001, 0x02E8, 0x00, 0x00, NCUR, BSZ1)
+                ERR (__METHOD__, Z001, __LINE__, 0x00, 0x00, NCUR, BSZ1)
                 Break
             }
 
@@ -742,7 +739,7 @@
             B010 [Local0] = 0xFF
             B0B0 [Local0] = 0x76
             B101 [Local0] = 0x00
-            M214 (TS, NCUR, BSZ0)
+            M214 (__METHOD__, NCUR, BSZ0)
             N000--
             NCUR++
         }
@@ -778,13 +775,13 @@
         Local0 = F001 /* \M216.F001 */
         If ((Local0 != 0x00))
         {
-            ERR (Arg0, Z001, 0x0324, 0x00, 0x00, Local0, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
         }
 
         B002 = B000 /* \B000 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x032A, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -804,13 +801,13 @@
         Local0 = F001 /* \M216.F001 */
         If ((Local0 != 0x00))
         {
-            ERR (Arg0, Z001, 0x033E, 0x00, 0x00, Local0, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
         }
 
         B002 = B101 /* \B101 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0344, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -830,13 +827,13 @@
         Local0 = F001 /* \M216.F001 */
         If ((Local0 != 0xFFFFFFFF))
         {
-            ERR (Arg0, Z001, 0x0357, 0x00, 0x00, Local0, 0xFFFFFFFF)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xFFFFFFFF)
         }
 
         B002 = B0FF /* \B0FF */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x035D, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -856,13 +853,13 @@
         Local0 = F001 /* \M216.F001 */
         If ((Local0 != 0xFFFFFFFF))
         {
-            ERR (Arg0, Z001, 0x0370, 0x00, 0x00, Local0, 0xFFFFFFFF)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xFFFFFFFF)
         }
 
         B002 = B010 /* \B010 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0376, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -873,13 +870,13 @@
         Local0 = SizeOf (B001)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x037F, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = SizeOf (B002)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x0384, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         /*////////////// E. 0->1 (000->010) */
@@ -894,13 +891,13 @@
         Local0 = F001 /* \M216.F001 */
         If ((Local0 != 0x32547698))
         {
-            ERR (Arg0, Z001, 0x0393, 0x00, 0x00, Local0, 0x32547698)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x32547698)
         }
 
         B002 = B0B0 /* \B0B0 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0399, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -913,19 +910,19 @@
         Local0 = SizeOf (B001)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x03A4, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = SizeOf (B002)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x03A9, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = ObjectType (F001)
         If ((Local0 != C016))
         {
-            ERR (Arg0, Z001, 0x03AE, 0x00, 0x00, Local0, C016)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, C016)
         }
 
         If (PR00)
@@ -936,7 +933,6 @@
 
     Method (M217, 0, Serialized)
     {
-        Name (TS, "m217")
         Debug = "TEST: m217, Create 32-Bit Buffer Field:"
         /* Size of buffer (in bytes) */
 
@@ -955,7 +951,7 @@
         {
             If ((NCUR >= BSZ1))
             {
-                ERR (TS, Z001, 0x03CE, 0x00, 0x00, NCUR, BSZ1)
+                ERR (__METHOD__, Z001, __LINE__, 0x00, 0x00, NCUR, BSZ1)
                 Break
             }
 
@@ -978,7 +974,7 @@
             B010 [Local0] = 0xFF
             B0B0 [Local0] = 0x32
             B101 [Local0] = 0x00
-            M216 (TS, NCUR, BSZ0)
+            M216 (__METHOD__, NCUR, BSZ0)
             N000--
             NCUR++
         }
@@ -1037,18 +1033,18 @@
         {
             If ((Local0 != 0x00))
             {
-                ERR (Arg0, Z001, 0x0426, 0x00, 0x00, Local0, 0x00)
+                ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
             }
         }
         ElseIf ((Local0 != BB00))
         {
-            ERR (Arg0, Z001, 0x042A, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         B002 = B000 /* \B000 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0431, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -1072,18 +1068,18 @@
         {
             If ((Local0 != 0x00))
             {
-                ERR (Arg0, Z001, 0x0448, 0x00, 0x00, Local0, 0x00)
+                ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0x00)
             }
         }
         ElseIf ((Local0 != BB00))
         {
-            ERR (Arg0, Z001, 0x044C, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         B002 = B101 /* \B101 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x0453, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -1109,7 +1105,7 @@
         {
             If ((Local0 != 0xFFFFFFFFFFFFFFFF))
             {
-                ERR (Arg0, Z001, 0x046B, 0x00, 0x00, Local0, 0xFFFFFFFFFFFFFFFF)
+                ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xFFFFFFFFFFFFFFFF)
             }
         }
         ElseIf ((Local0 != BB01))
@@ -1122,7 +1118,7 @@
                 Debug = "=========================."
             }
 
-            ERR (Arg0, Z001, 0x0477, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         B002 = B0FF /* \B0FF */
@@ -1143,7 +1139,7 @@
                 Debug = "=========================."
             }
 
-            ERR (Arg0, Z001, 0x048B, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -1185,7 +1181,7 @@
         {
             If ((Local0 != 0xFFFFFFFFFFFFFFFF))
             {
-                ERR (Arg0, Z001, 0x04B3, 0x00, 0x00, Local0, 0xFFFFFFFFFFFFFFFF)
+                ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xFFFFFFFFFFFFFFFF)
             }
         }
         ElseIf ((Local0 != BB01))
@@ -1198,7 +1194,7 @@
                 Debug = "=========================."
             }
 
-            ERR (Arg0, Z001, 0x04BF, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         B002 = B010 /* \B010 */
@@ -1219,7 +1215,7 @@
                 Debug = "=========================."
             }
 
-            ERR (Arg0, Z001, 0x04D3, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -1231,13 +1227,13 @@
         Local0 = SizeOf (B001)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x04DD, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = SizeOf (B002)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x04E2, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         /*////////////// E. 0->1 (000->010) */
@@ -1268,12 +1264,12 @@
         {
             If ((Local0 != 0xEFCDAB1032547698))
             {
-                ERR (Arg0, Z001, 0x04FF, 0x00, 0x00, Local0, 0xEFCDAB1032547698)
+                ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, 0xEFCDAB1032547698)
             }
         }
         ElseIf ((Local0 != BB02))
         {
-            ERR (Arg0, Z001, 0x0503, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         B002 = B0B0 /* \B0B0 */
@@ -1286,7 +1282,7 @@
 
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x050F, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If (PR00)
@@ -1301,19 +1297,19 @@
         Local0 = SizeOf (B001)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x051C, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = SizeOf (B002)
         If ((Local0 != Arg2))
         {
-            ERR (Arg0, Z001, 0x0521, 0x00, 0x00, Local0, Arg2)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, Arg2)
         }
 
         Local0 = ObjectType (F001)
         If ((Local0 != C016))
         {
-            ERR (Arg0, Z001, 0x0526, 0x00, 0x00, Local0, C016)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, C016)
         }
 
         If (PR00)
@@ -1336,7 +1332,6 @@
 
     Method (M219, 0, Serialized)
     {
-        Name (TS, "m219")
         Debug = "TEST: m219, Create 64-Bit Buffer Field:"
         /* Size of buffer (in bytes) */
 
@@ -1355,7 +1350,7 @@
         {
             If ((NCUR >= BSZ1))
             {
-                ERR (TS, Z001, 0x054F, 0x00, 0x00, NCUR, BSZ1)
+                ERR (__METHOD__, Z001, __LINE__, 0x00, 0x00, NCUR, BSZ1)
                 Break
             }
 
@@ -1394,7 +1389,7 @@
             B010 [Local0] = 0xFF
             B0B0 [Local0] = 0xEF
             B101 [Local0] = 0x00
-            If (M218 (TS, NCUR, BSZ0))
+            If (M218 (__METHOD__, NCUR, BSZ0))
             {
                 Return (0x01)
             }
@@ -1450,7 +1445,7 @@
         Local0 = ObjectType (F001)
         If ((Local0 != C016))
         {
-            ERR (Arg0, Z001, 0x05BE, 0x00, 0x00, Local0, C016)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, C016)
         }
 
         /* Fill the entire buffer (ground) */
@@ -1486,12 +1481,12 @@
             INT1 = Arg5
             If ((Local0 != INT1))
             {
-                ERR (Arg0, Z001, 0x05E2, 0x00, 0x00, Local0, INT1)
+                ERR (Arg0, Z001, __LINE__, 0x00, 0x00, Local0, INT1)
             }
         }
         ElseIf ((Local0 != Arg5))
         {
-            ERR (Arg0, Z001, 0x05E6, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         /* Check the contents of Buffer */
@@ -1499,7 +1494,7 @@
         B002 = B0B0 /* \B0B0 */
         If ((B001 != B002))
         {
-            ERR (Arg0, Z001, 0x05EF, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
             If (PR00)
             {
                 Debug = "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE:"
@@ -1554,7 +1549,7 @@
 
         If ((Arg3 == 0x00))
         {
-            ERR (Arg0, Z001, 0x0629, 0x00, 0x00, 0x00, 0x00)
+            ERR (Arg0, Z001, __LINE__, 0x00, 0x00, 0x00, 0x00)
             Return (Ones)
         }
 
@@ -1720,7 +1715,6 @@
 
     Method (M21D, 0, Serialized)
     {
-        Name (TS, "m21d")
         Debug = "TEST: m21d, Create Arbitrary Length Buffer Field:"
         /* Layout of Package: */
         /* - <first index of bit>, */
@@ -1735,11 +1729,11 @@
         /*     2 - some mix */
         Name (P000, Package (0x06)
         {
-            0x00, 
-            0x08, 
-            0x01, 
-            0x50, 
-            0x01, 
+            0x00,
+            0x08,
+            0x01,
+            0x50,
+            0x01,
             0x02
                 /* try for 32-bit, 64-bit: */
         /*		1, 1, 0x28, 1, 1, 2, */
@@ -1759,7 +1753,7 @@
         /*		1, 1, 40, 1, 0, 2, */
         /*		0, 1, 1, 65, 0, 1, */
         })
-        M21C (TS, 0x01, "p000", P000)
+        M21C (__METHOD__, 0x01, "p000", P000)
     }
 
     /* Run-method */
@@ -1779,4 +1773,3 @@
         SRMT ("m21d")
         M21D ()
     }
-

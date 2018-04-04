@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -110,37 +110,37 @@
 
     Name (NMTP, Package (0x20)
     {
-        "Uninitialized", 
-        "Integer", 
-        "String", 
-        "Buffer", 
-        "Package", 
-        "Field Unit", 
-        "Device", 
-        "Event", 
-        "Method", 
-        "Mutex", 
-        "Operation Region", 
-        "Power Resource", 
-        "Processor", 
-        "Thermal Zone", 
-        "Buffer Field", 
-        "DDB Handle", 
-        "Debug Object", 
-        "LOCAL_REGION_FIELD", 
-        "LOCAL_BANK_FIELD", 
-        "LOCAL_INDEX_FIELD", 
-        "LOCAL_REFERENCE", 
-        "LOCAL_ALIAS", 
-        "LOCAL_METHOD_ALIAS", 
-        "LOCAL_NOTIFY", 
-        "LOCAL_ADDRESS_HANDLER", 
-        "LOCAL_RESOURCE", 
-        "LOCAL_RESOURCE_FIELD", 
-        "LOCAL_SCOPE", 
-        "LOCAL_EXTRA", 
-        "LOCAL_DATA", 
-        "--", 
+        "Uninitialized",
+        "Integer",
+        "String",
+        "Buffer",
+        "Package",
+        "Field Unit",
+        "Device",
+        "Event",
+        "Method",
+        "Mutex",
+        "Operation Region",
+        "Power Resource",
+        "Processor",
+        "Thermal Zone",
+        "Buffer Field",
+        "DDB Handle",
+        "Debug Object",
+        "LOCAL_REGION_FIELD",
+        "LOCAL_BANK_FIELD",
+        "LOCAL_INDEX_FIELD",
+        "LOCAL_REFERENCE",
+        "LOCAL_ALIAS",
+        "LOCAL_METHOD_ALIAS",
+        "LOCAL_NOTIFY",
+        "LOCAL_ADDRESS_HANDLER",
+        "LOCAL_RESOURCE",
+        "LOCAL_RESOURCE_FIELD",
+        "LOCAL_SCOPE",
+        "LOCAL_EXTRA",
+        "LOCAL_DATA",
+        "--",
         "--"
     })
     /* Global variables for an arbitrary use inside the particular Run-methods */
@@ -263,7 +263,7 @@
     {
         If (ERR0)
         {
-            ERR ("SET0", Z062, 0x0114, 0x00, 0x00, ERR0, 0x00)
+            ERR ("SET0", Z062, __LINE__, 0x00, 0x00, ERR0, 0x00)
         }
         Else
         {
@@ -582,7 +582,7 @@
 
     Method (FTTT, 0, NotSerialized)
     {
-        CH03 ("FTTT", 0x00, 0x00, 0x0231, 0x00)
+        CH03 ("FTTT", 0x00, __LINE__, 0x00, 0x00)
         /* Report completion of previous root Method */
 
         RPT0 ()
@@ -690,9 +690,9 @@
      *
      * arg0 - diagnostic message (usually, the name of method conglomeration of tests)
      * arg1 - absolute index of file reporting the error
-     * arg2 - index of error (inside the file)
+     * arg2 - line number of error (inside the file)
      * arg3 - absolute index of file initiating the checking
-     * arg4 - index of checking (inside the file)
+     * arg4 - line number of of checking (inside the file)
      * arg5 - first value (usually, received value)
      * arg6 - second value (usually, expected value)
      */
@@ -854,10 +854,7 @@
 
         Concatenate ("ERROR,    File      : ", Local1, Local0)
         Debug = Local0
-        Concatenate ("          Index     : 0x", Arg1, Local0)
-        Concatenate (Local0, ", (", Local0)
-        Concatenate (Local0, ToDecimalString (Arg1), Local0)
-        Concatenate (Local0, ")", Local0)
+        Concatenate ("          Line      : ", ToDecimalString(Arg1), Local0)
         Debug = Local0
         /* Checking */
 
@@ -882,7 +879,7 @@
                 Debug = Local0
             }
 
-            Concatenate ("             Index  : ", Arg4, Local0)
+            Concatenate ("             Line   : ", ToDecimalString(Arg4), Local0)
             Debug = Local0
         }
     }
@@ -941,7 +938,7 @@
     {
         If ((Arg3 != Zero))
         {
-            ERR (Arg0, Z062, 0x0393, 0x00, 0x00, Arg1, Arg2)
+            ERR (Arg0, Z062, __LINE__, 0x00, 0x00, Arg1, Arg2)
         }
     }
 
@@ -956,7 +953,7 @@
     {
         If ((Arg3 != Ones))
         {
-            ERR (Arg0, Z062, 0x03A1, 0x00, 0x00, Arg1, Arg2)
+            ERR (Arg0, Z062, __LINE__, 0x00, 0x00, Arg1, Arg2)
         }
     }
 
@@ -999,132 +996,132 @@
     {
         If ((C000 != 0x0A))
         {
-            ERR ("c000 corrupted", Z062, 0x03C6, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c000 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C001 != 0x05))
         {
-            ERR ("c001 corrupted", Z062, 0x03C9, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c001 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C002 != 0x0D))
         {
-            ERR ("c002 corrupted", Z062, 0x03CD, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c002 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C003 != 0x0C))
         {
-            ERR ("c003 corrupted", Z062, 0x03D0, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c003 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C004 != 0x06))
         {
-            ERR ("c004 corrupted", Z062, 0x03D3, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c004 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C005 != 0x04))
         {
-            ERR ("c005 corrupted", Z062, 0x03D6, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c005 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C006 != 0x1F))
         {
-            ERR ("c006 corrupted", Z062, 0x03D9, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c006 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C007 != 0x33))
         {
-            ERR ("c007 corrupted", Z062, 0x03DC, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c007 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C008 != 0x00))
         {
-            ERR ("c008 corrupted", Z062, 0x03E0, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c008 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C009 != 0x01))
         {
-            ERR ("c009 corrupted", Z062, 0x03E3, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c009 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C00A != 0x02))
         {
-            ERR ("c00a corrupted", Z062, 0x03E6, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c00a corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C00B != 0x03))
         {
-            ERR ("c00b corrupted", Z062, 0x03E9, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c00b corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C00C != 0x04))
         {
-            ERR ("c00c corrupted", Z062, 0x03EC, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c00c corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C00D != 0x05))
         {
-            ERR ("c00d corrupted", Z062, 0x03EF, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c00d corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C00E != 0x06))
         {
-            ERR ("c00e corrupted", Z062, 0x03F2, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c00e corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C00F != 0x07))
         {
-            ERR ("c00f corrupted", Z062, 0x03F5, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c00f corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C010 != 0x08))
         {
-            ERR ("c010 corrupted", Z062, 0x03F8, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c010 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C011 != 0x09))
         {
-            ERR ("c011 corrupted", Z062, 0x03FB, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c011 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C012 != 0x0A))
         {
-            ERR ("c012 corrupted", Z062, 0x03FE, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c012 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C013 != 0x0B))
         {
-            ERR ("c013 corrupted", Z062, 0x0401, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c013 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C014 != 0x0C))
         {
-            ERR ("c014 corrupted", Z062, 0x0404, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c014 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C015 != 0x0D))
         {
-            ERR ("c015 corrupted", Z062, 0x0407, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c015 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C016 != 0x0E))
         {
-            ERR ("c016 corrupted", Z062, 0x040A, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c016 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C017 != 0x0F))
         {
-            ERR ("c017 corrupted", Z062, 0x040D, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c017 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C018 != 0x10))
         {
-            ERR ("c018 corrupted", Z062, 0x0410, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c018 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
         If ((C019 != 0x11))
         {
-            ERR ("c019 corrupted", Z062, 0x0413, 0x00, 0x00, 0x00, 0x00)
+            ERR ("c019 corrupted", Z062, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
     }
 
@@ -1229,13 +1226,13 @@
         Name (REST, 0x00)
         If ((Arg2 < 0x01))
         {
-            ERR ("sft", Z062, 0x047D, 0x00, 0x00, Arg2, 0x01)
+            ERR ("sft", Z062, __LINE__, 0x00, 0x00, Arg2, 0x01)
             Return (Ones)
         }
 
         If ((Arg1 > 0x07))
         {
-            ERR ("sft", Z062, 0x0482, 0x00, 0x00, Arg1, 0x07)
+            ERR ("sft", Z062, __LINE__, 0x00, 0x00, Arg1, 0x07)
             Return (Ones)
         }
 
@@ -1371,12 +1368,12 @@
             TMP1 = ObjectType (Arg2)
             If ((TMP0 != TMP1))
             {
-                ERR (Arg0, Z062, 0x050A, 0x00, 0x00, TMP0, TMP1)
+                ERR (Arg0, Z062, __LINE__, 0x00, 0x00, TMP0, TMP1)
                 Local7 = 0x01
             }
             ElseIf ((Arg1 != Arg2))
             {
-                ERR (Arg0, Z062, 0x050D, 0x00, 0x00, Arg1, Arg2)
+                ERR (Arg0, Z062, __LINE__, 0x00, 0x00, Arg1, Arg2)
                 Local7 = 0x01
             }
         }
@@ -1385,12 +1382,12 @@
             TMP1 = ObjectType (Arg3)
             If ((TMP0 != TMP1))
             {
-                ERR (Arg0, Z062, 0x0513, 0x00, 0x00, TMP0, TMP1)
+                ERR (Arg0, Z062, __LINE__, 0x00, 0x00, TMP0, TMP1)
                 Local7 = 0x01
             }
             ElseIf ((Arg1 != Arg3))
             {
-                ERR (Arg0, Z062, 0x0516, 0x00, 0x00, Arg1, Arg3)
+                ERR (Arg0, Z062, __LINE__, 0x00, 0x00, Arg1, Arg3)
                 Local7 = 0x01
             }
         }
@@ -1425,14 +1422,14 @@
         DataTableRegion (HDR, "DSDT", "", "")
         Field (HDR, AnyAcc, NoLock, Preserve)
         {
-            SIG,    32, 
-            LENG,   32, 
-            REV,    8, 
-            SUM,    8, 
-            OID,    48, 
-            OTID,   64, 
-            OREV,   32, 
-            CID,    32, 
+            SIG,    32,
+            LENG,   32,
+            REV,    8,
+            SUM,    8,
+            OID,    48,
+            OTID,   64,
+            OREV,   32,
+            CID,    32,
             CREV,   32
         }
 
@@ -1469,7 +1466,7 @@
             ERR7++
             /* Reset internal information about exceptions */
 
-            CH03 ("", 0x00, 0x0888, 0x0561, 0x00)
+            CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
             EXC0 = 0x00
             EXC1 = 0x00
         }
@@ -1485,14 +1482,14 @@
 
     Name (TCNP, Package (0x09)
     {
-        "compilation", 
-        "functional", 
-        "complex", 
-        "exceptions", 
-        "bdemo", 
-        "service", 
-        "mt", 
-        "Identity2MS", 
+        "compilation",
+        "functional",
+        "complex",
+        "exceptions",
+        "bdemo",
+        "service",
+        "mt",
+        "Identity2MS",
         "IMPL"
     })
     /*
@@ -1562,57 +1559,57 @@
 
     Name (TNF0, Package (0x0F)
     {
-        "arithmetic", 
-        "bfield", 
-        "constant", 
-        "control", 
-        "descriptor", 
-        "external", 
-        "local", 
-        "logic", 
-        "manipulation", 
-        "name", 
-        "reference", 
-        "region", 
-        "synchronization", 
-        "table", 
+        "arithmetic",
+        "bfield",
+        "constant",
+        "control",
+        "descriptor",
+        "external",
+        "local",
+        "logic",
+        "manipulation",
+        "name",
+        "reference",
+        "region",
+        "synchronization",
+        "table",
         "module"
     })
     /* Names of complex tests */
 
     Name (TNC0, Package (0x14)
     {
-        "misc", 
-        "provoke", 
-        "oarg", 
-        "oconst", 
-        "olocal", 
-        "oreturn", 
-        "onamedloc", 
-        "onamedglob", 
-        "opackageel", 
-        "oreftonamed", 
-        "oconversion", 
-        "oreftopackageel", 
-        "rstore", 
-        "roptional", 
-        "rconversion", 
-        "rcopyobject", 
-        "rindecrement", 
-        "rexplicitconv", 
-        "badasl", 
+        "misc",
+        "provoke",
+        "oarg",
+        "oconst",
+        "olocal",
+        "oreturn",
+        "onamedloc",
+        "onamedglob",
+        "opackageel",
+        "oreftonamed",
+        "oconversion",
+        "oreftopackageel",
+        "rstore",
+        "roptional",
+        "rconversion",
+        "rcopyobject",
+        "rindecrement",
+        "rexplicitconv",
+        "badasl",
         "namespace"
     })
     /* Names of exceptions tests */
 
     Name (TNE0, Package (0x07)
     {
-        "exc", 
-        "exc_operand1", 
-        "exc_operand2", 
-        "exc_result1", 
-        "exc_result2", 
-        "exc_ref", 
+        "exc",
+        "exc_operand1",
+        "exc_operand2",
+        "exc_result1",
+        "exc_result2",
+        "exc_ref",
         "exc_tbl"
     })
     /* Names of service tests */
@@ -1644,217 +1641,217 @@
     Name (TFN0, Package (0xCD)
     {
         "UNDEF",         /* 0 */
-        "crbuffield.asl", 
-        "constants.asl", 
-        "ctl0.asl", 
-        "ctl1.asl", 
-        "ctl2.asl", 
-        "timing.asl", 
-        "concatenaterestemplate.asl", 
-        "dependentfn.asl", 
-        "dma.asl", 
-        "dwordio.asl", 
-        "dwordmemory.asl", 
-        "dwordspace.asl", 
-        "extendedio.asl", 
-        "extendedmemory.asl", 
-        "extendedspace.asl", 
-        "fixedio.asl", 
-        "interrupt.asl", 
-        "io.asl", 
-        "irq.asl", 
-        "irqnoflags.asl", 
-        "memory24.asl", 
-        "memory32.asl", 
-        "memory32fixed.asl", 
-        "qwordio.asl", 
+        "crbuffield.asl",
+        "constants.asl",
+        "ctl0.asl",
+        "ctl1.asl",
+        "ctl2.asl",
+        "timing.asl",
+        "concatenaterestemplate.asl",
+        "dependentfn.asl",
+        "dma.asl",
+        "dwordio.asl",
+        "dwordmemory.asl",
+        "dwordspace.asl",
+        "extendedio.asl",
+        "extendedmemory.asl",
+        "extendedspace.asl",
+        "fixedio.asl",
+        "interrupt.asl",
+        "io.asl",
+        "irq.asl",
+        "irqnoflags.asl",
+        "memory24.asl",
+        "memory32.asl",
+        "memory32fixed.asl",
+        "qwordio.asl",
         "qwordmemory.asl",   /* 25 */
-        "qwordspace.asl", 
-        "register.asl", 
-        "resourcetemplate.asl", 
-        "rtemplate.asl", 
-        "vendorlong.asl", 
-        "vendorshort.asl", 
-        "wordbusnumber.asl", 
-        "wordio.asl", 
-        "wordspace.asl", 
-        "logical.asl", 
-        "concatenate.asl", 
-        "eisaid.asl", 
-        "match1.asl", 
-        "mid.asl", 
-        "objecttype.asl", 
-        "sizeof.asl", 
-        "store.asl", 
-        "tobuffer.asl", 
-        "todecimalstring.asl", 
-        "tofrombcd.asl", 
-        "tohexstring.asl", 
-        "tointeger.asl", 
-        "tostring.asl", 
-        "touuid.asl", 
+        "qwordspace.asl",
+        "register.asl",
+        "resourcetemplate.asl",
+        "rtemplate.asl",
+        "vendorlong.asl",
+        "vendorshort.asl",
+        "wordbusnumber.asl",
+        "wordio.asl",
+        "wordspace.asl",
+        "logical.asl",
+        "concatenate.asl",
+        "eisaid.asl",
+        "match1.asl",
+        "mid.asl",
+        "objecttype.asl",
+        "sizeof.asl",
+        "store.asl",
+        "tobuffer.asl",
+        "todecimalstring.asl",
+        "tofrombcd.asl",
+        "tohexstring.asl",
+        "tointeger.asl",
+        "tostring.asl",
+        "touuid.asl",
         "unicode.asl",   /* 50 */
-        "package.asl", 
-        "event.asl", 
-        "mutex.asl", 
-        "misc.asl", 
-        "provoke.asl", 
-        "oconversion.asl", 
-        "rconversion.asl", 
-        "exc.asl", 
-        "exc_operand1.asl", 
-        "exc_result.asl", 
+        "package.asl",
+        "event.asl",
+        "mutex.asl",
+        "misc.asl",
+        "provoke.asl",
+        "oconversion.asl",
+        "rconversion.asl",
+        "exc.asl",
+        "exc_operand1.asl",
+        "exc_result.asl",
         "XXXXXX.asl",    /* 61 - RESERVED, not in use */
-        "common.asl", 
-        "ehandle.asl", 
-        "oproc.asl", 
-        "otest.asl", 
-        "rproc.asl", 
-        "rtest.asl", 
-        "switch1.asl", 
-        "switch2.asl", 
-        "switch3.asl", 
-        "switch4.asl", 
-        "switch5.asl", 
-        "switch6.asl", 
-        "while.asl", 
-        "match2.asl", 
-        "ref00.asl", 
-        "ref01.asl", 
-        "ref02.asl", 
-        "ref03.asl", 
-        "ref04.asl", 
-        "ref70.asl", 
-        "operations.asl", 
-        "arithmetic.asl", 
-        "ocommon.asl", 
-        "oconst.asl", 
-        "onamedglob1.asl", 
-        "onamedglob2.asl", 
-        "onamedloc1.asl", 
-        "onamedloc2.asl", 
-        "opackageel.asl", 
-        "oreftonamed1.asl", 
-        "exc_00_undef.asl", 
-        "exc_01_int.asl", 
-        "exc_02_str.asl", 
-        "exc_03_buf.asl", 
-        "exc_04_pckg.asl", 
-        "exc_05_funit.asl", 
-        "exc_06_dev.asl", 
-        "exc_07_event.asl", 
+        "common.asl",
+        "ehandle.asl",
+        "oproc.asl",
+        "otest.asl",
+        "rproc.asl",
+        "rtest.asl",
+        "switch1.asl",
+        "switch2.asl",
+        "switch3.asl",
+        "switch4.asl",
+        "switch5.asl",
+        "switch6.asl",
+        "while.asl",
+        "match2.asl",
+        "ref00.asl",
+        "ref01.asl",
+        "ref02.asl",
+        "ref03.asl",
+        "ref04.asl",
+        "ref70.asl",
+        "operations.asl",
+        "arithmetic.asl",
+        "ocommon.asl",
+        "oconst.asl",
+        "onamedglob1.asl",
+        "onamedglob2.asl",
+        "onamedloc1.asl",
+        "onamedloc2.asl",
+        "opackageel.asl",
+        "oreftonamed1.asl",
+        "exc_00_undef.asl",
+        "exc_01_int.asl",
+        "exc_02_str.asl",
+        "exc_03_buf.asl",
+        "exc_04_pckg.asl",
+        "exc_05_funit.asl",
+        "exc_06_dev.asl",
+        "exc_07_event.asl",
         "exc_08_method.asl",     /* 100 */
-        "exc_09_mux.asl", 
-        "exc_10_oreg.asl", 
-        "exc_11_pwr.asl", 
-        "exc_12_proc.asl", 
-        "exc_13_tzone.asl", 
-        "exc_14_bfield.asl", 
-        "exc_operand2.asl", 
-        "ref05.asl", 
-        "ref71.asl", 
-        "ref06.asl", 
-        "ref50.asl", 
-        "name.asl", 
-        "data.asl", 
-        "dataproc.asl", 
-        "datastproc.asl", 
+        "exc_09_mux.asl",
+        "exc_10_oreg.asl",
+        "exc_11_pwr.asl",
+        "exc_12_proc.asl",
+        "exc_13_tzone.asl",
+        "exc_14_bfield.asl",
+        "exc_operand2.asl",
+        "ref05.asl",
+        "ref71.asl",
+        "ref06.asl",
+        "ref50.asl",
+        "name.asl",
+        "data.asl",
+        "dataproc.asl",
+        "datastproc.asl",
         "ref07.asl",         /* 116 */
-        "olocal.asl", 
-        "oreturn.asl", 
-        "oreftopackageel.asl", 
+        "olocal.asl",
+        "oreturn.asl",
+        "oreftopackageel.asl",
         "oreftonamed2.asl",  /* 120 */
-        "oarg.asl", 
-        "rcommon.asl", 
-        "rstore.asl", 
-        "rcopyobject.asl", 
-        "rindecrement.asl", 
-        "rexplicitconv.asl", 
-        "roptional.asl", 
-        "tcicmd.asl", 
-        "dobexec.asl", 
+        "oarg.asl",
+        "rcommon.asl",
+        "rstore.asl",
+        "rcopyobject.asl",
+        "rindecrement.asl",
+        "rexplicitconv.asl",
+        "roptional.asl",
+        "tcicmd.asl",
+        "dobexec.asl",
         "dobdecl.asl",   /* 130 */
-        "dobctl.asl", 
-        "dobexceptions.asl", 
-        "method.asl", 
-        "function.asl", 
-        "condbranches.asl", 
-        "add.asl", 
-        "standaloneRet.asl", 
-        "store.asl", 
-        "return.asl", 
+        "dobctl.asl",
+        "dobexceptions.asl",
+        "method.asl",
+        "function.asl",
+        "condbranches.asl",
+        "add.asl",
+        "standaloneRet.asl",
+        "store.asl",
+        "return.asl",
         "dobmisc.asl",   /* 140 */
-        "opregions.asl", 
-        "dtregions.asl", 
-        "regionfield.asl", 
-        "indexfield.asl", 
-        "bankfield.asl", 
-        "badasl.asl", 
-        "mt-common.asl", 
-        "mt-mutex.asl", 
-        "mt-mxs.asl", 
+        "opregions.asl",
+        "dtregions.asl",
+        "regionfield.asl",
+        "indexfield.asl",
+        "bankfield.asl",
+        "badasl.asl",
+        "mt-common.asl",
+        "mt-mutex.asl",
+        "mt-mxs.asl",
         "mutex2.asl",    /* 150 */
-        "mutex_proc.asl", 
-        "mt-tests.asl", 
-        "mt-service.asl", 
-        "ns0.asl", 
-        "ns1.asl", 
-        "ns2.asl", 
-        "ns3.asl", 
-        "ns4.asl", 
-        "ns5.asl", 
+        "mutex_proc.asl",
+        "mt-tests.asl",
+        "mt-service.asl",
+        "ns0.asl",
+        "ns1.asl",
+        "ns2.asl",
+        "ns3.asl",
+        "ns4.asl",
+        "ns5.asl",
         "ns6.asl",           /* 160 */
-        "I2MS_msfail0.asl", 
-        "I2MS_st0.asl", 
-        "I2MS_ns_in00.asl", 
-        "I2MS_ns_in10.asl", 
-        "I2MS_ns_in20.asl", 
-        "I2MS_ns_in30.asl", 
-        "I2MS_ns_in40.asl", 
-        "I2MS_ns_in50.asl", 
-        "I2MS_mt0_abbu.asl", 
+        "I2MS_msfail0.asl",
+        "I2MS_st0.asl",
+        "I2MS_ns_in00.asl",
+        "I2MS_ns_in10.asl",
+        "I2MS_ns_in20.asl",
+        "I2MS_ns_in30.asl",
+        "I2MS_ns_in40.asl",
+        "I2MS_ns_in50.asl",
+        "I2MS_mt0_abbu.asl",
         "I2MS_mt0_aslts.asl",    /* 170 */
-        "I2MS_recursion_abbu.asl", 
-        "I2MS_recursion_aslts.asl", 
-        "serialized.asl", 
+        "I2MS_recursion_abbu.asl",
+        "I2MS_recursion_aslts.asl",
+        "serialized.asl",
         "load.asl",          /* 174 */
-        "unload.asl", 
-        "loadtable.asl", 
-        "recursion.asl", 
+        "unload.asl",
+        "loadtable.asl",
+        "recursion.asl",
         "ns-scope.asl",      /* 178 */
-        "ns-fullpath.asl", 
+        "ns-fullpath.asl",
         "scope.asl",     /* 180 */
-        "object.asl", 
-        "order.asl", 
+        "object.asl",
+        "order.asl",
         /* below are incorrect yet: */
 
-        "I2MS_ns_dv00.asl", 
-        "I2MS_ns_dv10.asl", 
-        "I2MS_ns_dv20.asl", 
-        "I2MS_ns_dv30.asl", 
-        "I2MS_ns_device.asl", 
-        "I2MS_ns_device_abbu.asl", 
-        "I2MS_ns_device_aslts.asl", 
+        "I2MS_ns_dv00.asl",
+        "I2MS_ns_dv10.asl",
+        "I2MS_ns_dv20.asl",
+        "I2MS_ns_dv30.asl",
+        "I2MS_ns_device.asl",
+        "I2MS_ns_device_abbu.asl",
+        "I2MS_ns_device_aslts.asl",
         /* see these files can be not used at all: */
 
         "I2MS_ns4.asl",  /* 190 */
-        "I2MS_ns5.asl", 
-        "I2MS_ns6.asl", 
+        "I2MS_ns5.asl",
+        "I2MS_ns6.asl",
         /* ACPI 5.0 */
 
-        "fixeddma.asl", 
-        "gpioint.asl", 
-        "gpioio.asl", 
-        "i2cserialbus.asl", 
-        "spiserialbus.asl", 
-        "uartserialbus.asl", 
+        "fixeddma.asl",
+        "gpioint.asl",
+        "gpioio.asl",
+        "i2cserialbus.asl",
+        "spiserialbus.asl",
+        "uartserialbus.asl",
         /* ACPI 6.2 */
 
-        "pinfunction.asl", 
+        "pinfunction.asl",
         "pinconfig.asl",     /* 200 */
-        "pingroup.asl", 
-        "pingroupfunction.asl", 
-        "pingroupconfig.asl", 
+        "pingroup.asl",
+        "pingroupfunction.asl",
+        "pingroupconfig.asl",
         /* External Op tests */
 
         "external.asl"  /* 204 */
@@ -2100,7 +2097,7 @@
     {
         /* Check, the current number of exceptions is zero */
 
-        CH03 ("FNSH", 0x00, 0x00, 0x07B5, 0x00)
+        CH03 ("FNSH", 0x00, __LINE__, 0x00, 0x00)
         /* Check all the constants are not corrupted */
 
         CST0 ()
@@ -2243,4 +2240,3 @@
         Divide (Local1, 0x000F4240, Local0, Local2)
         Return (Local2)
     }
-

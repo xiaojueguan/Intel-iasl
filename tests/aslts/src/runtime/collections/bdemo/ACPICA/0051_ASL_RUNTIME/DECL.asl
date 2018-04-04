@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -36,12 +36,12 @@
     {
         If ((Arg0 != Arg1))
         {
-            ERR ("", ZFFF, 0x29, 0x00, 0x00, Arg0, Arg1)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Arg0, Arg1)
         }
 
         If ((Arg2 != Arg3))
         {
-            ERR ("", ZFFF, 0x2C, 0x00, 0x00, Arg0, Arg1)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Arg0, Arg1)
         }
     }
 
@@ -49,7 +49,7 @@
     {
         Name (RT00, ResourceTemplate ()
         {
-            Register (SystemMemory, 
+            Register (SystemMemory,
                 0xF0,               // Bit Width
                 0xF1,               // Bit Offset
                 0xF2F3F4F5F6F7F8F9, // Address
@@ -58,7 +58,7 @@
         })
         Name (BUF0, ResourceTemplate ()
         {
-            Register (SystemMemory, 
+            Register (SystemMemory,
                 0xF0,               // Bit Width
                 0xF1,               // Bit Offset
                 0xF2F3F4F5F6F7F8F9, // Address
@@ -69,12 +69,12 @@
 
         Local0 = ResourceTemplate ()
             {
-                Register (SystemMemory, 
+                Register (SystemMemory,
                     0xF0,               // Bit Width
                     0xF1,               // Bit Offset
                     0xF2F3F4F5F6F7F8F9, // Address
                     ,)
-                Register (SystemMemory, 
+                Register (SystemMemory,
                     0xF0,               // Bit Width
                     0xF1,               // Bit Offset
                     0xF2F3F4F5F6F7F8F9, // Address
@@ -87,7 +87,6 @@
         MDDB (0x38, 0x07, 0xB0, 0x16, "_ADR")
         If ((RT00 != BUF0))
         {
-            ERR ("", ZFFF, 0x4C, 0x00, 0x00, RT00, BUF0)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, RT00, BUF0)
         }
     }
-

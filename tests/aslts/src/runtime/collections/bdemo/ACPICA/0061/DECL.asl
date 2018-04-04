@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -37,11 +37,11 @@
     {
         If (SLCK)
         {
-            CH03 ("", 0x00, Arg0, 0x29, 0x00)
+            CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         }
         Else
         {
-            CH04 ("", 0x00, 0x2F, 0x00, 0x2B, 0x00, 0x00)
+            CH04 (__METHOD__, 0x00, 0x2F, 0x00, __LINE__, 0x00, 0x00)
         }
     }
 
@@ -108,7 +108,6 @@
         ME06 ()
         If ((ID09 != 0x01))
         {
-            ERR ("", ZFFF, 0x77, 0x00, 0x00, ID09, 0x01)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, ID09, 0x01)
         }
     }
-

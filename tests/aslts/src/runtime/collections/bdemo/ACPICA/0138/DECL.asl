@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -43,11 +43,10 @@
                         /* 0008 */  0x00                                             // .
                     }))
         {
-            ERR ("", ZFFF, 0x2D, 0x00, 0x00, BF00, Buffer (0x09)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, BF00, Buffer (0x09)
                 {
                     /* 0000 */  0x10, 0x32, 0x54, 0x76, 0x00, 0x00, 0x00, 0x00,  // .2Tv....
                     /* 0008 */  0x00                                             // .
                 })
         }
     }
-

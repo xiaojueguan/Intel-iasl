@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -51,7 +51,7 @@
             {
                 If ((\_SB.I2Z7 != 0xABCD0007))
                 {
-                    ERR ("", ZFFF, 0x33, 0x00, 0x00, \_SB.I2Z7, 0xABCD0007)
+                    ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, \_SB.I2Z7, 0xABCD0007)
                 }
             }
 
@@ -77,14 +77,14 @@
             {
                 If ((\I2Z4 != 0xABCD0004))
                 {
-                    ERR ("", ZFFF, 0x48, 0x00, 0x00, \I2Z4, 0xABCD0004)
+                    ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, \I2Z4, 0xABCD0004)
                 }
             }
 
             M202 ()
         }
 
-        CH03 ("", 0x00, 0x02, 0x50, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         SRMT ("m1eb-m100")
         M100 ()
         SRMT ("m1eb-m101")
@@ -97,6 +97,5 @@
             BLCK ()
         }
 
-        CH03 ("", 0x00, 0x03, 0x5C, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
     }
-

@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -49,8 +49,7 @@
         /* ToHexString for 68-byte long buffer attempt */
         /* to produce 203 byte long string and have to */
         /* result in AE_AML_STRING_LIMIT exception. */
-        CH03 ("", 0x00, 0x00, 0x33, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         ToHexString (B000, Local0)
-        CH04 ("", 0x00, 0x3D, 0x00, 0x35, 0x00, 0x00) /* AE_AML_STRING_LIMIT */
+        CH04 (__METHOD__, 0x00, 0x3D, 0x00, __LINE__, 0x00, 0x00) /* AE_AML_STRING_LIMIT */
     }
-

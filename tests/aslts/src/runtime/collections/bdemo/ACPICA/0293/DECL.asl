@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -44,42 +44,41 @@
         Debug = SizeOf (Local3)
         If ((SizeOf (Local2) != 0x00))
         {
-            ERR ("", ZFFF, 0x32, 0x00, 0x00, SizeOf (Local2), 0x00)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, SizeOf (Local2), 0x00)
         }
 
         If ((SizeOf (Local3) != 0x00))
         {
-            ERR ("", ZFFF, 0x36, 0x00, 0x00, SizeOf (Local3), 0x00)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, SizeOf (Local3), 0x00)
         }
 
         If (("" != Local1))
         {
-            ERR ("", ZFFF, 0x3A, 0x00, 0x00, "", Local1)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "", Local1)
         }
 
         If (("" != Local2))
         {
-            ERR ("", ZFFF, 0x3E, 0x00, 0x00, "", Local2)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "", Local2)
         }
 
         If (("" != Local3))
         {
-            ERR ("", ZFFF, 0x42, 0x00, 0x00, "", Local3)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, "", Local3)
         }
 
         If ((Local2 != Local3))
         {
-            ERR ("", ZFFF, 0x46, 0x00, 0x00, Local2, Local3)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local2, Local3)
         }
 
         If ((Local2 != Local1))
         {
-            ERR ("", ZFFF, 0x4A, 0x00, 0x00, Local2, Local1)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local2, Local1)
         }
 
         If ((Local3 != Local1))
         {
-            ERR ("", ZFFF, 0x4E, 0x00, 0x00, Local3, Local1)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local3, Local1)
         }
     }
-

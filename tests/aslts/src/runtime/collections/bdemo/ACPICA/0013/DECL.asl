@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -44,49 +44,48 @@
         Local7 = ObjectType (BF00)
         If ((Local7 != C016))
         {
-            ERR ("", ZFFF, 0x32, 0x00, 0x00, Local7, C016)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local7, C016)
         }
 
         Local7 = ObjectType (BF01)
         If ((Local7 != C016))
         {
-            ERR ("", ZFFF, 0x37, 0x00, 0x00, Local7, C016)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local7, C016)
         }
 
         Local7 = ObjectType (BF02)
         If ((Local7 != C016))
         {
-            ERR ("", ZFFF, 0x3C, 0x00, 0x00, Local7, C016)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local7, C016)
         }
 
         Local7 = ObjectType (BF03)
         If ((Local7 != C016))
         {
-            ERR ("", ZFFF, 0x41, 0x00, 0x00, Local7, C016)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local7, C016)
         }
 
         Local7 = ObjectType (BF04)
         If ((Local7 != C016))
         {
-            ERR ("", ZFFF, 0x46, 0x00, 0x00, Local7, C016)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local7, C016)
         }
 
         Local7 = ObjectType (BF05)
         If ((Local7 != C016))
         {
-            ERR ("", ZFFF, 0x4B, 0x00, 0x00, Local7, C016)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local7, C016)
         }
 
         Local7 = ObjectType (BF06)
         If ((Local7 != C016))
         {
-            ERR ("", ZFFF, 0x50, 0x00, 0x00, Local7, C016)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local7, C016)
         }
 
         Local7 = ObjectType (BF07)
         If ((Local7 != C016))
         {
-            ERR ("", ZFFF, 0x55, 0x00, 0x00, Local7, C016)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local7, C016)
         }
     }
-

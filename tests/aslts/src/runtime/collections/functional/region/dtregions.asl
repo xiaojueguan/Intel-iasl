@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -66,7 +66,7 @@
         Name (ERSK, 0x02)   /* Expected Counters of the Valid RSK */
         Name (VFLG,       /* Counters of the Valid Flags */Package (NFLG)
         {
-            0x00, 
+            0x00,
             0x00
         })
         /* Specific DataTable Regions availability notification Method */
@@ -115,22 +115,22 @@
         \DTR0._REG (0x0101, 0x02)
         If ((\DTR0.IRSK != 0x01))
         {
-            ERR (Arg0, Z142, 0x76, 0x00, 0x00, \DTR0.IRSK, 0x01)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, \DTR0.IRSK, 0x01)
         }
 
         If ((\DTR0.IFLG != 0x01))
         {
-            ERR (Arg0, Z142, 0x79, 0x00, 0x00, \DTR0.IFLG, 0x01)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, \DTR0.IFLG, 0x01)
         }
 
         If ((\DTR0.VRSK != 0x02))
         {
-            ERR (Arg0, Z142, 0x7C, 0x00, 0x00, \DTR0.VRSK, 0x02)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, \DTR0.VRSK, 0x02)
         }
 
         If ((DerefOf (\DTR0.VFLG [0x01]) != 0x02))
         {
-            ERR (Arg0, Z142, 0x7F, 0x00, 0x00, DerefOf (\DTR0.VFLG [0x01]), 0x02)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, DerefOf (\DTR0.VFLG [0x01]), 0x02)
         }
     }
 
@@ -146,7 +146,7 @@
         Name (ERSK, 0x02)   /* Expected Counters of the Valid RSK */
         Name (VFLG,       /* Counters of the Valid Flags */Package (NFLG)
         {
-            0x00, 
+            0x00,
             0x00
         })
         /* Specific DataTable Regions availability notification Method */
@@ -186,44 +186,44 @@
         Concatenate (Arg0, "-m7f1", Arg0)
         If ((VRSK != 0x00))
         {
-            ERR (Arg0, Z142, 0xB2, 0x00, 0x00, VRSK, 0x00)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, VRSK, 0x00)
         }
 
         If ((DerefOf (VFLG [0x01]) != 0x00))
         {
-            ERR (Arg0, Z142, 0xB5, 0x00, 0x00, DerefOf (VFLG [0x01]), 0x00)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, DerefOf (VFLG [0x01]), 0x00)
         }
 
         DataTableRegion (DR00, "SSDT", "", "")
         If ((IRSK != 0x00))
         {
-            ERR (Arg0, Z142, 0xBB, 0x00, 0x00, IRSK, 0x00)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, IRSK, 0x00)
         }
 
         If ((IFLG != 0x00))
         {
-            ERR (Arg0, Z142, 0xBE, 0x00, 0x00, IFLG, 0x00)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, IFLG, 0x00)
         }
 
         _REG (0x0101, 0x02)
         If ((IRSK != 0x01))
         {
-            ERR (Arg0, Z142, 0xC4, 0x00, 0x00, IRSK, 0x01)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, IRSK, 0x01)
         }
 
         If ((IFLG != 0x01))
         {
-            ERR (Arg0, Z142, 0xC7, 0x00, 0x00, IFLG, 0x01)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, IFLG, 0x01)
         }
 
         If ((VRSK != 0x01))
         {
-            ERR (Arg0, Z142, 0xCA, 0x00, 0x00, VRSK, 0x01)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, VRSK, 0x01)
         }
 
         If ((DerefOf (VFLG [0x01]) != 0x01))
         {
-            ERR (Arg0, Z142, 0xCD, 0x00, 0x00, DerefOf (VFLG [0x01]), 0x01)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, DerefOf (VFLG [0x01]), 0x01)
         }
     }
 
@@ -243,11 +243,11 @@
         Local0 = RefOf (FU01)
         Local1 = RefOf (Local0)
         Local2 = DerefOf (Local0)
-        CH03 (Arg0, Z142, 0x10, 0xE0, 0x00)
+        CH03 (Arg0, Z142, __LINE__, 0x00, 0x00)
         Local3 = \DTR0.SSDT
         If ((Local2 != Local3))
         {
-            ERR (Arg0, Z142, 0xE5, 0x00, 0x00, Local2, Local3)
+            ERR (Arg0, Z142, __LINE__, 0x00, 0x00, Local2, Local3)
         }
     }
 
@@ -273,7 +273,7 @@
             Local1 = \DTR0.SSDT
             If ((Local0 != Local1))
             {
-                ERR (Arg0, Z142, 0xFC, 0x00, 0x00, Local0, Local1)
+                ERR (Arg0, Z142, __LINE__, 0x00, 0x00, Local0, Local1)
             }
         }
 
@@ -293,7 +293,7 @@
             Local1 = \DTR0.SSDT
             If ((Local0 != Local1))
             {
-                ERR (Arg0, Z142, 0x010B, 0x00, 0x00, Local0, Local1)
+                ERR (Arg0, Z142, __LINE__, 0x00, 0x00, Local0, Local1)
             }
         }
 
@@ -313,7 +313,7 @@
             Local1 = \DTR0.SSDT
             If ((Local0 != Local1))
             {
-                ERR (Arg0, Z142, 0x011A, 0x00, 0x00, Local0, Local1)
+                ERR (Arg0, Z142, __LINE__, 0x00, 0x00, Local0, Local1)
             }
         }
 
@@ -336,7 +336,7 @@
             Local1 = \DTR0.SSDT
             If ((Local0 != Local1))
             {
-                ERR (Arg0, Z142, 0x012D, 0x00, 0x00, Local0, Local1)
+                ERR (Arg0, Z142, __LINE__, 0x00, 0x00, Local0, Local1)
             }
         }
 
@@ -358,7 +358,7 @@
             Local1 = \DTR0.SSDT
             If ((Local0 != Local1))
             {
-                ERR (Arg0, Z142, 0x013F, 0x00, 0x00, Local0, Local1)
+                ERR (Arg0, Z142, __LINE__, 0x00, 0x00, Local0, Local1)
             }
         }
 
@@ -386,7 +386,7 @@
             Local0 = ToString (FU00, 0x04)
             If ((Local0 != Arg1))
             {
-                ERR (Arg0, Z142, 0x015A, 0x00, 0x00, Local0, Arg1)
+                ERR (Arg0, Z142, __LINE__, 0x00, 0x00, Local0, Arg1)
             }
         }
 
@@ -404,25 +404,24 @@
 
     Method (DRC0, 0, Serialized)
     {
-        Name (TS, "DRC0")
         /* Global DataTableRegions */
 
         SRMT ("m7f0")
-        M7F0 (TS)
+        M7F0 (__METHOD__)
         /* Dynamic DataTableRegions */
 
         SRMT ("m7f1")
-        M7F1 (TS)
+        M7F1 (__METHOD__)
         /* DataTableRegion Lengths */
 
         SRMT ("m7f2")
-        M7F2 (TS)
+        M7F2 (__METHOD__)
         /* Non-constant DataTableRegion *String arguments */
 
         SRMT ("m7f3")
         If (Y223)
         {
-            M7F3 (TS)
+            M7F3 (__METHOD__)
         }
         Else
         {
@@ -434,11 +433,10 @@
         SRMT ("m7f4")
         If (Y223)
         {
-            M7F4 (TS)
+            M7F4 (__METHOD__)
         }
         Else
         {
             BLCK ()
         }
     }
-

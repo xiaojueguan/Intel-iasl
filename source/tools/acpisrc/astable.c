@@ -8,7 +8,7 @@
  *
  * 1. Copyright Notice
  *
- * Some or all of this work - Copyright (c) 1999 - 2017, Intel Corp.
+ * Some or all of this work - Copyright (c) 1999 - 2018, Intel Corp.
  * All rights reserved.
  *
  * 2. License
@@ -194,9 +194,10 @@ ACPI_STRING_TABLE           StandardDataTypes[] = {
  *
  ******************************************************************************/
 
+char                        EmptyHeader[] = "";
 char                        DualLicenseHeader[] =
 "/*\n"
-" * Copyright (C) 2000 - 2017, Intel Corp.\n"
+" * Copyright (C) 2000 - 2018, Intel Corp.\n"
 " * All rights reserved.\n"
 " *\n"
 " * Redistribution and use in source and binary forms, with or without\n"
@@ -956,13 +957,14 @@ ACPI_IDENTIFIER_TABLE       LinuxSpecialMacros[] = {
 
 ACPI_CONVERSION_TABLE       LinuxConversionTable =
 {
-    DualLicenseHeader,
+    EmptyHeader,
     FLG_NO_CARRIAGE_RETURNS | FLG_LOWERCASE_DIRNAMES,
 
     AcpiIdentifiers,
 
     /* C source files */
 
+    "// SPDX-License-Identifier: BSD-3-Clause OR GPL-2.0\n",
     LinuxDataTypes,
     LinuxEliminateLines_C,
     NULL,
@@ -977,6 +979,7 @@ ACPI_CONVERSION_TABLE       LinuxConversionTable =
 
     /* C header files */
 
+    "/* SPDX-License-Identifier: BSD-3-Clause OR GPL-2.0 */\n",
     LinuxDataTypes,
     LinuxEliminateLines_H,
     LinuxConditionalIdentifiers,
@@ -1020,11 +1023,13 @@ ACPI_CONVERSION_TABLE       CleanupConversionTable =
     NULL,
     NULL,
     NULL,
+    NULL,
     (CVT_COUNT_TABS | CVT_COUNT_NON_ANSI_COMMENTS | CVT_COUNT_LINES |
      CVT_CHECK_BRACES | CVT_TRIM_LINES | CVT_TRIM_WHITESPACE),
 
     /* C header files */
 
+    NULL,
     NULL,
     NULL,
     NULL,
@@ -1060,11 +1065,13 @@ ACPI_CONVERSION_TABLE       StatsConversionTable =
     NULL,
     NULL,
     NULL,
+    NULL,
     (CVT_COUNT_TABS | CVT_COUNT_NON_ANSI_COMMENTS | CVT_COUNT_LINES |
      CVT_COUNT_SHORTMULTILINE_COMMENTS),
 
     /* C header files */
 
+    NULL,
     NULL,
     NULL,
     NULL,
@@ -1107,11 +1114,13 @@ ACPI_CONVERSION_TABLE       LicenseConversionTable =
     NULL,
     NULL,
     NULL,
+    NULL,
     (CVT_COUNT_TABS | CVT_COUNT_NON_ANSI_COMMENTS | CVT_COUNT_LINES |
      CVT_COUNT_SHORTMULTILINE_COMMENTS),
 
     /* C header files */
 
+    NULL,
     NULL,
     NULL,
     NULL,
@@ -1142,8 +1151,8 @@ ACPI_CONVERSION_TABLE       LicenseConversionTable =
 
 ACPI_STRING_TABLE           CustomReplacements[] =
 {
-    {"(c) 1999 - 2017",     "(c) 1999 - 2017",         REPLACE_WHOLE_WORD}, /* Main ACPICA source */
-    {"(c) 2006 - 2017",     "(c) 2006 - 2017",         REPLACE_WHOLE_WORD}, /* Test suites */
+    {"(c) 1999 - 2017",     "(c) 1999 - 2018",         REPLACE_WHOLE_WORD}, /* Main ACPICA source */
+    {"(c) 2006 - 2017",     "(c) 2006 - 2018",         REPLACE_WHOLE_WORD}, /* Test suites */
 
 #if 0
     {"SUPPORT, ASSISTANCE", "SUPPORT, ASSISTANCE",     REPLACE_WHOLE_WORD}, /* Fix intel header */
@@ -1202,6 +1211,7 @@ ACPI_CONVERSION_TABLE       CustomConversionTable =
 
     /* C source files */
 
+    NULL,
     CustomReplacements,
     LinuxEliminateLines_H,
     NULL,
@@ -1213,6 +1223,7 @@ ACPI_CONVERSION_TABLE       CustomConversionTable =
 
     /* C header files */
 
+    NULL,
     CustomReplacements,
     LinuxEliminateLines_H,
     NULL,
@@ -1249,6 +1260,7 @@ ACPI_CONVERSION_TABLE       IndentConversionTable =
 
     /* C source files */
 
+    NULL,
     LinuxSpecialStrings,
     NULL,
     NULL,
@@ -1260,6 +1272,7 @@ ACPI_CONVERSION_TABLE       IndentConversionTable =
 
     /* C header files */
 
+    NULL,
     LinuxSpecialStrings,
     NULL,
     NULL,

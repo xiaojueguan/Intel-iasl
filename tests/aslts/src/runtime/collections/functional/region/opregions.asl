@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -52,34 +52,34 @@
     Name (FRSK, 0x0101)   /* Some false RegionSpace Keyword */
     Name (PRSK, Package (NRSK)
     {
-        0x0100, 
+        0x0100,
         /* UserDefRegionSpace 0x80-0xFF: auxiliary */
 
-        0x00, 
+        0x00,
         /* SystemMemory */
 
-        0x01, 
+        0x01,
         /* SystemIO */
 
-        0x02, 
+        0x02,
         /* PCI_Config */
 
-        0x03, 
+        0x03,
         /* EmbeddedControl */
 
-        0x04, 
+        0x04,
         /* SMBus */
 
-        0x05, 
+        0x05,
         /* SystemCMOS */
 
-        0x06, 
+        0x06,
         /* PciBarTarget */
 
-        0x07, 
+        0x07,
         /* IPMI */
 
-        0x08, 
+        0x08,
         /* GeneralPurposeIo */
 
         0x09
@@ -89,10 +89,10 @@
 
     Name (DRSK, Package (0x03)
     {
-        0x00, 
+        0x00,
         /* SystemMemory */
 
-        0x01, 
+        0x01,
         /* SystemIO */
 
         0x02
@@ -100,16 +100,16 @@
     })
     Name (VRSK,       /* Counters of the Valid RSKs */Package (NRSK)
     {
-        0x00, 
-        0x00, 
-        0x00, 
-        0x00, 
-        0x00, 
-        0x00, 
-        0x00, 
-        0x00, 
-        0x00, 
-        0x00, 
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
         0x00
     })
     /* Expected Counters of the Valid RSKs */
@@ -134,21 +134,21 @@
 
 Package (NRSK)
     {
-        0x01, 
-        0x02, 
-        0x03, 
-        0x01, 
-        0x01, 
-        0x01, 
-        0x00, 
-        0x00, 
-        0x00, 
-        0x00, 
+        0x01,
+        0x02,
+        0x03,
+        0x01,
+        0x01,
+        0x01,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
         0x00
     })
     Name (VFLG,       /* Counters of the Valid Flags */Package (NFLG)
     {
-        0x00, 
+        0x00,
         0x00
     })
     /* Global Operation Regions availability notification Method */
@@ -218,38 +218,38 @@ Package (NRSK)
     /* OpRegion Lengths checking task package: Name, SpaceID, Length */
     Name (P702, Package (0x21)
     {
-        RGN0, 
-        0x00, 
-        0x0101, 
-        RGN1, 
-        0x01, 
-        0x0103, 
-        RGN2, 
-        0x02, 
-        0x0105, 
-        RGN3, 
-        0x03, 
-        0x0107, 
-        RGN4, 
-        0x04, 
-        0x0109, 
-        RGN5, 
-        0x05, 
-        0x010B, 
-        RGN6, 
-        0x06, 
-        0x010D, 
-        RGN7, 
-        0x80, 
-        0x0117, 
-        RGN8, 
-        0xCF, 
-        0x0118, 
-        RGN9, 
-        0xFF, 
-        0x0119, 
-        RGNA, 
-        0x08, 
+        RGN0,
+        0x00,
+        0x0101,
+        RGN1,
+        0x01,
+        0x0103,
+        RGN2,
+        0x02,
+        0x0105,
+        RGN3,
+        0x03,
+        0x0107,
+        RGN4,
+        0x04,
+        0x0109,
+        RGN5,
+        0x05,
+        0x010B,
+        RGN6,
+        0x06,
+        0x010D,
+        RGN7,
+        0x80,
+        0x0117,
+        RGN8,
+        0xCF,
+        0x0118,
+        RGN9,
+        0xFF,
+        0x0119,
+        RGNA,
+        0x08,
         0x011A
     })
     /* Region Space keyword strings */
@@ -259,31 +259,31 @@ Package (NRSK)
     {
         /* 0x00 */
 
-        "SystemMemory", 
+        "SystemMemory",
         /* 0x01 */
 
-        "SystemIO", 
+        "SystemIO",
         /* 0x02 */
 
-        "PCI_Config", 
+        "PCI_Config",
         /* 0x03 */
 
-        "EmbeddedControl", 
+        "EmbeddedControl",
         /* 0x04 */
 
-        "SMBus", 
+        "SMBus",
         /* 0x05 */
 
-        "SystemCMOS", 
+        "SystemCMOS",
         /* 0x06 */
 
-        "PciBarTarget", 
+        "PciBarTarget",
         /* 0x07 */
 
-        "IPMI", 
+        "IPMI",
         /* 0x08 */
 
-        "GeneralPurposeIo", 
+        "GeneralPurposeIo",
         /* 0x09 */
 
         "GenericSerialBus"
@@ -326,35 +326,35 @@ Package (NRSK)
         Name (IFLG, 0x00)   /* Counter of the Invalid Flags */
         Name (VRSK,       /* Counters of the Valid RSKs */Package (NRSK)
         {
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
             0x00
         })
         Name (ERSK,       /* Expected Counters of the Valid RSKs */Package (NRSK)
         {
-            0x01, 
-            0x01, 
-            0x01, 
-            0x01, 
-            0x01, 
-            0x01, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
+            0x01,
+            0x01,
+            0x01,
+            0x01,
+            0x01,
+            0x01,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
             0x00
         })
         Name (VFLG,       /* Counters of the Valid Flags */Package (NFLG)
         {
-            0x00, 
+            0x00,
             0x00
         })
         /* Specific Operation Regions availability notification Method */
@@ -423,35 +423,35 @@ Package (NRSK)
         Name (IFLG, 0x00)   /* Counter of the Invalid Flags */
         Name (VRSK,       /* Counters of the Valid RSKs */Package (NRSK)
         {
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
             0x00
         })
         Name (ERSK,       /* Expected Counters of the Valid RSKs */Package (NRSK)
         {
-            0x01, 
-            0x01, 
-            0x01, 
-            0x01, 
-            0x01, 
-            0x01, 
-            0x00, 
-            0x00, 
-            0x00, 
-            0x00, 
+            0x01,
+            0x01,
+            0x01,
+            0x01,
+            0x01,
+            0x01,
+            0x00,
+            0x00,
+            0x00,
+            0x00,
             0x00
         })
         Name (VFLG,       /* Counters of the Valid Flags */Package (NFLG)
         {
-            0x00, 
+            0x00,
             0x00
         })
         Name (IREG, 0x00)   /* Counter of the Invalid Calls to DOR1._REG */
@@ -545,22 +545,22 @@ Package (NRSK)
 
         If ((IRSK != 0x00))
         {
-            ERR (Arg0, Z141, 0x0191, 0x00, 0x00, IRSK, 0x00)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, IRSK, 0x00)
         }
 
         If ((IFLG != 0x00))
         {
-            ERR (Arg0, Z141, 0x0194, 0x00, 0x00, IFLG, 0x00)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, IFLG, 0x00)
         }
 
         If ((\DOR0.IRSK != 0x00))
         {
-            ERR (Arg0, Z141, 0x0198, 0x00, 0x00, IRSK, 0x00)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, IRSK, 0x00)
         }
 
         If ((\DOR0.IFLG != 0x00))
         {
-            ERR (Arg0, Z141, 0x019B, 0x00, 0x00, IFLG, 0x00)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, IFLG, 0x00)
         }
 
         /* Emulate and verify incorrect calls */
@@ -569,29 +569,29 @@ Package (NRSK)
         \DOR0._REG (FRSK, 0x02)
         If ((IRSK != 0x01))
         {
-            ERR (Arg0, Z141, 0x01A4, 0x00, 0x00, IRSK, 0x01)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, IRSK, 0x01)
         }
 
         If ((IFLG != 0x01))
         {
-            ERR (Arg0, Z141, 0x01A7, 0x00, 0x00, IFLG, 0x01)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, IFLG, 0x01)
         }
 
         If ((\DOR0.IRSK != 0x01))
         {
-            ERR (Arg0, Z141, 0x01AA, 0x00, 0x00, IRSK, 0x01)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, IRSK, 0x01)
         }
 
         If ((\DOR0.IFLG != 0x01))
         {
-            ERR (Arg0, Z141, 0x01AD, 0x00, 0x00, IFLG, 0x01)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, IFLG, 0x01)
         }
 
         /* Check total calls to \_REG */
 
         If ((DerefOf (VFLG [0x01]) != 0x09))
         {
-            ERR (Arg0, Z141, 0x01B3, 0x00, 0x00, DerefOf (VFLG [0x01]), 0x09)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, DerefOf (VFLG [0x01]), 0x09)
         }
 
         M70E (Arg0, 0x01, VRSK, ERSK, 0x0A)
@@ -599,7 +599,7 @@ Package (NRSK)
 
         If ((DerefOf (\DOR0.VFLG [0x01]) != 0x06))
         {
-            ERR (Arg0, Z141, 0x01BA, 0x00, 0x00, DerefOf (\DOR0.VFLG [0x01]), 0x06)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, DerefOf (\DOR0.VFLG [0x01]), 0x06)
         }
 
         M70E (Arg0, 0x01, \DOR0.VRSK, \DOR0.ERSK, 0x0C)
@@ -613,46 +613,46 @@ Package (NRSK)
         Concatenate (Arg0, "-m701", Arg0)
         If ((\DOR1.IREG != 0x00))
         {
-            ERR (Arg0, Z141, 0x01C7, 0x00, 0x00, \DOR1.IREG, 0x00)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, \DOR1.IREG, 0x00)
         }
 
         If ((\DOR1.IRSK != 0x00))
         {
-            ERR (Arg0, Z141, 0x01CA, 0x00, 0x00, \DOR1.IRSK, 0x00)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, \DOR1.IRSK, 0x00)
         }
 
         If ((\DOR1.IFLG != 0x00))
         {
-            ERR (Arg0, Z141, 0x01CD, 0x00, 0x00, \DOR1.IFLG, 0x00)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, \DOR1.IFLG, 0x00)
         }
 
         If ((DerefOf (\DOR1.VFLG [0x01]) != 0x00))
         {
-            ERR (Arg0, Z141, 0x01D0, 0x00, 0x00, DerefOf (\DOR1.VFLG [0x01]), 0x00)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, DerefOf (\DOR1.VFLG [0x01]), 0x00)
         }
 
         M70E (Arg0, 0x02, \DOR1.VRSK, 0x00, 0x11)
         \DOR1.M000 ()
         If ((\DOR1.IREG != 0x00))
         {
-            ERR (Arg0, Z141, 0x01D7, 0x00, 0x00, \DOR1.IREG, 0x01)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, \DOR1.IREG, 0x01)
         }
 
         If ((\DOR1.IRSK != 0x01))
         {
-            ERR (Arg0, Z141, 0x01DA, 0x00, 0x00, \DOR1.IRSK, 0x01)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, \DOR1.IRSK, 0x01)
         }
 
         If ((\DOR1.IFLG != 0x01))
         {
-            ERR (Arg0, Z141, 0x01DD, 0x00, 0x00, \DOR1.IFLG, 0x01)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, \DOR1.IFLG, 0x01)
         }
 
         /* Check total calls to \DOR1._REG */
 
         If ((DerefOf (\DOR1.VFLG [0x01]) != 0x06))
         {
-            ERR (Arg0, Z141, 0x01E3, 0x00, 0x00, DerefOf (\DOR1.VFLG [0x01]), 0x06)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, DerefOf (\DOR1.VFLG [0x01]), 0x06)
         }
 
         M70E (Arg0, 0x01, \DOR1.VRSK, \DOR1.ERSK, 0x16)
@@ -753,19 +753,19 @@ Package (NRSK)
         Else
         {
             DerefOf (Local5) = B000 /* \M70C.B000 */
-            CH03 (Arg0, Z141, 0x18, 0x024F, Local3)
+            CH03 (Arg0, Z141, __LINE__, 0x00, Local3)
             Local0 = ObjectType (DerefOf (Local6))
             Local1 = C00B /* \C00B */
             If ((Local0 != Local1))
             {
-                ERR (Arg0, Z141, 0x0254, 0x00, 0x00, Local0, Local1)
+                ERR (Arg0, Z141, __LINE__, 0x00, 0x00, Local0, Local1)
             }
             Else
             {
                 Local0 = DerefOf (Local6)
                 If ((Local0 != B000))
                 {
-                    ERR (Arg0, Z141, 0x0258, Z141, Arg2, Local0, B000)
+                    ERR (Arg0, Z141, __LINE__, Z141, Arg2, Local0, B000)
                 }
             }
         }
@@ -823,14 +823,14 @@ Package (NRSK)
                     Local3 = Arg3 [Local0]
                     If ((DerefOf (Local1) != DerefOf (Local3)))
                     {
-                        ERR (Arg0, Z141, 0x028D, Z141, Local0, DerefOf (Local1), DerefOf (Local3))
+                        ERR (Arg0, Z141, __LINE__, Z141, Local0, DerefOf (Local1), DerefOf (Local3))
                     }
                 }
                 Case (0x02)
                 {
                     If ((DerefOf (Local1) != 0x00))
                     {
-                        ERR (Arg0, Z141, 0x0292, Z141, Local0, DerefOf (Local1), 0x00)
+                        ERR (Arg0, Z141, __LINE__, Z141, Local0, DerefOf (Local1), 0x00)
                     }
                 }
 
@@ -849,9 +849,9 @@ Package (NRSK)
         CopyObject (Arg2, OPRN) /* \M70F.OPRN */
         Field (OPRM, ByteAcc, NoLock, Preserve)
         {
-            Offset (0x7D), 
-            FU00,   80, 
-            Offset (0x8D), 
+            Offset (0x7D),
+            FU00,   80,
+            Offset (0x8D),
             FU02,   80
         }
 
@@ -890,7 +890,7 @@ Package (NRSK)
             }
         If ((Local0 != Local1))
         {
-            ERR (Arg0, Z141, 0x02C3, Z141, Arg4, Local0, Local1)
+            ERR (Arg0, Z141, __LINE__, Z141, Arg4, Local0, Local1)
         }
     }
 
@@ -904,7 +904,7 @@ Package (NRSK)
         {
             If ((Arg1 != Arg2))
             {
-                ERR (Arg0, Z141, 0x02D0, Z141, Arg3, Arg1, Arg2)
+                ERR (Arg0, Z141, __LINE__, Z141, Arg3, Arg1, Arg2)
             }
         }
 
@@ -990,7 +990,7 @@ Package (NRSK)
             Local7 = DerefOf (Local5)
             If ((I002 != Local7))
             {
-                ERR (Arg0, Z141, 0x031C, Z141, Arg1, Local7, I002)
+                ERR (Arg0, Z141, __LINE__, Z141, Arg1, Local7, I002)
             }
         }
 
@@ -1038,7 +1038,7 @@ Package (NRSK)
             Local7 = DerefOf (Local5)
             If ((I002 != Local7))
             {
-                ERR (Arg0, Z141, 0x033F, Z141, Arg1, Local7, I002)
+                ERR (Arg0, Z141, __LINE__, Z141, Arg1, Local7, I002)
             }
         }
 
@@ -1088,7 +1088,7 @@ Package (NRSK)
             Local7 = DerefOf (Local5)
             If ((I002 != Local7))
             {
-                ERR (Arg0, Z141, 0x0365, Z141, Arg1, Local7, I002)
+                ERR (Arg0, Z141, __LINE__, Z141, Arg1, Local7, I002)
             }
         }
 
@@ -1137,7 +1137,7 @@ Package (NRSK)
             Local7 = DerefOf (Local5)
             If ((I002 != Local7))
             {
-                ERR (Arg0, Z141, 0x038B, Z141, Arg1, Local7, I002)
+                ERR (Arg0, Z141, __LINE__, Z141, Arg1, Local7, I002)
             }
         }
 
@@ -1184,25 +1184,25 @@ Package (NRSK)
         OperationRegion (OPR3, SystemMemory, OFFS, LENS)
         Field (OPR0, ByteAcc, NoLock, Preserve)
         {
-            Offset (0x11F), 
+            Offset (0x11F),
             FU00,   32
         }
 
         Field (OPR1, ByteAcc, NoLock, Preserve)
         {
-            Offset (0x11F), 
+            Offset (0x11F),
             FU01,   32
         }
 
         Field (OPR2, ByteAcc, NoLock, Preserve)
         {
-            Offset (0x11F), 
+            Offset (0x11F),
             FU02,   32
         }
 
         Field (OPR3, ByteAcc, NoLock, Preserve)
         {
-            Offset (0x11F), 
+            Offset (0x11F),
             FU03,   32
         }
 
@@ -1212,13 +1212,13 @@ Package (NRSK)
             OperationRegion (OPR4, SystemMemory, Arg1, Arg2)
             Field (OPR4, AnyAcc, NoLock, Preserve)
             {
-                Offset (0x11F), 
+                Offset (0x11F),
                 FU04,   32
             }
 
             If ((FU04 != I000))
             {
-                ERR (Arg0, Z141, 0x03CF, 0x00, 0x00, FU04, I000)
+                ERR (Arg0, Z141, __LINE__, 0x00, 0x00, FU04, I000)
             }
         }
 
@@ -1226,48 +1226,48 @@ Package (NRSK)
         FU00 = I000 /* \M706.I000 */
         If ((FU00 != I000))
         {
-            ERR (Arg0, Z141, 0x03D8, 0x00, 0x00, FU00, I000)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, FU00, I000)
         }
 
         If ((0xFEDCBA987654321F != OFF0))
         {
-            ERR (Arg0, Z141, 0x03DC, 0x00, 0x00, OFF0, 0xFEDCBA987654321F)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, OFF0, 0xFEDCBA987654321F)
         }
         ElseIf ((0x0123 != LEN0))
         {
-            ERR (Arg0, Z141, 0x03DE, 0x00, 0x00, LEN0, 0x0123)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, LEN0, 0x0123)
         }
         ElseIf ((FU01 != I000))
         {
-            ERR (Arg0, Z141, 0x03E0, 0x00, 0x00, FU00, I000)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, FU00, I000)
         }
 
         If ((0xFEDCBA987654321F != OFFB))
         {
-            ERR (Arg0, Z141, 0x03E4, 0x00, 0x00, OFFB, 0xFEDCBA987654321F)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, OFFB, 0xFEDCBA987654321F)
         }
         ElseIf ((0x0123 != LENB))
         {
-            ERR (Arg0, Z141, 0x03E6, 0x00, 0x00, LENB, 0x0123)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, LENB, 0x0123)
         }
         ElseIf ((FU02 != I000))
         {
-            ERR (Arg0, Z141, 0x03E8, 0x00, 0x00, FU00, I000)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, FU00, I000)
         }
 
         If ((0xFEDCBA987654321F != OFFS))
         {
             Local0 = (OFFS + 0x00)
-            ERR (Arg0, Z141, 0x03ED, 0x00, 0x00, Local0, 0xFEDCBA987654321F)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, Local0, 0xFEDCBA987654321F)
         }
         ElseIf ((0x0123 != LENS))
         {
             Local0 = (LENS + 0x00)
-            ERR (Arg0, Z141, 0x03F0, 0x00, 0x00, Local0, 0x0123)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, Local0, 0x0123)
         }
         ElseIf ((FU03 != I000))
         {
-            ERR (Arg0, Z141, 0x03F2, 0x00, 0x00, FU00, I000)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, FU00, I000)
         }
 
         M000 (Arg0, OFF0, LEN0, 0x2B)
@@ -1289,7 +1289,7 @@ Package (NRSK)
 
         Field (RGN0, ByteAcc, NoLock, Preserve)
         {
-            Offset (0x01), 
+            Offset (0x01),
             FU00,   48
         }
 
@@ -1297,7 +1297,7 @@ Package (NRSK)
 
         Field (RGN1, ByteAcc, NoLock, Preserve)
         {
-            Offset (0x02), 
+            Offset (0x02),
             FU10,   48
         }
 
@@ -1312,12 +1312,12 @@ Package (NRSK)
 
         Field (RGN3, ByteAcc, NoLock, Preserve)
         {
-            FU30,   48, 
-            Offset (0x08), 
-            FU31,   16, 
-            Offset (0x0C), 
-            FU32,   16, 
-            Offset (0x10), 
+            FU30,   48,
+            Offset (0x08),
+            FU31,   16,
+            Offset (0x0C),
+            FU32,   16,
+            Offset (0x10),
             FU33,   48
         }
 
@@ -1361,19 +1361,18 @@ Package (NRSK)
             }
         If ((Local0 != Local1))
         {
-            ERR (Arg0, Z141, 0x0442, 0x00, 0x00, Local0, Local1)
+            ERR (Arg0, Z141, __LINE__, 0x00, 0x00, Local0, Local1)
         }
     }
 
     Method (ORC0, 0, Serialized)
     {
-        Name (TS, "ORC0")
         /* Global OpRegions */
 
         SRMT ("m700")
         If (Y220)
         {
-            M700 (TS)
+            M700 (__METHOD__)
         }
         Else
         {
@@ -1385,7 +1384,7 @@ Package (NRSK)
         SRMT ("m701")
         If (Y217)
         {
-            M701 (TS)
+            M701 (__METHOD__)
         }
         Else
         {
@@ -1395,13 +1394,13 @@ Package (NRSK)
         /* OpRegion Lengths */
 
         SRMT ("m702")
-        M702 (TS)
+        M702 (__METHOD__)
         /* Overlapping of OpRegions */
 
         SRMT ("m703")
         If (Y221)
         {
-            M703 (TS)
+            M703 (__METHOD__)
         }
         Else
         {
@@ -1413,7 +1412,7 @@ Package (NRSK)
         SRMT ("m704")
         If (Y222)
         {
-            M704 (TS)
+            M704 (__METHOD__)
         }
         Else
         {
@@ -1423,14 +1422,13 @@ Package (NRSK)
         /* Non-constant OpRegion arguments */
 
         SRMT ("m705")
-        M705 (TS)
+        M705 (__METHOD__)
         /* Non-Integer OpRegion arguments */
 
         SRMT ("m706")
-        M706 (TS)
+        M706 (__METHOD__)
         /* Overlapping OpRegions algorithm test */
 
         SRMT ("m707")
-        M707 (TS)
+        M707 (__METHOD__)
     }
-

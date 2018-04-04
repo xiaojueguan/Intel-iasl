@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -113,7 +113,7 @@
     })
     Name (P08B, Package (0x02)
     {
-        0x13, 
+        0x13,
         0x1B
     })
     Device (DV00)
@@ -197,7 +197,7 @@
             /* 0000 */  0x91, 0x92, 0x93, 0x94, 0x5F, 0x60, 0x61, 0x62,  // ...._`ab
             /* 0008 */  0x63, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10,  // c.......
             /* 0010 */  0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18,  // ........
-            /* 0018 */  0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20,  // ....... 
+            /* 0018 */  0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20,  // .......
             /* 0020 */  0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28,  // !"#$%&'(
             /* 0028 */  0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30,  // )*+,-./0
             /* 0030 */  0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,  // 12345678
@@ -225,7 +225,7 @@
             /* 0000 */  0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,  // ........
             /* 0008 */  0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10,  // ........
             /* 0010 */  0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18,  // ........
-            /* 0018 */  0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20,  // ....... 
+            /* 0018 */  0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x20,  // .......
             /* 0020 */  0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28,  // !"#$%&'(
             /* 0028 */  0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30,  // )*+,-./0
             /* 0030 */  0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,  // 12345678
@@ -261,15 +261,15 @@
         OperationRegion (R001, SystemMemory, 0x0100, 0x0100)
         Field (R001, ByteAcc, NoLock, Preserve)
         {
-            F001,   3, 
-            F002,   8, 
-            F003,   16, 
-            F004,   32, 
-            F005,/*33 */   33, 
-            F006,/*63 */   63, 
-            F007,/*64 */   64, 
-            F008,/*65 */   65, 
-            F009,   127, 
+            F001,   3,
+            F002,   8,
+            F003,   16,
+            F004,   32,
+            F005,/*33 */   33,
+            F006,/*63 */   63,
+            F007,/*64 */   64,
+            F008,/*65 */   65,
+            F009,   127,
             F00A,   257
                 /* f00b, 201*8, do it also */
         }
@@ -816,13 +816,13 @@
         If (EX00)
         {
             TMP0 = FLG2 /* \FLG2 */
-            CH03 (TS, Z064, 0x00, 0x0288, 0x00)
+            CH03 (TS, Z064, __LINE__, 0x00, 0x00)
         }
 
         Local7 = M482 (Local0, Local1, Local2, Local3, Local4, TMP0, Arg0)
         If (EX00)
         {
-            CH04 (TS, 0x00, 0xFF, Z064, 0x028E, 0x00, 0x00)
+            CH04 (__METHOD__, 0x00, 0xFF, Z064, __LINE__, 0x00, 0x00)
         }
         ElseIf (FLG1)
         {
@@ -854,13 +854,13 @@
 
             If (EX00)
             {
-                CH03 (TS, Z064, 0x02, 0x02A6, 0x00)
+                CH03 (TS, Z064, __LINE__, 0x00, 0x00)
             }
 
             Local7 = M482 (Local1, Local0, Local2, Local3, Local4, TMP0, Arg0)
             If (EX00)
             {
-                CH04 (TS, 0x00, 0xFF, Z064, 0x02AC, 0x00, 0x00)
+                CH04 (__METHOD__, 0x00, 0xFF, Z064, __LINE__, 0x00, 0x00)
             }
             ElseIf (FLG1)
             {
@@ -1119,11 +1119,11 @@
         Local1 = ObjectType (Arg2)
         If ((Local0 != Local1))
         {
-            ERR (Arg0, Z064, 0x037A, 0x00, 0x00, Local0, Local1)
+            ERR (Arg0, Z064, __LINE__, 0x00, 0x00, Local0, Local1)
         }
         ElseIf ((Arg1 != Arg2))
         {
-            ERR (Arg0, Z064, 0x037C, 0x00, 0x00, Arg1, Arg2)
+            ERR (Arg0, Z064, __LINE__, 0x00, 0x00, Arg1, Arg2)
         }
     }
 
@@ -1139,12 +1139,12 @@
         {
             If ((Arg2 != Local7))
             {
-                ERR (Arg0, Z064, 0x038B, 0x00, 0x00, Arg2, Local7)
+                ERR (Arg0, Z064, __LINE__, 0x00, 0x00, Arg2, Local7)
             }
         }
         ElseIf ((Arg2 != Local6))
         {
-            ERR (Arg0, Z064, 0x038F, 0x00, 0x00, Arg2, Local6)
+            ERR (Arg0, Z064, __LINE__, 0x00, 0x00, Arg2, Local6)
         }
     }
 
@@ -1292,13 +1292,13 @@
         If (EX00)
         {
             TMP0 = FLG2 /* \FLG2 */
-            CH03 (TS, Z064, 0x04, 0x0421, 0x00)
+            CH03 (TS, Z064, __LINE__, 0x00, 0x00)
         }
 
         Local7 = M482 (Local0, Local1, Local2, Local3, 0x00, TMP0, Arg0)
         If (EX00)
         {
-            CH04 (TS, 0x00, 0xFF, Z064, 0x0427, 0x00, 0x00)
+            CH04 (__METHOD__, 0x00, 0xFF, Z064, __LINE__, 0x00, 0x00)
         }
         ElseIf        /* Verify the result */
 
@@ -1313,4 +1313,3 @@
 
         Return (Local7)
     }
-

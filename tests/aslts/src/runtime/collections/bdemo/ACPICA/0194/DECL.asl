@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -78,7 +78,7 @@
             ToBuffer (B001, B000) /* \MFA7.B000 */
             If (!BCMP (B000, BB01))
             {
-                ERR ("", ZFFF, 0x44, 0x00, 0x00, B000, BB01)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, B000, BB01)
             }
         }
         Else
@@ -87,7 +87,7 @@
             ToBuffer (B000, B001) /* \MFA7.B001 */
             If (!BCMP (B001, BB00))
             {
-                ERR ("", ZFFF, 0x4A, 0x00, 0x00, B001, BB00)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, B001, BB00)
             }
         }
     }
@@ -97,4 +97,3 @@
         MFA7 (0x00)
         MFA7 (0x01)
     }
-

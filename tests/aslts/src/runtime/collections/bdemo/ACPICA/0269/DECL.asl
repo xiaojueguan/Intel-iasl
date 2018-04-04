@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -36,9 +36,9 @@
         Name (I001, 0x00)
         Name (P000, Package (0x04)
         {
-            0x01, 
-            0x02, 
-            0x03, 
+            0x01,
+            0x02,
+            0x03,
             0x04
         })
         I001 = 0x00
@@ -100,22 +100,21 @@
             Return (MADD (I000, M002 ()))
         }
 
-        CH03 ("", 0x00, 0x00, 0x5D, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         Local0 = MADD (I000, M001 ())
         If ((Local0 != 0x87654321))
         {
-            ERR ("", ZFFF, 0x62, 0x00, 0x00, Local0, C00E)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, C00E)
         }
 
         If ((I000 != 0x80000000))
         {
-            ERR ("", ZFFF, 0x66, 0x00, 0x00, Local0, C00E)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, C00E)
         }
 
         Debug = "Result:"
         Debug = Local0
         Debug = "i000:"
         Debug = I000 /* \M022.I000 */
-        CH03 ("", 0x00, 0x00, 0x6F, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
     }
-

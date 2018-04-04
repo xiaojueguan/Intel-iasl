@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -42,19 +42,18 @@
         Local0 = 0x19
         If ((Local0 != 0x19))
         {
-            ERR ("", ZFFF, 0x2D, 0x00, 0x00, Local0, 0x19)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, 0x19)
         }
 
         Local0 = 0x1A
         If ((Local0 != 0x1A))
         {
-            ERR ("", ZFFF, 0x32, 0x00, 0x00, Local0, 0x1A)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, 0x1A)
         }
 
         Local0 = 0x1B
         If ((Local0 != 0x1B))
         {
-            ERR ("", ZFFF, 0x37, 0x00, 0x00, Local0, 0x1B)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, 0x1B)
         }
     }
-

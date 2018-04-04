@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -57,7 +57,7 @@
         /* Store("ERROR 0: mdf2, after Return !!!", Debug) */
         }
 
-        ERR ("", ZFFF, 0x3C, 0x00, 0x00, 0x00, 0x00)
+        ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, 0x00, 0x00)
         MDF0 ()
         MDF1 ()
         Return (0x5678)
@@ -73,10 +73,10 @@
             Return (            /* ASL-compiler DOESN'T report Warning in this case!!! */
             /* And the Store operator below is actually processed!!! */
 Zero)
-            ERR ("", ZFFF, 0x52, 0x00, 0x00, 0x00, 0x00)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, 0x00, 0x00)
         }
 
-        ERR ("", ZFFF, 0x55, 0x00, 0x00, 0x00, 0x00)
+        ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, 0x00, 0x00)
         MDF0 ()
         MDF1 ()
         Return (Zero)
@@ -88,4 +88,3 @@ Zero)
         Debug = Local7
         MDF3 (0x01)
     }
-

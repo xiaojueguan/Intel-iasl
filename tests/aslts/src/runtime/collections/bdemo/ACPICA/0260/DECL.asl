@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -52,11 +52,11 @@
 
         Method (M000, 0, NotSerialized)
         {
-            CH03 ("", 0x00, 0x00, 0x3B, 0x00)
+            CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
             RFU0 = BUF0 /* \M029.BUF0 */
             If (CondRefOf (\AUXD, Local0))
             {
-                ERR ("", ZFFF, 0x40, 0x00, 0x00, 0x00, 0x00)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, 0x00, 0x00)
                 Return (Zero)
             }
 
@@ -65,7 +65,7 @@
             If (CondRefOf (\AUXD, Local0)){}
             Else
             {
-                ERR ("", ZFFF, 0x4A, 0x00, 0x00, 0x00, 0x00)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, 0x00, 0x00)
                 Return (Zero)
             }
 
@@ -73,7 +73,7 @@
             If ((Local1 != 0x0F))
             {
                 Debug = Local1
-                ERR ("", ZFFF, 0x51, 0x00, 0x00, Local1, 0x0F)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local1, 0x0F)
                 Return (Zero)
             }
 
@@ -81,13 +81,12 @@
             Debug = "SSDT unloaded"
             If (CondRefOf (\AUXD, Local0))
             {
-                ERR ("", ZFFF, 0x5A, 0x00, 0x00, 0x00, 0x00)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, 0x00, 0x00)
             }
 
-            CH03 ("", 0x00, 0x05, 0x5D, 0x00)
+            CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
             Return (Zero)
         }
 
         M000 ()
     }
-

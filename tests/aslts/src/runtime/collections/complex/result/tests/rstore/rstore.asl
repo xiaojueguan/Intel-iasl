@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -34,7 +34,6 @@
 
     Method (M690, 0, Serialized)
     {
-        Name (TS, "m690")
         Name (TERR, "test error")
         Name (I000, 0x00)
         /* Common testing control */
@@ -75,34 +74,34 @@
                             {
                                 /* Constant (like Store(Src0, Zero)) */
 
-                                M010 (Concatenate (TS, "-m010"), LPC0, LPC1)
+                                M010 (Concatenate (__METHOD__, "-m010"), LPC0, LPC1)
                             }
                             ElseIf ((Arg2 == 0x01))
                             {
                                 /* Named Object */
 
-                                M011 (Concatenate (TS, "-m011"), LPC0, LPC1)
+                                M011 (Concatenate (__METHOD__, "-m011"), LPC0, LPC1)
                             }
                             ElseIf ((Arg2 == 0x02))
                             {
                                 /* ArgX Object */
                                 /* Store(Src0, arg3) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x53, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x03))
                             {
                                 /* LocalX Object */
 
-                                M013 (Concatenate (TS, "-m013"), LPC0, LPC1)
+                                M013 (Concatenate (__METHOD__, "-m013"), LPC0, LPC1)
                             }
                             ElseIf ((Arg2 == 0x04))
                             {
                                 /* Reference in ArgX Object */
                                 /* Store(Src0, arg4) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x5C, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x05))
@@ -110,13 +109,13 @@
                                 /* Elemenf of a Package */
                                 /* Store(Src0, Index(p680, 0)) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x62, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             Else
                             {
                                 Debug = "Unexpected Kind of the Object to store into"
-                                ERR (TERR, Z123, 0x66, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                         }
@@ -129,35 +128,35 @@
                                 /* Constant */
                                 /* Store(Src0, "") */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x70, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x01))
                             {
                                 /* Named Object */
 
-                                M021 (Concatenate (TS, "-m021"), LPC0, LPC1)
+                                M021 (Concatenate (__METHOD__, "-m021"), LPC0, LPC1)
                             }
                             ElseIf ((Arg2 == 0x02))
                             {
                                 /* ArgX Object */
                                 /* Store(Src0, arg3) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x79, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x03))
                             {
                                 /* LocalX Object */
 
-                                M023 (Concatenate (TS, "-m023"), LPC0, LPC1)
+                                M023 (Concatenate (__METHOD__, "-m023"), LPC0, LPC1)
                             }
                             ElseIf ((Arg2 == 0x04))
                             {
                                 /* Reference in ArgX Object */
                                 /* Store(Src0, arg4) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x82, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x05))
@@ -165,13 +164,13 @@
                                 /* Elemenf of a Package */
                                 /* Store(Src0, Index(p680, 0)) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x88, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             Else
                             {
                                 Debug = "Unexpected Kind of the Object to store into"
-                                ERR (TERR, Z123, 0x8C, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                         }
@@ -184,21 +183,21 @@
                                 /* Constant */
                                 /* Store(Src0, Buffer(1){}) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x96, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x01))
                             {
                                 /* Named Object */
 
-                                M031 (Concatenate (TS, "-m031"), LPC0, LPC1)
+                                M031 (Concatenate (__METHOD__, "-m031"), LPC0, LPC1)
                             }
                             ElseIf ((Arg2 == 0x02))
                             {
                                 /* ArgX Object */
                                 /* Store(Src0, arg3) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0x9F, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x03))
@@ -206,7 +205,7 @@
                                 /* LocalX Object */
                                 /* Store(Src0, Local2) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0xA5, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x04))
@@ -214,7 +213,7 @@
                                 /* Reference in ArgX Object */
                                 /* Store(Src0, arg4) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0xAB, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x05))
@@ -222,13 +221,13 @@
                                 /* Elemenf of a Package */
                                 /* Store(Src0, Index(p680, 0)) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0xB1, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             Else
                             {
                                 Debug = "Unexpected Kind of the Object to store into"
-                                ERR (TERR, Z123, 0xB5, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                         }
@@ -237,7 +236,7 @@
                             /* Package */
                             /* Store(Src0, p680) */
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0xBC, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -249,23 +248,23 @@
                                 /* Constant (like Store(Src0, Zero)) */
 
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0xC4, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x01))
                             {
                                 /* Named Object */
 
-                                M0E0 (Concatenate (TS, "-m0e0"), LPC0, LPC1)
-                                M0E1 (Concatenate (TS, "-m0e1"), LPC0, LPC1)
-                                M0E2 (Concatenate (TS, "-m0e2"), LPC0, LPC1)
+                                M0E0 (Concatenate (__METHOD__, "-m0e0"), LPC0, LPC1)
+                                M0E1 (Concatenate (__METHOD__, "-m0e1"), LPC0, LPC1)
+                                M0E2 (Concatenate (__METHOD__, "-m0e2"), LPC0, LPC1)
                             }
                             ElseIf ((Arg2 == 0x02))
                             {
                                 /* ArgX Object */
                                 /* Store(Src0, arg3) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0xCF, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x03))
@@ -273,7 +272,7 @@
                                 /* LocalX Object */
                                 /* Store(Src0, Local2) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0xD5, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x04))
@@ -281,7 +280,7 @@
                                 /* Reference in ArgX Object */
                                 /* Store(Src0, arg4) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0xDB, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             ElseIf ((Arg2 == 0x05))
@@ -289,20 +288,20 @@
                                 /* Elemenf of a Package */
                                 /* Store(Src0, Index(p680, 0)) */
                                 Debug = "Not implemented"
-                                ERR (TERR, Z123, 0xE1, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                             Else
                             {
                                 Debug = "Unexpected Kind of the Object to store into"
-                                ERR (TERR, Z123, 0xE5, 0x00, 0x00, Arg1, Arg2)
+                                ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                                 Return (0x01)
                             }
                         }
                         Default
                         {
                             Debug = "Unexpected type of the Object to store into"
-                            ERR (TERR, Z123, 0xEB, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -325,9 +324,9 @@
         {
             Name (P000, Package (0x04)
             {
-                Zero, 
-                One, 
-                Ones, 
+                Zero,
+                One,
+                Ones,
                 0xFE7CB391D650A284
             })
             /* Return Indexed reference to ASL constant specified */
@@ -339,9 +338,9 @@
                 {
                     Return (Index (Package (0x04)
                         {
-                            Zero, 
-                            One, 
-                            Ones, 
+                            Zero,
+                            One,
+                            Ones,
                             0xFE7CB391D650A284
                         }, Arg0))
                 }
@@ -387,7 +386,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x011D, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -395,7 +394,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0122, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -442,7 +441,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x013D, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -450,7 +449,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0142, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -502,7 +501,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0162, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -510,7 +509,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0167, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -554,7 +553,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x017F, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -562,7 +561,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0184, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -609,7 +608,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x019A, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -617,7 +616,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x019F, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -657,7 +656,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x01B5, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -665,7 +664,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x01BA, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -715,7 +714,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x01D5, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -723,7 +722,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x01DA, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -767,7 +766,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x01F2, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -775,7 +774,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x01F7, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -819,7 +818,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x020F, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -827,7 +826,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0214, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -871,7 +870,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x022C, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -879,7 +878,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0231, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -892,7 +891,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x023C, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -971,7 +970,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0270, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -979,7 +978,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0275, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -1054,7 +1053,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x02A6, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -1062,7 +1061,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x02AB, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -1132,7 +1131,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x02D8, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -1140,7 +1139,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x02DD, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -1218,7 +1217,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0311, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -1226,7 +1225,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0316, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -1273,7 +1272,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x032C, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -1281,7 +1280,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0331, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -1419,7 +1418,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0387, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -1427,7 +1426,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x038C, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -1499,7 +1498,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x03B9, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -1507,7 +1506,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x03BE, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -1579,7 +1578,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x03EB, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -1587,7 +1586,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x03F0, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -1659,7 +1658,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x041D, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -1667,7 +1666,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0422, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -1680,7 +1679,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x042D, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -1755,7 +1754,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x045B, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -1763,7 +1762,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0460, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -1834,7 +1833,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x048B, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -1842,7 +1841,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0490, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -1907,7 +1906,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x04B7, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -1915,7 +1914,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x04BC, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -1980,7 +1979,7 @@
                         Default
                         {
                             Debug = "Unexpected type of the result Object to be stored"
-                            ERR (TERR, Z123, 0x04E1, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2033,7 +2032,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x04FA, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2041,7 +2040,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x04FF, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2169,7 +2168,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0545, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2177,7 +2176,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x054A, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2303,7 +2302,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x058F, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2311,7 +2310,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0594, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2378,7 +2377,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x05BA, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2386,7 +2385,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x05BF, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2399,7 +2398,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x05CA, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -2475,7 +2474,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x05FA, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -2483,7 +2482,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x05FF, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -2555,7 +2554,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x062C, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -2563,7 +2562,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0631, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -2624,7 +2623,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0656, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2632,7 +2631,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x065B, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2701,7 +2700,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0684, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2709,7 +2708,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0689, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2756,7 +2755,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x069F, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2764,7 +2763,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x06A4, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2896,7 +2895,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x06F2, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2904,7 +2903,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x06F7, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -2973,7 +2972,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0720, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -2981,7 +2980,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0725, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -3050,7 +3049,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x074E, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -3058,7 +3057,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0753, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -3127,7 +3126,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x077D, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -3135,7 +3134,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0782, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -3148,7 +3147,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x078D, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -3268,7 +3267,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x07BD, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -3276,7 +3275,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x07C2, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -3392,7 +3391,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x07EF, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -3400,7 +3399,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x07F4, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -3489,7 +3488,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x081B, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -3497,7 +3496,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0820, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -3610,7 +3609,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0849, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -3618,7 +3617,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x084E, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -3665,7 +3664,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0864, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -3673,7 +3672,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0869, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -3893,7 +3892,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x08B7, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -3901,7 +3900,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x08BC, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4014,7 +4013,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x08E5, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4022,7 +4021,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x08EA, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4135,7 +4134,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0913, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4143,7 +4142,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0918, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4256,7 +4255,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0942, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4264,7 +4263,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0947, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4277,7 +4276,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x0952, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -4328,7 +4327,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0972, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -4336,7 +4335,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0977, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -4383,7 +4382,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0993, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -4391,7 +4390,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0998, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -4484,7 +4483,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x09DD, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4492,7 +4491,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x09E2, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4536,7 +4535,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x09FA, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4544,7 +4543,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x09FF, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4591,7 +4590,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0A15, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4599,7 +4598,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0A1A, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4681,7 +4680,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0A46, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4689,7 +4688,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0A4B, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4733,7 +4732,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0A63, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4741,7 +4740,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0A68, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4785,7 +4784,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0A80, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4793,7 +4792,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0A85, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4848,7 +4847,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0AA6, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -4856,7 +4855,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0AAB, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -4869,7 +4868,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x0AB6, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -4920,7 +4919,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0AD6, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -4928,7 +4927,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0ADB, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -4975,7 +4974,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0AF7, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -4983,7 +4982,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0AFC, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -5148,7 +5147,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0B5F, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5156,7 +5155,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0B64, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5200,7 +5199,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0B7C, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5208,7 +5207,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0B81, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5255,7 +5254,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0B97, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5263,7 +5262,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0B9C, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5345,7 +5344,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0BC8, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5353,7 +5352,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0BCD, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5397,7 +5396,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0BE5, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5405,7 +5404,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0BEA, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5449,7 +5448,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0C02, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5457,7 +5456,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0C07, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5556,7 +5555,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0C38, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5564,7 +5563,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0C3D, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5577,7 +5576,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x0C48, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -5628,7 +5627,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0C68, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -5636,7 +5635,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0C6D, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -5683,7 +5682,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0C89, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -5691,7 +5690,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0C8E, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -5828,7 +5827,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0CDD, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5836,7 +5835,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0CE2, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5880,7 +5879,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0CFA, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5888,7 +5887,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0CFF, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -5935,7 +5934,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0D15, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -5943,7 +5942,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0D1A, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6025,7 +6024,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0D46, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6033,7 +6032,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0D4B, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6077,7 +6076,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0D63, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6085,7 +6084,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0D68, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6129,7 +6128,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0D80, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6137,7 +6136,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0D85, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6207,7 +6206,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0DA6, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6215,7 +6214,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0DAB, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6228,7 +6227,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x0DB6, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -6303,7 +6302,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0DE4, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -6311,7 +6310,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0DE9, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -6382,7 +6381,7 @@
                         /* Field Unit */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0E14, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
                     Case (0x0E)
@@ -6390,7 +6389,7 @@
                         /* Buffer Field */
 
                         Debug = "Not implemented"
-                        ERR (TERR, Z123, 0x0E19, 0x00, 0x00, Arg1, Arg2)
+                        ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                         Return (0x01)
                     }
 
@@ -6455,7 +6454,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0E40, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6463,7 +6462,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0E45, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6528,7 +6527,7 @@
                         Default
                         {
                             Debug = "Unexpected type of the result Object to be stored"
-                            ERR (TERR, Z123, 0x0E6A, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6581,7 +6580,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0E83, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6589,7 +6588,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0E88, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6717,7 +6716,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0ECE, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6725,7 +6724,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0ED3, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6851,7 +6850,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0F18, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6859,7 +6858,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0F1D, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6926,7 +6925,7 @@
                             /* Field Unit */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0F43, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
                         Case (0x0E)
@@ -6934,7 +6933,7 @@
                             /* Buffer Field */
 
                             Debug = "Not implemented"
-                            ERR (TERR, Z123, 0x0F48, 0x00, 0x00, Arg1, Arg2)
+                            ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                             Return (0x01)
                         }
 
@@ -6947,7 +6946,7 @@
                 Default
                 {
                     Debug = "Unexpected way to obtain some result Object"
-                    ERR (TERR, Z123, 0x0F53, 0x00, 0x00, Arg1, Arg2)
+                    ERR (TERR, Z123, __LINE__, 0x00, 0x00, Arg1, Arg2)
                     Return (0x01)
                 }
 
@@ -6956,13 +6955,13 @@
             Return (0x00)
         }
 
-        M100 (Concatenate (TS, "-m100-S-IntC"), 0x01, 0x00)
-        M100 (Concatenate (TS, "-m100-S-IntN"), 0x01, 0x01)
-        M100 (Concatenate (TS, "-m100-S-IntL"), 0x01, 0x03)
-        M100 (Concatenate (TS, "-m100-S-StrN"), 0x02, 0x01)
-        M100 (Concatenate (TS, "-m100-S-StrL"), 0x02, 0x03)
-        M100 (Concatenate (TS, "-m100-S-BufN"), 0x03, 0x01)
-        M100 (Concatenate (TS, "-m100-S-BFldN"), 0x0E, 0x01)
+        M100 (Concatenate (__METHOD__, "-m100-S-IntC"), 0x01, 0x00)
+        M100 (Concatenate (__METHOD__, "-m100-S-IntN"), 0x01, 0x01)
+        M100 (Concatenate (__METHOD__, "-m100-S-IntL"), 0x01, 0x03)
+        M100 (Concatenate (__METHOD__, "-m100-S-StrN"), 0x02, 0x01)
+        M100 (Concatenate (__METHOD__, "-m100-S-StrL"), 0x02, 0x03)
+        M100 (Concatenate (__METHOD__, "-m100-S-BufN"), 0x03, 0x01)
+        M100 (Concatenate (__METHOD__, "-m100-S-BFldN"), 0x0E, 0x01)
     }
 
     /* Run-method */
@@ -6977,4 +6976,3 @@
 
         M690 ()
     }
-

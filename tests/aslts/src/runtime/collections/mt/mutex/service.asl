@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -78,7 +78,7 @@
         Name (IX02, 0x00)
         If ((Arg3 >= Arg1))
         {
-            ERR ("m210", Z153, 0x55, 0x00, 0x00, Arg3, Arg1)
+            ERR ("m210", Z153, __LINE__, 0x00, 0x00, Arg3, Arg1)
             Return (Zero)
         }
 
@@ -96,7 +96,7 @@
         IX02 = (Arg3 + SZ01) /* \M210.SZ01 */
         If ((IX02 > Arg1))
         {
-            ERR ("m210", Z153, 0x61, 0x00, 0x00, IX02, Arg1)
+            ERR ("m210", Z153, __LINE__, 0x00, 0x00, IX02, Arg1)
             Debug = Arg1
             Debug = Arg3
             Debug = Arg4
@@ -655,4 +655,3 @@
 
         Return (NUM) /* \M213.NUM_ */
     }
-

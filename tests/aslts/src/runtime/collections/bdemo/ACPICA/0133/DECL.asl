@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -43,7 +43,7 @@
         MF21 (Local0)
         If ((ID13 != 0x77))
         {
-            ERR ("", ZFFF, 0x2F, 0x00, 0x00, ID13, 0x77)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, ID13, 0x77)
         }
 
         /* Writing by Index to String */
@@ -52,7 +52,7 @@
         MF21 (Local0)
         If ((SD05 != "qwer0000"))
         {
-            ERR ("", ZFFF, 0x37, 0x00, 0x00, SD05, "qwer0000")
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, SD05, "qwer0000")
         }
 
         /* Writing by Index to Buffer */
@@ -64,7 +64,7 @@
                          0x01, 0x77, 0x03, 0x04                           // .w..
                     }))
         {
-            ERR ("", ZFFF, 0x3F, 0x00, 0x00, BD09, Buffer (0x04)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, BD09, Buffer (0x04)
                 {
                      0x01, 0x77, 0x03, 0x04                           // .w..
                 })
@@ -78,7 +78,6 @@
         Local1 = DerefOf (Local0)
         If ((Local1 != 0x77))
         {
-            ERR ("", ZFFF, 0x4B, 0x00, 0x00, Local1, 0x77)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local1, 0x77)
         }
     }
-

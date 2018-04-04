@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -50,10 +50,9 @@
             Return (Local0)
         }
 
-        CH03 ("", 0x00, 0x00, 0x34, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         Local0 = M000 ()
-        CH04 ("", 0x00, 0xFF, 0x00, 0x36, 0x00, 0x00)
+        CH04 (__METHOD__, 0x00, 0xFF, 0x00, __LINE__, 0x00, 0x00)
         Debug = DerefOf (Local0)
-        CH04 ("", 0x00, 0xFF, 0x00, 0x38, 0x00, 0x00)
+        CH04 (__METHOD__, 0x00, 0xFF, 0x00, __LINE__, 0x00, 0x00)
     }
-

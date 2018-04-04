@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -44,20 +44,19 @@
         })
         /* Empty buffer */
 
-        CH03 ("", 0x00, 0x00, 0x2A, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         Local0 = 0x00
         Local1 = Buffer (Local0){}
         Local2 = ConcatenateResTemplate (RT00, Local1)
         If ((Local2 != B000))
         {
-            ERR ("", ZFFF, 0x32, 0x00, 0x00, Local2, B000)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local2, B000)
         }
 
         If ((RT00 != B000))
         {
-            ERR ("", ZFFF, 0x36, 0x00, 0x00, RT00, B000)
+            ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, RT00, B000)
         }
 
-        CH03 ("", 0x00, 0x03, 0x39, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
     }
-

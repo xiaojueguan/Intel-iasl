@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -32,9 +32,8 @@
      */
     Method (MFB1, 0, NotSerialized)
     {
-        CH03 ("", 0x00, 0x00, 0x25, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         Local1 = "0x     12345678"
         ToInteger (Local1, Local0)
-        CH04 ("", 0x00, 0x22, 0x00, 0x28, 0x00, 0x00) /* AE_BAD_HEX_CONSTANT */
+        CH04 (__METHOD__, 0x00, 0x22, 0x00, __LINE__, 0x00, 0x00) /* AE_BAD_HEX_CONSTANT */
     }
-

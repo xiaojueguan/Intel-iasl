@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -42,7 +42,7 @@
      * The value resulting from this opcode is 64-bits.
      * It is monotonically increasing, but it is not guaranteed
      * that every result will be unique,  i.e. two subsequent
-     * instructions may return the same value.  The only guarantee
+     * instructions may return the same value. The only guarantee
      * is that each subsequent evaluation will be greater-than or
      * equal to the previous ones.
      *
@@ -76,7 +76,7 @@
             {
                 /* if (Local5) { */
 
-                ERR ("", ZFFF, 0x56, 0x00, 0x00, Local0, Local7)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, Local7)
                 Debug = Concatenate ("Cur   timer    : 0x", Local7)
                 Debug = Concatenate ("Start timer    : 0x", Local0)
                 Debug = Concatenate ("Step of cycle  : 0x", TSLP)
@@ -97,4 +97,3 @@
         Local0 = TMR0 (Local6)
         Debug = Concatenate ("Run time (in seconds): 0x", Local0)
     }
-

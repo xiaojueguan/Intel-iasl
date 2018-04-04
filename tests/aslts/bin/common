@@ -137,6 +137,7 @@ get_mode_string()
 		echo "$OPTMODE"
 	fi
 }
+export -f get_mode_string
 
 # Return string describing mode of run
 # arg1 - bitmap of mode
@@ -574,6 +575,7 @@ cent_units_to_cent_str()
 
 	echo "$rval"
 }
+export -f cent_units_to_cent_str
 
 # Convert time to centisecond units
 #
@@ -589,7 +591,7 @@ cent_units_to_cent_str()
 #
 convert_string_to_centisecond_units()
 {
-	local n0=0 h0=00 m0=00 s0=00 csec0=00 sec0=0 total0=0
+	local n0=0 h0=0 m0=0 s0=0 csec0=0 sec0=0 total0=0
 
 	n0=`echo "$1" | awk -F: '{ print NF}'`
 
@@ -679,8 +681,8 @@ diff_of_str_times()
 # Constants
 
 # Bitmap: 1 - 64, 2 - opt
-FLAG64=1
-FLAGOPT=2
+export FLAG64=1
+export FLAGOPT=2
 NORM32=0
 NORM64=1
 OPT32=2

@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -51,9 +51,9 @@
 
         Field (IST0, ByteAcc, NoLock, Preserve)
         {
-            SIG,    32, 
-            LENG,   32, 
-            REV,    8, 
+            SIG,    32,
+            LENG,   32,
+            REV,    8,
             SUM,    8
         }
 
@@ -67,9 +67,9 @@
             /* "Incorrect checksum" ACPI warning is expected */
 
             Load (RFU0, HI0) /* \D283.TST0.HI0_ */
-            CH03 ("", 0x00, 0x01, 0x49, 0x00)
+            CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
             Unload (HI0)
-            CH03 ("", 0x00, 0x02, 0x4D, 0x00)
+            CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         }
     }
 
@@ -77,4 +77,3 @@
     {
         \D283.TST0 ()
     }
-

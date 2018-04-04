@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -171,8 +171,8 @@
         Name (IND3, 0x00)
         Name (PAC4, Package (0x03)
         {
-            "Store", 
-            "Copyobject", 
+            "Store",
+            "Copyobject",
             "Optional"
         })
         Name (TERR, "-test error")
@@ -277,7 +277,7 @@
                     Local0 = SizeOf (BUF1)
                     If ((Local0 != 0x11))
                     {
-                        ERR (Concatenate (Arg0, TERR), Z126, 0x0103, 0x00, 0x00, Local0, 0x11)
+                        ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Local0, 0x11)
                         Return (0x01)
                     }
 
@@ -343,13 +343,13 @@
 
                 Default
                 {
-                    ERR (Concatenate (Arg0, TERR), Z126, 0x0133, 0x00, 0x00, Arg1, 0x00)
+                    ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg1, 0x00)
                     Return (0x01)
                 }
 
             }
 
-            If (CH03 (Arg0, Z126, 0x03, 0x0137, 0x00))
+            If (CH03 (Arg0, Z126, __LINE__, 0x00, 0x00))
             {
                 /*Exception during preparing of Target Object */
 
@@ -361,7 +361,7 @@
             {
                 /* ObjectType of Target can not be set up */
 
-                ERR (Arg0, Z126, 0x013F, 0x00, 0x00, Local0, Arg1)
+                ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Local0, Arg1)
                 Return (0x01)
             }
 
@@ -401,13 +401,13 @@
 
                 Default
                 {
-                    ERR (Concatenate (Arg0, TERR), Z126, 0x015C, 0x00, 0x00, Arg1, 0x00)
+                    ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg1, 0x00)
                     Return (0x01)
                 }
 
             }
 
-            If (CH03 (Arg0, Z126, 0x06, 0x0160, 0x00))
+            If (CH03 (Arg0, Z126, __LINE__, 0x00, 0x00))
             {
                 /* Exception during preparing of Source Object */
 
@@ -419,7 +419,7 @@
             {
                 /* ObjectType of Source can not be set up */
 
-                ERR (Arg0, Z126, 0x0168, 0x00, 0x00, Local0, Arg1)
+                ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Local0, Arg1)
                 Return (0x01)
             }
 
@@ -436,7 +436,7 @@
             {
                 /* ObjectType of Source object is corrupted */
 
-                ERR (Arg0, Z126, 0x0177, 0x00, 0x00, Local0, Arg1)
+                ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Local0, Arg1)
                 Return (0x01)
             }
 
@@ -458,7 +458,7 @@
 
                 Default
                 {
-                    ERR (Arg0, Z126, 0x0187, 0x00, 0x00, Arg1, 0x00)
+                    ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Arg1, 0x00)
                     Return (0x01)
                 }
 
@@ -468,7 +468,7 @@
             {
                 /* Mismatch of Source Type against specified one */
 
-                ERR (Arg0, Z126, 0x018E, 0x00, 0x00, Local0, Arg1)
+                ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Local0, Arg1)
                 If (STCS)
                 {
                     M000 (0x03, 0x01000000, Local0, Arg0)
@@ -486,13 +486,13 @@
                     {
                         If ((INT0 != DerefOf (Arg3)))
                         {
-                            ERR (Arg0, Z126, 0x0196, 0x00, 0x00, INT0, DerefOf (Arg3))
+                            ERR (Arg0, Z126, __LINE__, 0x00, 0x00, INT0, DerefOf (Arg3))
                             Return (0x01)
                         }
 
                         If ((DerefOf (Arg2) != INT0))
                         {
-                            ERR (Arg0, Z126, 0x019A, 0x00, 0x00, DerefOf (Arg2), INT0)
+                            ERR (Arg0, Z126, __LINE__, 0x00, 0x00, DerefOf (Arg2), INT0)
                             Return (0x01)
                         }
                     }
@@ -500,13 +500,13 @@
                     {
                         If ((STR0 != DerefOf (Arg3)))
                         {
-                            ERR (Arg0, Z126, 0x01A0, 0x00, 0x00, STR0, DerefOf (Arg3))
+                            ERR (Arg0, Z126, __LINE__, 0x00, 0x00, STR0, DerefOf (Arg3))
                             Return (0x01)
                         }
 
                         If ((DerefOf (Arg2) != STR0))
                         {
-                            ERR (Arg0, Z126, 0x01A4, 0x00, 0x00, DerefOf (Arg2), STR0)
+                            ERR (Arg0, Z126, __LINE__, 0x00, 0x00, DerefOf (Arg2), STR0)
                             Return (0x01)
                         }
                     }
@@ -514,13 +514,13 @@
                     {
                         If ((BUF0 != DerefOf (Arg3)))
                         {
-                            ERR (Arg0, Z126, 0x01AA, 0x00, 0x00, BUF0, DerefOf (Arg3))
+                            ERR (Arg0, Z126, __LINE__, 0x00, 0x00, BUF0, DerefOf (Arg3))
                             Return (0x01)
                         }
 
                         If ((DerefOf (Arg2) != BUF0))
                         {
-                            ERR (Arg0, Z126, 0x01AE, 0x00, 0x00, DerefOf (Arg2), BUF0)
+                            ERR (Arg0, Z126, __LINE__, 0x00, 0x00, DerefOf (Arg2), BUF0)
                             Return (0x01)
                         }
                     }
@@ -558,12 +558,12 @@
                     {
                         If (X170)
                         {
-                            ERR (Arg0, Z126, 0x01CA, 0x00, 0x00, Local2, Arg2)
+                            ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Local2, Arg2)
                         }
                     }
                     Else
                     {
-                        ERR (Arg0, Z126, 0x01CD, 0x00, 0x00, Local2, Arg2)
+                        ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Local2, Arg2)
                     }
 
                     If (STCS)
@@ -582,14 +582,14 @@
                 {
                     /* Types mismatch Result/Target on storing */
 
-                    ERR (Arg0, Z126, 0x01D8, 0x00, 0x00, Local2, Arg3)
+                    ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Local2, Arg3)
                     Return (0x01)
                 }
                 ElseIf ((Local2 != 0x03))
                 {
                     /* Types mismatch Result/Target on storing */
                     /* Test fixed type Objects are converted to Buffer */
-                    ERR (Arg0, Z126, 0x01DD, 0x00, 0x00, Local2, 0x03)
+                    ERR (Arg0, Z126, __LINE__, 0x00, 0x00, Local2, 0x03)
                     Return (0x01)
                 }
 
@@ -618,12 +618,12 @@
                 {
                     If (X194)
                     {
-                        ERR (Arg0, Z126, 0x01F1, 0x00, 0x00, DerefOf (Arg1), Local7)
+                        ERR (Arg0, Z126, __LINE__, 0x00, 0x00, DerefOf (Arg1), Local7)
                     }
                 }
                 Else
                 {
-                    ERR (Arg0, Z126, 0x01F4, 0x00, 0x00, DerefOf (Arg1), Local7)
+                    ERR (Arg0, Z126, __LINE__, 0x00, 0x00, DerefOf (Arg1), Local7)
                 }
 
                 Return (0x01)
@@ -648,7 +648,7 @@
 
             Local6 = DerefOf (Arg6 [0x00])
             Concatenate (Arg0, "-", Arg0)
-            Concatenate (Arg0, Concatenate (Mid (Local6, 0x00, 0x02), Concatenate (Mid (Arg4, 0x00, 
+            Concatenate (Arg0, Concatenate (Mid (Local6, 0x00, 0x02), Concatenate (Mid (Arg4, 0x00,
                 0x02), Concatenate (Mid (Arg2, 0x00, 0x02), Mid (Arg3, 0x00, 0x02)
                 ))), Arg0)
             If (STCS)
@@ -663,7 +663,7 @@
             {
                 /* Source Object can not be prepared */
 
-                ERR (Concatenate (Arg0, TERR), Z126, 0x0212, 0x00, 0x00, Arg3, 0x00)
+                ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg3, 0x00)
                 Return (0x01)
             }
 
@@ -676,7 +676,7 @@
 
                 Field (OPR0, ByteAcc, NoLock, Preserve)
                 {
-                    FLUX,   69, 
+                    FLUX,   69,
                     FLU1,   69
                 }
 
@@ -698,7 +698,7 @@
             {
                 /* Target Object can not be prepared */
 
-                ERR (Concatenate (Arg0, TERR), Z126, 0x0223, 0x00, 0x00, Arg2, 0x00)
+                ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg2, 0x00)
                 Return (0x01)
             }
 
@@ -823,7 +823,7 @@
                 {
                     /* Unexpected Kind of Op (0 - Store, ...) */
 
-                    ERR (Concatenate (Arg0, TERR), Z126, 0x0249, 0x00, 0x00, Arg4, 0x00)
+                    ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg4, 0x00)
                     Return (0x01)
                 }
             }
@@ -946,7 +946,7 @@
                 {
                     /* Unexpected Kind of Op (0 - Store, ...) */
 
-                    ERR (Concatenate (Arg0, TERR), Z126, 0x026D, 0x00, 0x00, Arg4, 0x00)
+                    ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg4, 0x00)
                     Return (0x01)
                 }
             }
@@ -1065,7 +1065,7 @@
             {
                 /* Unexpected Kind of Op (0 - Store, ...) */
 
-                ERR (Concatenate (Arg0, TERR), Z126, 0x0291, 0x00, 0x00, Arg4, 0x00)
+                ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg4, 0x00)
                 Return (0x01)
             }
 
@@ -1081,7 +1081,7 @@
                     }
                 }
             }
-            ElseIf (CH03 (Arg0, Z126, 0x1B, 0x029A, Arg2))
+            ElseIf (CH03 (Arg0, Z126, __LINE__, 0x00, Arg2))
             {
                 /* Storing caused unexpected exception */
 
@@ -1133,7 +1133,7 @@
             /* Retrieve index of the verified Explicit conversion Operator */
             Local6 = DerefOf (Arg6 [0x00])
             Concatenate (Arg0, "-", Arg0)
-            Concatenate (Arg0, Concatenate (Mid (Local6, 0x00, 0x02), Concatenate (Mid (Arg4, 0x00, 
+            Concatenate (Arg0, Concatenate (Mid (Local6, 0x00, 0x02), Concatenate (Mid (Arg4, 0x00,
                 0x02), Concatenate (Mid (Arg2, 0x00, 0x02), Mid (Arg3, 0x00, 0x02)
                 ))), Arg0)
             If (STCS)
@@ -1148,7 +1148,7 @@
             {
                 /* Source Object can not be prepared */
 
-                ERR (Concatenate (Arg0, TERR), Z126, 0x02CA, 0x00, 0x00, Arg3, 0x00)
+                ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg3, 0x00)
                 Return (0x01)
             }
 
@@ -1159,7 +1159,7 @@
             {
                 /* Target Object can not be prepared */
 
-                ERR (Concatenate (Arg0, TERR), Z126, 0x02D2, 0x00, 0x00, Arg2, 0x00)
+                ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg2, 0x00)
                 Return (0x01)
             }
 
@@ -1280,7 +1280,7 @@
             {
                 /* Unexpected Kind of Op (0 - Store, ...) */
 
-                ERR (Concatenate (Arg0, TERR), Z126, 0x02F7, 0x00, 0x00, Arg4, 0x00)
+                ERR (Concatenate (Arg0, TERR), Z126, __LINE__, 0x00, 0x00, Arg4, 0x00)
                 Return (0x01)
             }
 
@@ -1296,7 +1296,7 @@
                     }
                 }
             }
-            ElseIf (CH03 (Arg0, Z126, 0x20, 0x0300, Arg2))
+            ElseIf (CH03 (Arg0, Z126, __LINE__, 0x00, Arg2))
             {
                 /* Storing caused unexpected exception */
 
@@ -1333,76 +1333,76 @@
         {
             /* index of the Operator */
 
-            0x00, 
+            0x00,
             /* SRC0 initial value */
 
-            0xFEDCBA9876543210, 
+            0xFEDCBA9876543210,
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            0xFEDCBA9876543210, 
+            0xFEDCBA9876543210,
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543210, 
-                "76543210", 
+                0x00,
+                0xFEDCBA9876543210,
+                "76543210",
                 Buffer (0x11)
                 {
                      0x10, 0x32, 0x54, 0x76                           // .2Tv
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x10, 0x32, 0x54, 0x76                           // .2Tv
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x10, 0x32, 0x54, 0x76                           // .2Tv
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -1410,76 +1410,76 @@
         {
             /* index of the Operator */
 
-            0x00, 
+            0x00,
             /* SRC0 initial value */
 
-            0xFEDCBA9876543210, 
+            0xFEDCBA9876543210,
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            0xFEDCBA9876543210, 
+            0xFEDCBA9876543210,
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543210, 
-                "FEDCBA9876543210", 
+                0x00,
+                0xFEDCBA9876543210,
+                "FEDCBA9876543210",
                 Buffer (0x11)
                 {
                      0x10, 0x32, 0x54, 0x76, 0x98, 0xBA, 0xDC, 0xFE   // .2Tv....
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x10, 0x32, 0x54, 0x76, 0x98, 0xBA, 0xDC, 0xFE   // .2Tv....
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x10, 0x32, 0x54, 0x76, 0x98, 0xBA, 0xDC, 0xFE   // .2Tv....
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -1489,76 +1489,76 @@
         {
             /* index of the Operator */
 
-            0x01, 
+            0x01,
             /* SRC0 initial value */
 
-            0x055F2CC0, 
+            0x055F2CC0,
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            0x90123456, 
+            0x90123456,
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0x90123456, 
-                "90123456", 
+                0x00,
+                0x90123456,
+                "90123456",
                 Buffer (0x11)
                 {
                      0x56, 0x34, 0x12, 0x90                           // V4..
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x56, 0x34, 0x12, 0x90                           // V4..
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x56, 0x34, 0x12, 0x90                           // V4..
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -1566,76 +1566,76 @@
         {
             /* index of the Operator */
 
-            0x01, 
+            0x01,
             /* SRC0 initial value */
 
-            0x000D76162EE9EC35, 
+            0x000D76162EE9EC35,
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            0x3789012345678901, 
+            0x3789012345678901,
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0x3789012345678901, 
-                "3789012345678901", 
+                0x00,
+                0x3789012345678901,
+                "3789012345678901",
                 Buffer (0x11)
                 {
                      0x01, 0x89, 0x67, 0x45, 0x23, 0x01, 0x89, 0x37   // ..gE#..7
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x01, 0x89, 0x67, 0x45, 0x23, 0x01, 0x89, 0x37   // ..gE#..7
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x01, 0x89, 0x67, 0x45, 0x23, 0x01, 0x89, 0x37   // ..gE#..7
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -1645,76 +1645,76 @@
         {
             /* index of the Operator */
 
-            0x02, 
+            0x02,
             /* SRC0 initial value */
 
-            0x90123456, 
+            0x90123456,
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            0x055F2CC0, 
+            0x055F2CC0,
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0x055F2CC0, 
-                "055F2CC0", 
+                0x00,
+                0x055F2CC0,
+                "055F2CC0",
                 Buffer (0x11)
                 {
                      0xC0, 0x2C, 0x5F, 0x05                           // .,_.
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0xC0, 0x2C, 0x5F, 0x05                           // .,_.
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0xC0, 0x2C, 0x5F, 0x05                           // .,_.
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -1722,76 +1722,76 @@
         {
             /* index of the Operator */
 
-            0x02, 
+            0x02,
             /* SRC0 initial value */
 
-            0x3789012345678901, 
+            0x3789012345678901,
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            0x000D76162EE9EC35, 
+            0x000D76162EE9EC35,
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0x000D76162EE9EC35, 
-                "000D76162EE9EC35", 
+                0x00,
+                0x000D76162EE9EC35,
+                "000D76162EE9EC35",
                 Buffer (0x11)
                 {
                      0x35, 0xEC, 0xE9, 0x2E, 0x16, 0x76, 0x0D         // 5....v.
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x35, 0xEC, 0xE9, 0x2E, 0x16, 0x76, 0x0D         // 5....v.
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x35, 0xEC, 0xE9, 0x2E, 0x16, 0x76, 0x0D         // 5....v.
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -1801,77 +1801,77 @@
         {
             /* index of the Operator */
 
-            0x03, 
+            0x03,
             /* SRC0 initial value */
 
-            "fedcba98 string", 
+            "fedcba98 string",
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            "fedcba98 string", 
+            "fedcba98 string",
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA98, 
-                "fedcba98 string", 
+                0x00,
+                0xFEDCBA98,
+                "fedcba98 string",
                 Buffer (0x11)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x20, 0x73, 0x74, 0x72, 0x69, 0x6E, 0x67         //  string
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38   // fedcba98
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38   // fedcba98
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -1879,80 +1879,80 @@
         {
             /* index of the Operator */
 
-            0x03, 
+            0x03,
             /* SRC0 initial value */
 
-            "fedcba9876543210 string", 
+            "fedcba9876543210 string",
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            "fedcba9876543210 string", 
+            "fedcba9876543210 string",
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543210, 
-                "fedcba9876543210 string", 
+                0x00,
+                0xFEDCBA9876543210,
+                "fedcba9876543210 string",
                 Buffer (0x11)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x37, 0x36, 0x35, 0x34, 0x33, 0x32, 0x31, 0x30,  // 76543210
-                    /* 0010 */  0x20                                             //  
-                }, 
+                    /* 0010 */  0x20                                             //
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x17                                             // .
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x17                                             // .
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -1962,77 +1962,77 @@
         {
             /* index of the Operator */
 
-            0x04, 
+            0x04,
             /* SRC0 initial value */
 
-            "fedcba98 string", 
+            "fedcba98 string",
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            "fedcba98 string", 
+            "fedcba98 string",
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA98, 
-                "fedcba98 string", 
+                0x00,
+                0xFEDCBA98,
+                "fedcba98 string",
                 Buffer (0x11)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x20, 0x73, 0x74, 0x72, 0x69, 0x6E, 0x67         //  string
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38   // fedcba98
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38   // fedcba98
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -2040,80 +2040,80 @@
         {
             /* index of the Operator */
 
-            0x04, 
+            0x04,
             /* SRC0 initial value */
 
-            "fedcba9876543210 string", 
+            "fedcba9876543210 string",
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            "fedcba9876543210 string", 
+            "fedcba9876543210 string",
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543210, 
-                "fedcba9876543210 string", 
+                0x00,
+                0xFEDCBA9876543210,
+                "fedcba9876543210 string",
                 Buffer (0x11)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x37, 0x36, 0x35, 0x34, 0x33, 0x32, 0x31, 0x30,  // 76543210
-                    /* 0010 */  0x20                                             //  
-                }, 
+                    /* 0010 */  0x20                                             //
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x17                                             // .
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x17                                             // .
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -2123,77 +2123,77 @@
         {
             /* index of the Operator */
 
-            0x05, 
+            0x05,
             /* SRC0 initial value */
 
-            "fedcba98 string", 
+            "fedcba98 string",
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            "fedcba98 string", 
+            "fedcba98 string",
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA98, 
-                "fedcba98 string", 
+                0x00,
+                0xFEDCBA98,
+                "fedcba98 string",
                 Buffer (0x11)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x20, 0x73, 0x74, 0x72, 0x69, 0x6E, 0x67         //  string
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38   // fedcba98
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38   // fedcba98
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -2201,80 +2201,80 @@
         {
             /* index of the Operator */
 
-            0x05, 
+            0x05,
             /* SRC0 initial value */
 
-            "fedcba9876543210 string", 
+            "fedcba9876543210 string",
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
-            "fedcba9876543210 string", 
+            "fedcba9876543210 string",
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543210, 
-                "fedcba9876543210 string", 
+                0x00,
+                0xFEDCBA9876543210,
+                "fedcba9876543210 string",
                 Buffer (0x11)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x37, 0x36, 0x35, 0x34, 0x33, 0x32, 0x31, 0x30,  // 76543210
-                    /* 0010 */  0x20                                             //  
-                }, 
+                    /* 0010 */  0x20                                             //
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x17                                             // .
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                     /* 0000 */  0x66, 0x65, 0x64, 0x63, 0x62, 0x61, 0x39, 0x38,  // fedcba98
                     /* 0008 */  0x17                                             // .
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -2284,84 +2284,84 @@
         {
             /* index of the Operator */
 
-            0x06, 
+            0x06,
             /* SRC0 initial value */
 
             Buffer (0x07)
             {
                  0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-            }, 
+            },
 
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
             Buffer (0x07)
             {
                  0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-            }, 
+            },
 
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0x04050607, 
-                "07 06 05 04 03 02 01", 
+                0x00,
+                0x04050607,
+                "07 06 05 04 03 02 01",
                 Buffer (0x11)
                 {
                      0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
@@ -2369,105 +2369,105 @@
         {
             /* index of the Operator */
 
-            0x06, 
+            0x06,
             /* SRC0 initial value */
 
             Buffer (0x07)
             {
                  0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-            }, 
+            },
 
             /* Target Objects initial values */
 
             Package (0x11)
             {
-                0x00, 
-                0xFEDCBA9876543211, 
-                "target string", 
+                0x00,
+                0xFEDCBA9876543211,
+                "target string",
                 Buffer (0x11)
                 {
                      0xC3                                             // .
-                }, 
+                },
 
                 Package (0x01)
                 {
                     "target package"
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 0x00
-            }, 
+            },
 
             /* Benchmark Result object value */
 
             Buffer (0x07)
             {
                  0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-            }, 
+            },
 
             /* Benchmark Result object converted to Target type values */
 
             Package (0x11)
             {
-                0x00, 
-                0x0001020304050607, 
-                "07 06 05 04 03 02 01", 
+                0x00,
+                0x0001020304050607,
+                "07 06 05 04 03 02 01",
                 Buffer (0x11)
                 {
                      0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 Buffer (0x09)
                 {
                      0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-                }, 
+                },
 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
-                0x00, 
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
                 Buffer (0x09)
                 {
                      0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01         // .......
-                }, 
+                },
 
-                0x00, 
+                0x00,
                 0x00
             }
         })
         Name (P320, Package (0x07)
         {
-            P032, 
-            P132, 
-            P232, 
-            P332, 
-            P432, 
-            P532, 
+            P032,
+            P132,
+            P232,
+            P332,
+            P432,
+            P532,
             P632
         })
         Name (P640, Package (0x07)
         {
-            P064, 
-            P164, 
-            P264, 
-            P364, 
-            P464, 
-            P564, 
+            P064,
+            P164,
+            P264,
+            P364,
+            P464,
+            P564,
             P664
         })
         Name (SCL0, Buffer (0x07)
@@ -2513,7 +2513,7 @@
         {
             /* Unexpected Kind of Op (0 - Store, ...) */
 
-            ERR (Concatenate (TS, TERR), Z126, 0x050B, 0x00, 0x00, Arg0, 0x00)
+            ERR (Concatenate (TS, TERR), Z126, __LINE__, 0x00, 0x00, Arg0, 0x00)
             Return (0x01)
         }
 
@@ -2521,7 +2521,7 @@
         {
             /* Unexpected Kind of Source-Target pair */
 
-            ERR (Concatenate (TS, TERR), Z126, 0x0511, 0x00, 0x00, Arg4, 0x00)
+            ERR (Concatenate (TS, TERR), Z126, __LINE__, 0x00, 0x00, Arg4, 0x00)
             Return (0x01)
         }
 
@@ -2652,4 +2652,3 @@
 
         M693 (0x02, 0x00, B677, B676, 0x01)
     }
-

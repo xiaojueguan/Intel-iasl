@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -32,7 +32,7 @@
      */
     Method (MF5D, 0, NotSerialized)
     {
-        CH03 ("", 0x00, 0x00, 0x25, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
         Debug = PRD1 /* \PRD1 */
         Debug = RD06 /* \RD06 */
         Debug = PWD1 /* \PWD1 */
@@ -43,6 +43,5 @@
 
         Debug = "Printing ThermalZone:"
         Debug = TZD1 /* \TZD1 */
-        CH03 ("", 0x00, 0x01, 0x34, 0x00)
+        CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
     }
-

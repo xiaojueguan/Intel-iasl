@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -86,14 +86,14 @@
             Store ((DerefOf (S000 [0x01]) + M001 ()), Local0)
             If ((Local0 != 0x24))
             {
-                ERR ("", ZFFF, 0x54, 0x00, 0x00, Local0, 0x24)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, 0x24)
             }
 
             Local0 = DerefOf (S000 [0x01])
             Local1 = 0x08
             If ((Local0 != Local1))
             {
-                ERR ("", ZFFF, 0x5C, 0x00, 0x00, Local0, Local1)
+                ERR (__METHOD__, ZFFF, __LINE__, 0x00, 0x00, Local0, Local1)
             }
         }
 
@@ -109,4 +109,3 @@
 
         MM01 ()
     }
-

@@ -1,5 +1,5 @@
     /*
-     * Some or all of this work - Copyright (c) 2006 - 2017, Intel Corp.
+     * Some or all of this work - Copyright (c) 2006 - 2018, Intel Corp.
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
@@ -41,7 +41,7 @@
             /* 0020 */  0x15, 0x12, 0x06, 0x20, 0x10, 0x1F, 0x5C, 0x00,  // ... ..\.
             /* 0028 */  0x08, 0x5F, 0x58, 0x54, 0x32, 0x0D, 0x61, 0x62,  // ._XT2.ab
             /* 0030 */  0x73, 0x6F, 0x6C, 0x75, 0x74, 0x65, 0x20, 0x6C,  // solute l
-            /* 0038 */  0x6F, 0x63, 0x61, 0x74, 0x69, 0x6F, 0x6E, 0x20,  // ocation 
+            /* 0038 */  0x6F, 0x63, 0x61, 0x74, 0x69, 0x6F, 0x6E, 0x20,  // ocation
             /* 0040 */  0x6F, 0x62, 0x6A, 0x00                           // obj.
         })
         OperationRegion (IST4, SystemMemory, 0x0600, 0x44)
@@ -57,12 +57,12 @@
             Load (RFU4, DDB0) /* \D292.TST0.DDB0 */
             Debug = "SSDT loaded"
             Unload (DDB0)
-            CH03 ("", 0x00, 0x01, 0x40, 0x00)
+            CH03 (__METHOD__, 0x00, __LINE__, 0x00, 0x00)
             Debug = "SSDT unloaded"
             Unload (DDB0)
-            CH04 ("", 0x00, 0xFF, 0x00, 0x44, 0x00, 0x00)
+            CH04 (__METHOD__, 0x00, 0xFF, 0x00, __LINE__, 0x00, 0x00)
             Unload (DDB0)
-            CH04 ("", 0x00, 0xFF, 0x00, 0x47, 0x00, 0x00)
+            CH04 (__METHOD__, 0x00, 0xFF, 0x00, __LINE__, 0x00, 0x00)
         }
     }
 
@@ -70,4 +70,3 @@
     {
         \D292.TST0 ()
     }
-
