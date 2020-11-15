@@ -65,7 +65,7 @@ Output
 
 The executable utilities are copied to the local bin directory.
 
-"make install" will install the binaries to /usr/bin
+"make install" will install the binaries to /usr/local/bin
 
 
 

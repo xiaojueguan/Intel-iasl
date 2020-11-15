@@ -4,6 +4,9 @@ Originally, this fork was only to have the changes required in order to rebuild 
 
 At this point, it has several changes that make it easier to deal with the process of patching OEM ACPI files.  A number of errors have been changed to warnings and a few disassembler features have been turned off such that the output doesn't confuse the MaciASL parser.  Those changes are detailed later in this document.
 
+## Declaration
+In case of csrutil feature of mac osx will forbid us from `cp files to /usr/bin`, i changed the
+prefix `/usr` in `generate/unix/Makefile.config` to `/usr/local` which is not the same from the original repo.
 
 ### Downloads
 
@@ -14,12 +17,13 @@ https://bitbucket.org/RehabMan/acpica/downloads/
 
 ### How to install
 
-Download the binary (see above), extract it from ZIP, and copy the iasl binary to /usr/bin
+
+Download the binary (see above), extract it from ZIP, and copy the iasl binary to /usr/local/bin
 
 ```
 cd to-directory-where-you-extracted-iasl
 # assuming cwd is set to the location of the binary
-sudo cp iasl /usr/bin
+sudo cp iasl /usr/local/bin
 ```
 
 Then verify you installed it correctly.
@@ -30,7 +34,7 @@ which iasl
 
 Should show:
 ```
-/usr/bin/iasl
+/usr/local/bin/iasl
 ```
 
 And:
